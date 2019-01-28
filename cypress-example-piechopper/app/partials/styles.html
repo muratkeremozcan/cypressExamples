@@ -1,0 +1,24 @@
+<link href="vendor/css/bootstrap-flatly.min.css" rel="stylesheet">
+
+<!-- @if target.localVendorAssets == true -->
+<link href="vendor/css/chango.css" rel="stylesheet">
+<link href="vendor/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="vendor/css/font-awesome.min.css" rel="stylesheet">
+<link href="vendor/css/angular-ui.min.css" rel="stylesheet">
+<!-- @endif -->
+<!-- @if target.localVendorAssets == false -->
+<link href="//fonts.googleapis.com/css?family=Chango" rel="stylesheet">
+<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+<link href="//cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.css" rel="stylesheet">
+<!-- @endif -->
+
+<link href="vendor/css/jquery.reject.css" rel="stylesheet">
+
+<!-- @if target.name == 'development' -->
+<link href="app/css/style.css?v=<!-- @echo timestamp -->" rel="stylesheet">
+<!-- @endif -->
+<!-- @if target.name != 'development' -->
+<link href="app/css/style.min.css?v=<!-- @echo timestamp -->" rel="stylesheet">
+<!-- @endif -->
+<link href="app/img/favicon.ico?v=<!-- @echo timestamp -->" rel="icon">

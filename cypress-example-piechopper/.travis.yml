@@ -1,0 +1,42 @@
+## our PieChopper is written
+## in node so thats what we select.
+## Cypress is agnostic to your apps
+## backend language though.
+language: node_js
+
+node_js:
+  - 5.3
+
+install:
+  - npm install
+  - npm run build
+
+before_script:
+  ## runs the 'start' script which
+  ## boots our local app server on port 8888
+  ## which cypress expects to be running
+  ## -----------------------------------
+  ## the '-- --silent' passes arguments
+  ## to grunt serve which silences its output
+  ## else our travis logs would be cluttered
+  ## with output
+  ## ---------------------------------------
+  ## we use the '&' ampersand which tells
+  ## travis to run this process in the background
+  ## else it would block execution and hang travis
+  - npm start -- --silent &
+
+script:
+  ## now run cypress headlessly
+  ## and record all of the tests.
+  ## Cypress will search for a
+  ## CYPRESS_RECORD_KEY environment
+  ## variable by default and apply
+  ## this to the run.
+  - npm run cypress:run
+
+  ## alternatively we could specify
+  ## a specific record key to use
+  ## like this without having to
+  ## configure environment variables
+  ## - cypress run --record --key <your_record_key>

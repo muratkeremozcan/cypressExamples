@@ -1,0 +1,44 @@
+{
+  "name": "cypress-example-piechopper",
+  "scripts": {
+    "postinstall": "bower install --allow-root",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:version": "cypress version",
+    "cypress:verify": "cypress verify",
+    "build": "grunt",
+    "postbuild": "node-sass app/style/style.scss build/served/app/css/style.css",
+    "prestart": "npm run build",
+    "start": "grunt serve",
+    "server": "nodemon --delay 2 build/server/src/server.js",
+    "watch": "grunt watch",
+    "pretest": "npm run build",
+    "test": "run-p --race server cypress:run",
+    "pretest:ci": "npm run build",
+    "test:ci": "run-p --race server cypress:run"
+  },
+  "devDependencies": {
+    "bower": "^1.7.2",
+    "cypress": "3.1.4",
+    "grunt": "~0.4.1",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-uglify": "~3.3.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-exec": "~0.4.2",
+    "grunt-ngmin": "0.0.3",
+    "grunt-preprocess": "~3.0.1",
+    "grunt-ssh": "~0.9.1",
+    "node-sass": "^4.8.3",
+    "nodemon": "1.17.5",
+    "npm-run-all": "^4.1.1"
+  },
+  "dependencies": {
+    "compression": "^1.5.2",
+    "express": "^4.13.3"
+  },
+  "private": "true"
+}

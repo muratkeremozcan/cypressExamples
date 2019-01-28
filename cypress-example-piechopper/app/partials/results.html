@@ -1,0 +1,54 @@
+<div class="model-section row-fluid" id="results-section">
+  <div class="container">
+    <h2>Results</h2>
+    <div ng-hide="model().hasInputErrors">
+      <div class="row span12 model-section-desc">
+        <p>Based on the given data, this is how the "{{ model().modelDef.name }}"-method suggests you to chop your equity.</p>
+      </div>
+      <div class="row span12 no-intendation">
+        <div class="span4" style="padding-bottom: 40px;">
+          <h3>Equity per Member</h3>
+          <ul>
+            <li ng-repeat="member in members()">
+              <strong>{{ member.name }}</strong>: {{ member.equity }} %
+            </li>
+          </ul>
+        </div>
+        <div class="span4" style="padding-bottom: 15px">
+          <h3>The Pie</h3>
+          <piegraph width="250" height="250" slices="equities" colors="memberColors" style="text-align: center"></piegraph>
+        </div>
+        <div class="span4">
+          <h3>Remarks</h3>
+          <ul>
+            <li ng-if="model().team.messages.length == 0">
+              No remarks
+            </li>
+            <li ng-repeat="message in model().team.messages">
+              {{ message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div ng-show="model().hasInputErrors">
+      <div class="row span12 model-section-desc">
+        <p>Your input seems to contain errors. Please fix the inputs above, errors are pointed with red color.</p>
+      </div>
+    </div>
+    <div ng-controller="ShareCtrl">
+      <div class="row span12 proceed-actions no-intendation">
+        <button class="btn btn-large" ng-show="!moreResultsWanted" ng-click="showMoreResults(true); trace.wantMoreResults()" scroll-to="questionary-section">More...</button>
+        <button id="share-btn" class="btn btn-large" scroll-to="share-btn" ng-click="saveSnapshot()" ng-disabled="linkToSnapshot()">Share</button>
+      </div>
+      <div id="link-share-url" class="row span12" ng-show="linkToSnapshot()" style="text-align: center"> 
+        <p>
+          The following link can be copied and pasted over IM or email.<br>
+          If you make any changes, they are not saved behind this link (new link must be created).<br>
+          This proposal will be <b><i>saved for a month</i></b>, after which it will be <b><i>deleted.</i></b>
+        </p>
+        <input id="sharedUrl" class="span6" type="text" value="{{ linkToSnapshot() }}"></input>
+      </div>
+    </div>
+  </div>
+</div>

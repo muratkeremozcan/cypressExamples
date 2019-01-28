@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Chango';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Chango Regular'), local('Chango-Regular'), url(../fonts/chango.woff) format('woff');
+}

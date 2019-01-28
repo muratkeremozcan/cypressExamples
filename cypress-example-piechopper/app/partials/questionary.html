@@ -1,0 +1,75 @@
+<div class="model-section dark-section row-fluid" id="questionary-section" ng-show="moreResultsWanted">
+  <div class="container" ng-show="!questionarySent">
+    <h2>Want some more?</h2>
+    <div class="row span12 model-section-desc">
+      <p>Piechopper is currently under development and benefits greatly from your help.
+        Answering the questions below assists in setting the right direction, and it only takes a few seconds.
+        Thank you for your help!</p>
+    </div>
+    <div class="row span12">
+      <div class="span6">
+        <span>Would you like to see some of the following features:</span>
+        <ul>
+          <li>
+            <span>Get legally binding agreement easily out from the service:</span><br>
+            <input type="radio" ng-model="questionary.legal" value="yes" /><span>Yes</span>
+            <input type="radio" ng-model="questionary.legal" value="no"  /><span>No</span>
+          </li>
+          <li>
+            <span>See vesting as part of the proposal:</span><br>
+            <input type="radio" ng-model="questionary.vesting" value="yes" /><span>Yes</span>
+            <input type="radio" ng-model="questionary.vesting" value="no"  /><span>No</span>
+          </li>
+          <li>
+            <span>Take investment rounds into account:</span><br>
+            <input type="radio" ng-model="questionary.investement" value="yes" /><span>Yes</span>
+            <input type="radio" ng-model="questionary.investement" value="no"  /><span>No</span>
+          </li>
+          <li>
+            <span>Adjust equity periodically (e.g. once per month) based on used effort:</span><br>
+            <input type="radio" ng-model="questionary.tasks" value="yes" /><span>Yes</span>
+            <input type="radio" ng-model="questionary.tasks" value="no"  /><span>No</span>
+          </li>
+          <li>
+            <span>See the difference between multiple proposals:</span><br>
+            <input type="radio" ng-model="questionary.diff" value="yes" /><span>Yes</span>
+            <input type="radio" ng-model="questionary.diff" value="no"  /><span>No</span>
+          </li>
+          <li>
+            <span>Comment your partner's proposal in detail:</span><br>
+            <input type="radio" ng-model="questionary.comments" value="yes" /><span>Yes</span>
+            <input type="radio" ng-model="questionary.comments" value="no"  /><span>No</span>
+          </li>
+          <li>
+            <span>Change the methods without programming:</span><br>
+            <input type="radio" ng-model="questionary.changeModels" value="yes" /><span>Yes</span>
+            <input type="radio" ng-model="questionary.changeModels" value="no"  /><span>No</span>
+          </li>
+        </ul>
+      </div>
+      <div class="span6">
+        <p>
+          <span>Would you be willing to pay on some of the features?</span><br>
+          <textarea ng-model="questionary.pay"></textarea>
+        </p>
+        <p>
+          <span>Freeform feedback:</span><br>
+          <textarea ng-model="questionary.feedback"></textarea>
+        </p>
+        <p>
+          <span>Leave your email to get an invite to upcoming features:</span><br>
+          <input type="email" ng-model="questionary.email" placeholder="email@address.com"/>
+        </p>
+      </div>
+    </div>
+    <div class="row span12 proceed-actions">
+      <button class="btn btn-large" ng-click="showMoreResults(false); trace.cancelMoreResults()" scroll-to="results-section">Cancel</button>
+      <button class="btn btn-large" ng-click="sendQuestionary()" scroll-to="questionary-section">Send</button>
+    </div>
+  </div>
+  <div class="container" ng-show="questionarySent" style="text-align: center">
+    <h2>Thank you for your feedback!</h2>
+    <p>Click <a class="clickable" ng-click="questionarySent = false" scroll-to="questionary-section">
+      here</a> if you want to modify the questionary.</p>
+  </div>
+</div>

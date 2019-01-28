@@ -1,0 +1,38 @@
+<div class="model-section dark-section row-fluid" id="emphasis-section">
+  <div class="container">
+    <h2>Want to tweak it?</h2>
+    <p class="row span12 model-section-desc">
+      In this section, you can tweak the selected method to match your team's opinion on fair equity sharing. You may want to adjust the default values due to the market situation in your location, your principles and ethics, or your financial situation. In case you don't have any preference, continue to the next section.
+    </p>
+    <div class="row offset1 span10">
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th style="width: 65%" class="cell-centered">
+              <div class="th-wrap">What to value?</div>
+            </th>
+            <th style="width: 35%" class="cell-centered">
+              <div class="th-wrap">Value</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-class="['even', 'odd'][$index % 2]" 
+              ng-repeat="id in model().getEmphasisIds()">
+            <td>{{ model().modelDef.emphasis[id].text }}</td>
+            <td class="cell-centered clickable"
+                value-cell="model().modelDef.emphasis[id].type"
+                ng-model="model().emphasis[id]"
+                ng-class="{ invalid: model().emphasisErrors[id] }">
+                <div class="cell-error-msg" ng-show="model().emphasisErrors[id]">{{ model().emphasisErrors[id] }}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row span12 proceed-actions">
+      <button class="btn btn-large" scroll-to="contrib-section">Go Back</button>
+      <button class="btn btn-large" scroll-to="results-section">Continue</button>
+    </div>
+  </div>
+</div>

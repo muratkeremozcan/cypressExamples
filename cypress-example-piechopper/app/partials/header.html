@@ -1,0 +1,29 @@
+<div class="navbar navbar-static-top" id="top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" class="btn btn-navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/" target="_self">PieChopper</a>
+      <div collapse="navCollapsed" class="nav-collapse collapse navbar-responsive-collapse">
+        <ul class="nav pull-right">
+          <li>
+            <a ng-click="aboutVisible = !aboutVisible; trace.showAbout()" class="clickable">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-cloak collapse="!aboutVisible">
+  <div class="container">
+    <div id="about-section" class="dark-section">
+      <p>
+        PieChopper assists startup teams to share their equity fair and square.<br>It's free to use, and its source code is available in <a href="https://github.com/jojanaho/piechopper" target="_blank">GitHub</a> under <a href="https://github.com/jojanaho/piechopper/blob/master/LICENSE" target="_blank">MIT license</a>.
+      </p>
+    </div>
+  </div>
+</div>

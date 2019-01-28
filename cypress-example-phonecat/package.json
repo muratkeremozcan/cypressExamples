@@ -1,0 +1,41 @@
+{
+  "name": "angular-phonecat",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A tutorial application for AngularJS",
+  "repository": "https://github.com/angular/angular-phonecat",
+  "license": "MIT",
+  "dependencies": {
+    "bower": "^1.7.7",
+    "http-server": "^0.10.0",
+    "npm-run-all": "4.1.3"
+  },
+  "devDependencies": {
+    "cypress": "3.1.4",
+    "jasmine-core": "^3.0.0",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-jasmine": "^1.1.1",
+    "protractor": "^5.2.1"
+  },
+  "scripts": {
+    "cypress:record": "cypress run --record",
+    "cypress:run": "cypress run",
+    "cypress:version": "cypress version",
+    "cypress:verify": "cypress verify",
+    "cypress:open" : "cypress open",
+    "postinstall": "bower install --allow-root",
+    "start": "http-server ./app -a localhost -p 8000 -c-1",
+    "start:quiet": "http-server ./app -a localhost -p 8000 -c-1 --silent",
+    "test": "karma start karma.conf.js",
+    "test:single:run": "karma start karma.conf.js --single-run",
+    "test:ci": "run-p --race start:quiet cypress:run",
+    "record:ci": "run-p --race start:quiet cypress:record",
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor e2e-tests/protractor.conf.js",
+    "update-index-async": "node -e \"var fs=require('fs'),indexFile='app/index-async.html',loaderFile='app/bower_components/angular-loader/angular-loader.min.js',loaderText=fs.readFileSync(loaderFile,'utf-8').split(/sourceMappingURL=angular-loader.min.js.map/).join('sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map'),indexText=fs.readFileSync(indexFile,'utf-8').split(/\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/).join('//@@NG_LOADER_START@@\\n'+loaderText+'    //@@NG_LOADER_END@@');fs.writeFileSync(indexFile,indexText);\""
+  }
+}

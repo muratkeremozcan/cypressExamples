@@ -1,0 +1,31 @@
+<div class="model-section dark-section row-fluid" id="model-selection-section">
+  <div class="container">
+    <h2>How to chop it?</h2>
+    <div class="row span12 model-section-desc">
+      <p>
+        There are various ways to divide the equity. Select the method that is the closest match to your situation and thinking. You may also try out alternative methods, and see how their outcomes differ. In case you don't have any preference, continue to the next section.
+      </p>
+    </div>
+    <div class="model-carousel row span12" ng-cloak>
+      <div class="span6 model-selector">
+        <carousel interval="-1">
+          <slide ng-repeat="s in slides" active="s.active">
+            <div class="carousel-img">
+              <img src="app/img/{{ s.image }}" alt="Model image">
+            </div>
+            <div class="carousel-caption">
+              <h4>{{ s.name }}</h4>
+              <p>{{ s.target }}</p>
+            </div>
+          </slide>
+        </carousel>
+      </div>
+      <div class="span6">
+        <div class="model-selector-desc" ng-bind-html="activeSlide().desc"></div>
+        <div class="proceed-actions">
+          <button class="btn btn-large" scroll-to="contrib-section">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

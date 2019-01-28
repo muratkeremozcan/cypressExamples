@@ -1,0 +1,233 @@
+// ------- generic -------
+$hint-color: #ccc;
+$dark-bg: darken(#ecf0f1, 4%);
+$action-color: #18bc9c;
+$dark-highlight: #2c3e50;
+$medium-highlight: lighten($dark-highlight, 5%);
+$input-border-color: #dce4ec;
+$error-color: lighten(#e95d4e, 15%);
+
+hr {
+  height: 1px;
+  background-color: lighten($dark-highlight, 50%);
+}
+.clickable { cursor: pointer; }
+.dark-section {
+  background-color: $dark-bg;
+  hr {
+    background-color: lighten($dark-highlight, 30%);
+  }
+}
+#top {
+  .brand { font-family: 'Chango', cursive; }
+  .btn-navbar { margin-top: 13px; }
+}
+.action-colored { color: $action-color; }
+
+body {
+  background-image:url('../img/background.png');
+}
+
+// override bootstrap-responsive's percentage margins
+.no-intendation {
+  margin-left: 0 !important;
+}
+
+.proceed-actions {
+  @extend .no-intendation;
+  margin: 40px 0 70px 0;
+  text-align: center;
+  .btn {
+    min-width: 160px;
+    margin: 0 10px 10px 10px;
+    background-color: $medium-highlight;
+  }
+}
+
+.error-dlg {
+  padding: 5px 20px 20px 20px;
+  background-color: $dark-bg;
+  border-radius: 5px;
+}
+
+.model-section {
+  padding: 25px 0 20px 0;
+  h2 {
+    padding-bottom: 10px;
+  }
+  .model-section-desc {
+    margin-bottom: 30px;
+  }
+}
+
+.carousel-control, .carousel-indicators li {
+  cursor: pointer;
+}
+
+.model-selector {
+  border: 1px solid lighten($dark-highlight, 50%);
+  padding-top: 20px;
+}
+.model-selector-desc {
+  padding-top: 20px;
+}
+
+table {
+  background-color: #fff;
+  .cell-centered {
+    text-align: center;
+    vertical-align: middle;
+  }
+  .cell-wrap { position: relative; }
+  thead tr { height: 60px; }
+  td {
+    position: relative;
+    &.invalid {
+      background-color: $error-color !important;
+    }
+
+    input[type='number'], select { margin: 0; }
+    input[type='number'] { width: 55%; }
+    select { width: 75%; }
+    .cell-error-msg {
+      font-size: 80%;
+      text-decoration: italic;
+      margin-bottom: 5px;
+    }
+
+    span.value-unit {
+      color: $hint-color;
+      margin-left: 3px;
+      font-size: 15px;
+    }
+
+    div.criteria-info {
+      color: $hint-color;
+      position: absolute;
+      right: 10px;
+      top: 0px;
+      width: 100px;
+      text-align: right;
+      z-index: 10;
+    }
+  }
+}
+
+#slice-graph {
+  position: fixed;
+}
+
+
+#about-section {
+  text-align: center;
+  padding: 10px 0 0 0;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#overview-section {
+  text-align: center;
+  padding-top: 100px;
+  h1 { margin-bottom: 15px; }
+  .overview-logo {
+     width: 400px;
+  }
+}
+
+#model-selection-section {
+  .carousel-img {
+    margin: auto;
+    width: 300px;
+    height: 200px;
+  }
+  .carousel-indicators li {
+    background-color: white;
+    &.active {
+      background-color: $medium-highlight;
+    }
+  }
+}
+
+#contrib-section {
+  tr.result {
+    font-weight: 600;
+  }
+  .member-add-btn, .member-remove-btn {
+    cursor: pointer;
+    color: $action-color;
+    position: absolute;
+    z-index: 10;
+    padding: 5px;
+  }
+  .member-add-btn {
+    right: 0;
+    top: -28px;
+  }
+  .member-remove-btn {
+    top: -32px;
+    right: 0;
+    text-align: right;
+  }
+}
+
+#questionary-section {
+  form {
+    margin: 30px 0 0 0;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 20px 20px;
+    li {
+      margin-top: 7px;
+      font-style: italic;
+      input {
+        margin: -2px 5px 0 10px;
+      }
+    }
+  }
+  textarea, input[type="email"] {
+    margin-top: 5px;
+    width: 95%;
+    max-width: 420px;
+  }
+  textarea {
+    height: 85px;
+  }
+}
+
+#footer {
+  background-color: $dark-highlight;
+  padding: 10px 65px 50px 65px;
+  .links a {
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 978px) {
+  .container {
+    padding: 0 15px 0 15px;
+    margin: 0;
+  }
+
+  body {
+    padding: 0;
+  }
+
+  .navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .i-slice-graph {
+    visibility: hidden;
+  }
+}
+
+@media (max-width:767px) {
+  #overview-section .overview-logo { max-width: 200px; }
+}

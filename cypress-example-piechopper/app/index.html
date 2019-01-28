@@ -1,0 +1,45 @@
+<!doctype html>
+<html ng-app="piechopper" ng-controller="AppCtrl"
+      legacy-browser-rejector browser-image-path="vendor/images/"
+      lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PieChopper - Chop your startup equity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- @include partials/styles.html -->
+  </head>
+  <body>
+    <div ng-controller="HeaderCtrl">
+      <!-- @include partials/header.html -->
+    </div>
+
+    <div ng-controller="CalcCtrl">
+      <div ng-cloak id="slice-graph" slice-graph
+          show-in-sections="contrib-section;emphasis-section"
+          slices="equities"
+          width="25" height="300"
+          colors="memberColors" style="z-index: 20">
+      </div>
+    </div>
+    
+    <!-- @include partials/overview.html -->
+    <div ng-controller="ModelSelectionCtrl">
+      <!-- @include partials/model-selection.html -->
+    </div>
+    
+    <div ng-controller="CalcCtrl">
+      <!-- @include partials/contrib-table.html -->
+      <!-- @include partials/emphasis-table.html -->
+      <!-- @include partials/results.html -->
+    </div>
+  
+    <div ng-controller="QuestionaryCtrl">
+      <!-- @include partials/questionary.html -->
+    </div>
+
+    <!-- @include partials/tos.html -->
+    <!-- @include partials/footer.html -->
+    <!-- @include partials/ga.html -->
+    <!-- @include partials/scripts.html -->
+  </body>
+</html>

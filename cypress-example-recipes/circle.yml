@@ -1,0 +1,203 @@
+version: 2
+
+# testing jobs are all the same, so just use a template
+defaults: &defaults
+  parallelism: 1
+  working_directory: ~/app
+  docker:
+    - image: cypress/base:10
+  steps:
+    - attach_workspace:
+        at: ~/
+    - run:
+        command: |
+          cd examples/$CIRCLE_JOB
+          npm run start
+        name: start the server
+        background: true
+    - run:
+        command: |
+          cd examples/$CIRCLE_JOB
+          npm run cypress:run -- --record --group $CIRCLE_JOB
+        name: Cypress tests
+
+jobs:
+  # a single job that installs dependencies (NPM and Cypress)
+  build:
+    working_directory: ~/app
+    docker:
+      - image: cypress/base:10
+    steps:
+      - checkout
+      - restore_cache:
+          key: cache-dirs-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "circle.yml" }}
+      - run: npm ci
+      # run verify and then save cache.
+      # this ensures that the Cypress verified status is cached too
+      - run: npm run cypress:verify
+      - save_cache:
+          key: cache-dirs-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "circle.yml" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      # all other test jobs will run AFTER this build job finishes
+      # to avoid reinstalling dependencies, we persist the source folder "app"
+      # and the Cypress binary to workspace, which is the fastest way
+      # for Circle jobs to pass files
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - app
+            - .cache/Cypress
+
+  # define a new job with defailts for each "examples/*" subfolder
+  blogs__application-actions:
+    <<: *defaults
+  blogs__codepen-demo:
+    <<: *defaults
+  blogs__direct-control-angular:
+    <<: *defaults
+  blogs__e2e-api-testing:
+    <<: *defaults
+  blogs__e2e-snapshots:
+    <<: *defaults
+  blogs__element-coverage:
+    <<: *defaults
+  blogs__testing-redux-store:
+    <<: *defaults
+  blogs__vue-vuex-rest:
+    <<: *defaults
+  extending-cypress__chai-assertions:
+    <<: *defaults
+  file-upload-react:
+    <<: *defaults
+  fundamentals__node-modules:
+    <<: *defaults
+  logging-in__csrf-tokens:
+    <<: *defaults
+  logging-in__html-web-forms:
+    <<: *defaults
+  logging-in__single-sign-on:
+    <<: *defaults
+  logging-in__xhr-web-forms:
+    <<: *defaults
+  preprocessors__typescript-browserify:
+    <<: *defaults
+  preprocessors__typescript-webpack:
+    <<: *defaults
+  server-communication__bootstrapping-your-app:
+    <<: *defaults
+  stubbing-spying__functions:
+    <<: *defaults
+  stubbing-spying__window-fetch:
+    <<: *defaults
+  stubbing-spying__google-analytics:
+    <<: *defaults
+  testing-dom__drag-drop:
+    <<: *defaults
+  testing-dom__form-interactions:
+    <<: *defaults
+  testing-dom__hover-hidden-elements:
+    <<: *defaults
+  testing-dom__tab-handling-links:
+    <<: *defaults
+  unit-testing__application-code:
+    <<: *defaults
+  unit-testing__react-enzyme:
+    <<: *defaults
+  server-communication__env-variables:
+    <<: *defaults
+
+workflows:
+  version: 2
+  # when adding new example subfolder with a recipe
+  # add its name here to "create" CircleCI job
+  all-recipes:
+    jobs:
+      - build
+      # disable for now
+      # https://github.com/cypress-io/cypress-example-recipes/issues/217
+      # - blogs__codepen-demo:
+      #     requires:
+      #       - build
+      - blogs__application-actions:
+          requires:
+            - build
+      - blogs__direct-control-angular:
+          requires:
+            - build
+      - blogs__e2e-api-testing:
+          requires:
+            - build
+      - blogs__e2e-snapshots:
+          requires:
+            - build
+      - blogs__element-coverage:
+          requires:
+            - build
+      - blogs__testing-redux-store:
+          requires:
+            - build
+      - blogs__vue-vuex-rest:
+          requires:
+            - build
+      - extending-cypress__chai-assertions:
+          requires:
+            - build
+      - file-upload-react:
+          requires:
+            - build
+      - fundamentals__node-modules:
+          requires:
+            - build
+      - logging-in__csrf-tokens:
+          requires:
+            - build
+      - logging-in__html-web-forms:
+          requires:
+            - build
+      - logging-in__single-sign-on:
+          requires:
+            - build
+      - logging-in__xhr-web-forms:
+          requires:
+            - build
+      - preprocessors__typescript-browserify:
+          requires:
+            - build
+      - preprocessors__typescript-webpack:
+          requires:
+            - build
+      - server-communication__bootstrapping-your-app:
+          requires:
+            - build
+      - stubbing-spying__functions:
+          requires:
+            - build
+      - stubbing-spying__window-fetch:
+          requires:
+            - build
+      - stubbing-spying__google-analytics:
+          requires:
+            - build
+      - testing-dom__drag-drop:
+          requires:
+            - build
+      - testing-dom__form-interactions:
+          requires:
+            - build
+      - testing-dom__hover-hidden-elements:
+          requires:
+            - build
+      - testing-dom__tab-handling-links:
+          requires:
+            - build
+      - unit-testing__application-code:
+          requires:
+            - build
+      - unit-testing__react-enzyme:
+          requires:
+            - build
+      - server-communication__env-variables:
+          requires:
+            - build

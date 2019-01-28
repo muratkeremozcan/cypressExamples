@@ -1,0 +1,72 @@
+<div class="model-section row-fluid" id="contrib-section">
+  <div class="container">
+    <h2>How do you contribute?</h2>
+    <p class="row span12 model-section-desc">
+      Consider each member's contribution below. You may add or remove members (with <i class="fa fa-plus-square action-colored"></i> and <i class="fa fa-minus-square action-colored"></i> buttons) to match your team's headcount. You may also rename members by clicking their name. In case you feel that some rows don't apply in your situation, leave them blank. If you cannot find clear differences between member contributions, it might be a symptom of ill responsibility definition in the company. In that case, use some time to define the role of each member more precisely.
+    </p>
+    <div class="row span12">
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th style="width: 40%">
+              <div class="cell-wrap">
+                <span class="member-add-btn" ng-show="!repo.isTeamAtMax()" ng-click="repo.addMember(); trace.addMember()">
+                  <i tooltip="Add new member" class="fa fa-plus-square fa-lg"></i>
+                </span>
+              </div>
+            </th>
+            <th style="width: {{60 / members().length}}%;" ng-model="member.name" 
+                ng-repeat="member in members()"
+                class="cell-centered">
+              <div class="cell-wrap">
+                <span contenteditable prevent-empty="true" ng-model="member.name" ng-click="trace.changeMemberName()"></span>
+                <span class="member-remove-btn" ng-show="!repo.isTeamAtMin()" ng-click="repo.removeMember($index); trace.removeMember()">
+                  <i tooltip="Remove member" class="fa fa-minus-square"></i>
+                </span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr class="result">
+            <td></td>
+            <td class="cell-centered" ng-repeat="member in members()">
+              <span ng-hide="model().hasInputErrors">{{ member.equity }} %</span>
+              <span ng-show="model().hasInputErrors">-</span>
+            </td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr ng-class="['even', 'odd'][$index % 2]" 
+              ng-repeat="id in model().getCriteriaIds()">
+            <td>
+              <div class="cell-wrap">
+                <div class="criteria-txt" ng-style="{ width: criteria(id).info ? '90%' : '100%'}">
+                  {{ criteria(id).text }}
+                </div>
+                <div ng-show="{{ criteria(id).info != undefined }}"
+                      class="criteria-info"
+                      tooltip="{{ criteria(id).info }}"
+                      style="width: 10%">
+                  <i class="fa fa-question-circle"></i>
+                </div>
+              </div>
+            </td>
+            <td class="cell-centered clickable"
+                value-cell="criteria(id).type"
+                ng-model="member.values[id]"
+                radio-unselector="unselectOtherRadios(id, member)"
+                ng-repeat="member in members()"
+                ng-class="{ invalid: member.valueErrors[id] }">
+                <div class="cell-error-msg" ng-show="member.valueErrors[id]">{{ member.valueErrors[id] }}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row span12 proceed-actions">
+      <button class="btn btn-large" scroll-to="model-selection-section">Go Back</button>
+      <button class="btn btn-large" scroll-to="emphasis-section">Continue</button>
+    </div>
+  </div>
+</div>
