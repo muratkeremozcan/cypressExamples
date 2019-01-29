@@ -8,7 +8,7 @@ npm run dev
 ```
 On a different tab, run Cypress:
 ```
-npm run cypress
+npm run cypress:open
 ```
 To run all tests headlessly:
 ```

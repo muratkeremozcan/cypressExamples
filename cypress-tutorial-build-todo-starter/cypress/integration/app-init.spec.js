@@ -1,4 +1,4 @@
-/// <reference types="../support/" />
+/// <reference types="../support/commands.js" />
 
 describe('App initialization', () => {
   it('Loads todos on page load', () => {

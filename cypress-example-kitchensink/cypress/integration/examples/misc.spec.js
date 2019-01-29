@@ -25,6 +25,7 @@ context('Misc', () => {
     // execute a system command.
     // so you can take actions necessary for
     // your test outside the scope of Cypress.
+    // Example: run a protractor test within Cypress
     cy.exec('echo Jane Lane')
       .its('stdout').should('contain', 'Jane Lane')
 

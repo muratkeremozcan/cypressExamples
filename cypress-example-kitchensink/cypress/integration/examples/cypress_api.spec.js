@@ -138,8 +138,9 @@ context('Cypress.dom', () => {
     cy.visit('http://localhost:8080/cypress-api')
   })
 
-  // https://on.cypress.io/dom
+  // https://docs.cypress.io/api/cypress-api/dom.html#Syntax
   it('.isHidden() - determine if a DOM element is hidden', () => {
+    // https://docs.cypress.io/api/utilities/$.html#Syntax
     let hiddenP = Cypress.$('.dom-p p.hidden').get(0)
     let visibleP = Cypress.$('.dom-p p.visible').get(0)
 

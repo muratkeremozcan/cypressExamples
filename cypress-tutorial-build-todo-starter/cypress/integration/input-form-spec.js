@@ -1,8 +1,10 @@
 describe('Input form', () => {
+
   beforeEach('visit url', () => {
     // cy.visit('/'); // nav to url
     cy.seedAndVisit([]); // stubbed API call with fixed response for todo items, fixed response is empty array in this case
   });
+
   it('focuses input on load', () => {
     cy.focused()  // Yields the element currently in focus
       .should('have.class', 'new-todo');
@@ -19,6 +21,7 @@ describe('Input form', () => {
     beforeEach(() => {
       cy.server();  // starts a server which allows us to stub responses
     });
+    
     it('Adds a new todo on submit', () => {
       const itemText = 'Buy eggs';
 

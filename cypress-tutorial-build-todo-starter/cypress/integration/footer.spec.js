@@ -1,4 +1,5 @@
 describe('Footer', () => {
+
   context('with a single todo', () => {
     it('displays a singular todo in count', () => {
       cy.seedAndVisit([{
@@ -37,7 +38,7 @@ describe('Footer', () => {
         }
       ]
 
-      cy.wrap(filters) // cy.wrap() puts the data in the context of cypress and allows us to chain on additional cypress commands
+      cy.wrap(filters) // cy.wrap() puts the data in the context of cypress and allows us to chain additional cypress commands
         .each(filter => {
         cy.contains(filter.link)
           .click();

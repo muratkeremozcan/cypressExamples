@@ -4,7 +4,6 @@ describe('Smoke tests', () => {
     cy.request('GET', '/api/todos') // cy.request to make an API GET request to a url
       .its('body') // its('body') is used to get the resulting response from the GET request
       .each(todo => cy.request('DELETE', `api/todos/${todo.id}`)); // the response will have the db items, send a DELETE API request to each
-
   });
 
   context('With no todos', () => {

@@ -18,7 +18,7 @@ describe('List items', () => {
   });
 
   it('Removes a todo', () => {
-    // removing todos will be handled by an xhr called to the backend API, stub that with cy.route
+    // removing todos will be handled by an xhr called to the back-end API, stub that with cy.route
     cy.route({
       url: 'api/todos/1',
       method: 'DELETE',

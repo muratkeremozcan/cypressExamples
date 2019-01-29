@@ -10,6 +10,7 @@ context('Files', () => {
     // Instead of writing a response inline you can
     // use a fixture file's content.
 
+    // API test example
     cy.server()
     cy.fixture('example.json').as('comment')
     cy.route('GET', 'comments/*', '@comment').as('getComment')
