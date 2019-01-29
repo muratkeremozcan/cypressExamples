@@ -51,6 +51,8 @@ npm install
 
 ## Opening Cypress GUI
 
+
+
 ```bash
 cd ./examples/testing-dom__drag-drop
 # start local server
@@ -58,6 +60,7 @@ npm start &
 # and open Cypress GUI
 npm run cypress:open
 ```
+> On Windows when running *npm run cypress:open* if you get the error *'A command is not recognized as an internal or external command'*, refer to this [link](https://www.thewindowsclub.com/is-not-recognized-as-an-internal-or-external-command).
 
 ## Running from the CLI
 
