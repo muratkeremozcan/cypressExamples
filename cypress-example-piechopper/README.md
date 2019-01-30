@@ -20,9 +20,8 @@ npm run build
 ## start the local webserver
 npm start
 
-## if you modify the app source files and
-## want the files to auto build (optional)
-npm run watch
+## run cypress
+npm run cypress:open
 ```
 
 ## navigate your browser to
