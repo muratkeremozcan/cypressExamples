@@ -5,6 +5,7 @@ context('Traversal', () => {
     cy.visit('http://localhost:8080/commands/traversal')
   })
 
+  // For use with selectors
   it('.children() - get child DOM elements', () => {
     // https://on.cypress.io/children
     cy.get('.traversal-breadcrumb')

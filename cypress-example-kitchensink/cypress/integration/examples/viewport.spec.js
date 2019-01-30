@@ -5,7 +5,7 @@ context('Viewport', () => {
     cy.visit('http://localhost:8080/commands/viewport')
   })
 
-  it('cy.viewport() - set the viewport size and dimension', () => {
+  it.only('cy.viewport() - set the viewport size and dimension', () => {
     // https://on.cypress.io/viewport
 
     cy.get('#navbar').should('be.visible')
@@ -25,6 +25,7 @@ context('Viewport', () => {
     // We added a cy.wait() between each viewport change so you can see
     // the change otherwise it is a little too fast to see :)
 
+    // For testing with different devices
     cy.viewport('macbook-15')
     cy.wait(200)
     cy.viewport('macbook-13')

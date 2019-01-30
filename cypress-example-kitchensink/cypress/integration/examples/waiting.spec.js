@@ -17,6 +17,7 @@ context('Waiting', () => {
     cy.wait(1000)
   })
 
+  // API test example
   it('cy.wait() - wait for a specific route', () => {
     cy.server()
 

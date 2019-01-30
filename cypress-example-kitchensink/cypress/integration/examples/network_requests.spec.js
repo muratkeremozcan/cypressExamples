@@ -7,6 +7,7 @@ context('Network Requests', () => {
 
   // Manage AJAX / XHR requests in your app
 
+  // API testing example
   it('cy.server() - control behavior of network requests and responses', () => {
     // https://on.cypress.io/server
 

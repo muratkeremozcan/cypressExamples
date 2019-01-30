@@ -6,6 +6,7 @@ context('Utilities', () => {
   })
 
   it('Cypress._ - call a lodash method', () => {
+    // API test example
     // https://on.cypress.io/_
     cy.request('https://jsonplaceholder.cypress.io/users')
       .then((response) => {
@@ -17,6 +18,7 @@ context('Utilities', () => {
 
   it('Cypress.$ - call a jQuery method', () => {
     // https://on.cypress.io/$
+    // you can use jQuery for selectors
     let $li = Cypress.$('.utility-jquery li:first')
 
     cy.wrap($li)
@@ -70,7 +72,6 @@ context('Utilities', () => {
     expect(matching, 'comments').to.be.false
   })
 
-
   it('Cypress.moment() - format or parse dates using a moment method', () => {
     // https://on.cypress.io/moment
     // eslint-disable-next-line no-unused-vars
@@ -80,7 +81,6 @@ context('Utilities', () => {
     cy.get('.utility-moment').contains('3:38 PM')
       .should('have.class', 'badge')
   })
-
 
   it('Cypress.Promise - instantiate a bluebird promise', () => {
     // https://on.cypress.io/promise

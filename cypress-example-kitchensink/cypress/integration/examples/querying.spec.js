@@ -7,6 +7,7 @@ context('Querying', () => {
 
   // The most commonly used query is 'cy.get()', you can
   // think of this like the '$' in jQuery
+  // selectors
 
   it('cy.get() - query DOM elements', () => {
     // https://on.cypress.io/get
@@ -67,6 +68,7 @@ context('Querying', () => {
 
   it('.within() - query DOM elements within a specific element', () => {
     // https://on.cypress.io/within
+    // within is like chaining selectors in protractor
     cy.get('.query-form').within(() => {
       cy.get('input:first').should('have.attr', 'placeholder', 'Email')
       cy.get('input:last').should('have.attr', 'placeholder', 'Password')

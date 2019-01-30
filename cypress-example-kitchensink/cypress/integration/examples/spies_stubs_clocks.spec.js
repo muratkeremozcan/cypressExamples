@@ -8,7 +8,7 @@ context('Spies, Stubs, and Clock', () => {
     let obj = {
       foo () {},
     }
-
+    // cy.spy(object, method)
     let spy = cy.spy(obj, 'foo').as('anyArgs')
 
     obj.foo()
@@ -31,7 +31,7 @@ context('Spies, Stubs, and Clock', () => {
         console.log('a', a, 'b', b)
       },
     }
-
+    // cy.stub(object, method, replacerFn)
     let stub = cy.stub(obj, 'foo').as('foo')
 
     obj.foo('foo', 'bar')

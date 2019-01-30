@@ -42,6 +42,7 @@ context('Navigation', () => {
 
     /* eslint-disable no-unused-vars */
     // Pass options to the visit
+    // may want to try this with regular login
     cy.visit('http://localhost:8080/commands/navigation', {
       timeout: 50000, // increase total time for the visit to resolve
       onBeforeLoad (contentWindow) {
