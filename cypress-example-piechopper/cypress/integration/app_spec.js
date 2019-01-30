@@ -23,6 +23,7 @@ describe('PieChopper', function(){
   it('has correct h1', function(){
     // https://on.cypress.io/get
     cy.get('h1').should('contain', 'Chop your startup equity')
+    // cy.contains('Chop your startup equity') // same
   })
 
   context('About', function(){
@@ -87,6 +88,11 @@ describe('PieChopper', function(){
           // https://on.cypress.io/window
           cy.window().its('scrollY').should('eq', offset.top)
         })
+
+      // alternative
+      // cy.get('#model-selection-section')
+      //   .scrollIntoView()
+      //   .should('contain', 'How to chop it')
     })
   })
 
@@ -176,7 +182,7 @@ describe('PieChopper', function(){
     describe('Company Roles', function(){
       it('can add a Member C', function(){
         // https://on.cypress.io/within
-        // do all of our work within this section
+        // do all of our work within this section, within is like protractor chain selector
         cy.get('@contrib').within(function(){
           cy.get('thead th').should('have.length', 3)
           cy.get('.member-add-btn').click()
@@ -317,12 +323,15 @@ describe('PieChopper', function(){
     // simulate the server failing to respond to the share proposal
     it('displays error message in modal when server errors', function(){
       // https://on.cypress.io/route
+      // stubbing a route
       cy.route({
           method: 'POST',
           url: /proposals/,
           status: 500,
           response: ''
         }).as('proposal')
+
+      // originally the POST request results in a 404, we stubbed 500
       cy.get('#results-section').contains('Share').click()
 
       // https://on.cypress.io/wait
@@ -336,8 +345,10 @@ describe('PieChopper', function(){
 
     it('sends up correct request JSON', function(){
       // https://on.cypress.io/route
+      // If you do not pass a response to a route, Cypress will pass the request through without stubbing it
+      // If you pass a response to cy.route(), Cypress will stub the response in the request.
       cy.route('POST', /proposals/, {}).as('proposal')
-      cy.get('#results-section').contains('Share').click()
+      cy.get('#results-section').contains('Share').click() // this click causes the POST request
       cy.wait('@proposal').its('requestBody').should(function(json){
         expect(json.userId).to.be.a('string')
 
