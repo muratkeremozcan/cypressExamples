@@ -1,39 +1,61 @@
+## How to run
+
+There are 30 repos under this repo's examples folder.
+
+The original version of this repo runs each example with `npm start` from the example folder.
+
+In Windows, the relative paths while calling node_modules 2 folders above is a lot of trouble with environment variables.
+
+The structure was slightly changed for Windows pcs. Need to npm install in each example recipe as such:
+for each example install and run in the directory:
+
+```
+npm i
+npm start
+```
+
+On another tab
+
+```
+npm run cypress:open
+```
+
 # Recipes [![CircleCI](https://circleci.com/gh/cypress-io/cypress-example-recipes/tree/master.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-recipes/tree/master) [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-recipes.svg?branch=master)](https://travis-ci.org/cypress-io/cypress-example-recipes) [![renovate-app badge][renovate-badge]][renovate-app]
 
 This repo contains various recipes for testing common scenarios using Cypress.
 
-Recipe | Category | Description
---- | --- | ---
-[Node Modules](#node-modules) | Fundamentals | Import your own node modules
-[Single Sign On](#single-sign-on) | Logging In | Log in across multiple servers or providers
-[HTML Web Forms](#html-web-forms) | Logging In | Log in with a basic HTML form
-[XHR Web Forms](#xhr-web-forms) | Logging In | Log in using an XHR
-[CSRF Tokens](#csrf-tokens) | Logging In | Log in with a required CSRF token
-[Tab Handling and Links](#tab-handling-and-links) | Testing the DOM | Links that open in a new tab
-[Hover and Hidden Elements](#hover-and-hidden-elements) | Testing the DOM | Test hidden elements requiring hover
-[Form Interactions](#form-interactions) | Testing the DOM | Test form elements like input type `range`
-[Drag and Drop](#drag-and-drop) | Testing the DOM | Use `.trigger()` to test drag and drop
-[Typescript with Browserify](#typescript-with-browserify) | Preprocessors | Add typescript support with browserify
-[Typescript with Webpack](#typescript-with-webpack) | Preprocessors | Add typescript support with webpack
-[Application Actions](#application-actions) | Blogs | Application actions are a replacement for Page Objects
-[Direct Control of AngularJS](#direct-control-of-angularjs) | Blogs | Bypass the DOM and control AngularJS
-[E2E API Testing](#e2e-api-testing) | Blogs | Run your API Tests with a GUI
-[E2E Snapshots](#e2e-snapshots) | Blogs | End-to-End Snapshot Testing
-[Element Coverage](#element-coverage) | Blogs | Track elements covered by tests
-[Codepen.io Testing](#codepen-testing) | Blogs | Test a HyperApp Codepen demo
-[Testing Redux Store](#testing-redux-store) | Blogs | Test an application that uses Redux data store
-[Vue + Vuex + REST Testing](#vue--vuex--rest-testing) | Blogs | Test an application that uses central data store
-[Stubbing Functions](#stubbing-functions) | Stubbing, Spying | Use `cy.stub()` to test function calls
-[Stubbing `window.fetch`](#stubbing-windowfetch) | Stubbing, Spying | Use `cy.stub()` to control fetch requests
-[Stubbing methods called on `window`](#stubbing-methods-called-on-window) | Stubbing, Spying | Use `cy.stub()` for methods called on `window`
-[Stubbing Google Analytics](#stubbing-google-analytics) | Stubbing, Spying | Use `cy.stub()` to test Google Analytics calls
-[Application Code](#application-code) | Unit Testing | Import and test your own application code
-[React with Enzyme](#react-with-enzyme) | Unit Testing | Test your React components in isolation
-[File Upload in React](#file-upload-in-react) | Unit Testing | Test file upload in React app
-[Adding Chai Assertions](#adding-chai-assertions) | Extending Cypress | Add new or custom chai assertions
-[Bootstrapping your App](#bootstrapping-your-app) | Server Communication | Seed your application with test data
-[Seeding your Database in Node](#seeding-your-database-in-node) | Server Communication | Seed your database with test data
-[Environment variables](#environment-variables) | Fundamentals | Passing environment variables to tests
+| Recipe                                                                    | Category             | Description                                            |
+| ------------------------------------------------------------------------- | -------------------- | ------------------------------------------------------ |
+| [Node Modules](#node-modules)                                             | Fundamentals         | Import your own node modules                           |
+| [Single Sign On](#single-sign-on)                                         | Logging In           | Log in across multiple servers or providers            |
+| [HTML Web Forms](#html-web-forms)                                         | Logging In           | Log in with a basic HTML form                          |
+| [XHR Web Forms](#xhr-web-forms)                                           | Logging In           | Log in using an XHR                                    |
+| [CSRF Tokens](#csrf-tokens)                                               | Logging In           | Log in with a required CSRF token                      |
+| [Tab Handling and Links](#tab-handling-and-links)                         | Testing the DOM      | Links that open in a new tab                           |
+| [Hover and Hidden Elements](#hover-and-hidden-elements)                   | Testing the DOM      | Test hidden elements requiring hover                   |
+| [Form Interactions](#form-interactions)                                   | Testing the DOM      | Test form elements like input type `range`             |
+| [Drag and Drop](#drag-and-drop)                                           | Testing the DOM      | Use `.trigger()` to test drag and drop                 |
+| [Typescript with Browserify](#typescript-with-browserify)                 | Preprocessors        | Add typescript support with browserify                 |
+| [Typescript with Webpack](#typescript-with-webpack)                       | Preprocessors        | Add typescript support with webpack                    |
+| [Application Actions](#application-actions)                               | Blogs                | Application actions are a replacement for Page Objects |
+| [Direct Control of AngularJS](#direct-control-of-angularjs)               | Blogs                | Bypass the DOM and control AngularJS                   |
+| [E2E API Testing](#e2e-api-testing)                                       | Blogs                | Run your API Tests with a GUI                          |
+| [E2E Snapshots](#e2e-snapshots)                                           | Blogs                | End-to-End Snapshot Testing                            |
+| [Element Coverage](#element-coverage)                                     | Blogs                | Track elements covered by tests                        |
+| [Codepen.io Testing](#codepen-testing)                                    | Blogs                | Test a HyperApp Codepen demo                           |
+| [Testing Redux Store](#testing-redux-store)                               | Blogs                | Test an application that uses Redux data store         |
+| [Vue + Vuex + REST Testing](#vue--vuex--rest-testing)                     | Blogs                | Test an application that uses central data store       |
+| [Stubbing Functions](#stubbing-functions)                                 | Stubbing, Spying     | Use `cy.stub()` to test function calls                 |
+| [Stubbing `window.fetch`](#stubbing-windowfetch)                          | Stubbing, Spying     | Use `cy.stub()` to control fetch requests              |
+| [Stubbing methods called on `window`](#stubbing-methods-called-on-window) | Stubbing, Spying     | Use `cy.stub()` for methods called on `window`         |
+| [Stubbing Google Analytics](#stubbing-google-analytics)                   | Stubbing, Spying     | Use `cy.stub()` to test Google Analytics calls         |
+| [Application Code](#application-code)                                     | Unit Testing         | Import and test your own application code              |
+| [React with Enzyme](#react-with-enzyme)                                   | Unit Testing         | Test your React components in isolation                |
+| [File Upload in React](#file-upload-in-react)                             | Unit Testing         | Test file upload in React app                          |
+| [Adding Chai Assertions](#adding-chai-assertions)                         | Extending Cypress    | Add new or custom chai assertions                      |
+| [Bootstrapping your App](#bootstrapping-your-app)                         | Server Communication | Seed your application with test data                   |
+| [Seeding your Database in Node](#seeding-your-database-in-node)           | Server Communication | Seed your database with test data                      |
+| [Environment variables](#environment-variables)                           | Fundamentals         | Passing environment variables to tests                 |
 
 ## Overview
 

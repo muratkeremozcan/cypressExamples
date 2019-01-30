@@ -7,3 +7,17 @@ Key concepts
 - Passing synthetic test file to upload via an [`.trigger('change')`](https://on.cypress.io/trigger) event
 - Stub remote server using [`cy.route()`](https://on.cypress.io/route)
 - Alternatively stub `axios.post` method using [`cy.stub()`](https://on.cypress.io/stub)
+
+## How to run
+
+For this one install and run in the directory
+
+```
+npm i
+```
+
+Nothing to start, this recipe does not run serv
+
+```
+npm run cypress:open
+```

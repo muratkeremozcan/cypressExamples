@@ -11,3 +11,18 @@ Application actions are a replacement for Page Objects
 ## Blog post
 
 [Stop using Page Objects and Start using App Actions](https://www.cypress.io/blog/2019/01/03/stop-using-page-objects-and-start-using-app-actions/)
+
+## How to run
+
+For this one install and run in the directory
+
+```
+npm i
+npm start
+```
+
+On another tab
+
+```
+npm run cypress:open
+```

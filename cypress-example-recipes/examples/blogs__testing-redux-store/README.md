@@ -14,3 +14,18 @@ Testing Redux store using Cypress.
 ## Application
 
 The example TodoMVC application in this folder was copied from [https://github.com/reduxjs/redux/tree/master/examples/todomvc](https://github.com/reduxjs/redux/tree/master/examples/todomvc) on November 2018.
+
+## How to run
+
+For this one install and run in the directory
+
+```
+npm i
+npm start
+```
+
+On another tab
+
+```
+npm run cypress:open
+```

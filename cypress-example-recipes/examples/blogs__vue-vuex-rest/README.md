@@ -17,3 +17,18 @@ Testing Vue + Vuex + REST TodoMVC using Cypress.
 ## Script commands
 
 - `npm run reset:db` resets [data.json](data.json) to have empty list of todos
+
+## How to run
+
+For this one install and run in the directory
+
+```
+npm i
+npm start
+```
+
+On another tab
+
+```
+npm run cypress:open
+```

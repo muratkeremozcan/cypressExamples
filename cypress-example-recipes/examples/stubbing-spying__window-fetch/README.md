@@ -23,11 +23,11 @@ Until issue [#95](https://github.com/cypress-io/cypress/issues/95) is implemente
 You can delete `window.fetch` when calling `cy.visit`, which in most libraries drops back to using XHR
 
 ```javascript
-cy.visit('/', {
-  onBeforeLoad (win) {
-    delete win.fetch
-  },
-})
+cy.visit("/", {
+  onBeforeLoad(win) {
+    delete win.fetch;
+  }
+});
 ```
 
 ### Delete on every window load
@@ -35,7 +35,22 @@ cy.visit('/', {
 You can register a callback to execute on each `window:load`
 
 ```javascript
-Cypress.on('window:before:load', (win) => {
-  delete win.fetch
-})
+Cypress.on("window:before:load", win => {
+  delete win.fetch;
+});
+```
+
+## How to run
+
+For this one install and run in the directory
+
+```
+npm i
+npm start
+```
+
+On another tab
+
+```
+npm run cypress:open
 ```
