@@ -304,6 +304,7 @@ describe('PieChopper', function(){
     })
   })
 
+  // API test examples
   context('Sharing Results', function(){
     beforeEach(function(){
       // We want to start a server before each test
