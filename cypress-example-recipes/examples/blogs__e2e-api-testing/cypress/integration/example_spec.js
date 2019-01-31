@@ -42,6 +42,8 @@ describe('todos API', () => {
   beforeEach(reset)
   afterEach(reset)
 
+  // API test examples
+
   it('returns JSON', () => {
     cy.request('/todos')
       .its('headers')

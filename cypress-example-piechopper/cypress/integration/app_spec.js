@@ -324,6 +324,7 @@ describe('PieChopper', function(){
     it('displays error message in modal when server errors', function(){
       // https://on.cypress.io/route
       // stubbing a route
+      // If you pass a response to cy.route(), Cypress will stub the response in the request.
       cy.route({
           method: 'POST',
           url: /proposals/,
@@ -348,7 +349,8 @@ describe('PieChopper', function(){
       // If you do not pass a response to a route, Cypress will pass the request through without stubbing it
       // If you pass a response to cy.route(), Cypress will stub the response in the request.
       cy.route('POST', /proposals/, {}).as('proposal')
-      cy.get('#results-section').contains('Share').click() // this click causes the POST request
+      // this click causes the POST request
+      cy.get('#results-section').contains('Share').click() 
       cy.wait('@proposal').its('requestBody').should(function(json){
         expect(json.userId).to.be.a('string')
 
