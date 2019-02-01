@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - 10
+
+cache:
+  directories:
+    - ~/.npm
+    - ~/.cache
+
+install:
+  - npm ci
+
+script:
+  # comment out for now - Cypress v3.1.1 should have better TS definition for jQuery
+  # to pass linting
+  # - npm run lint
+  - npm run cypress:run
