@@ -23,10 +23,13 @@ describe('Logging In - XHR Web Form', function(){
       cy.server()
 
       // alias this route so we can wait on it later
+      // If you do not pass a response to a route, Cypress will pass the request through without stubbing it
+      // https://docs.cypress.io/api/commands/route.html#Arguments
+      // cy.route(method, url, response)
       cy.route('POST', '/login').as('postLogin')
 
       cy.get('input[name=username]').type('jane.lae')
-      cy.get('input[name=password]').type('password123{enter}')
+      cy.get('input[name=password]').type('password123{enter}') // when enter is hit, the post request goes triggers
 
       // we should always explictly wait for
       // the response for this POST to come back
@@ -40,6 +43,10 @@ describe('Logging In - XHR Web Form', function(){
 
       // and still be on the same URL
       cy.url().should('include', '/login')
+      // alternative
+      cy.location().should((loc) => {
+        expect(loc.pathname).to.eq('/login')
+      })
     })
 
     it('can stub the XHR to force it to fail', function(){
@@ -49,6 +56,7 @@ describe('Logging In - XHR Web Form', function(){
 
       // simulate the server returning 503 with
       // empty JSON response body
+      // cy.route(options) allows more explicit stubbing
       cy.route({
           method: 'POST',
           url: '/login',
@@ -102,7 +110,7 @@ describe('Logging In - XHR Web Form', function(){
       cy.window()
         .then(function(win){
           // stub out the Login.redirect method
-          // so it doesnt cause the browser to redirect
+          // so it doesn't cause the browser to redirect
           cy.stub(win.Login, 'redirect').as('redirect')
         })
 
@@ -148,6 +156,10 @@ describe('Logging In - XHR Web Form', function(){
       // with cy.request we can bypass all of this because it automatically gets
       // and sets cookies under the hood which acts exactly as if these requests
       // came from the browser
+      
+      // IMPLICIT / ATOMIC LOGIN EXAMPLE
+      // cy.request(method, url, body)
+      // cy.request(options)
       cy.request({
           method: 'POST',
           url: '/login', // baseUrl will be prepended to this url
@@ -166,22 +178,25 @@ describe('Logging In - XHR Web Form', function(){
     // typically we'd put this in cypress/support/commands.js
     // but because this custom command is specific to this example
     // we'll keep it here
-    Cypress.Commands.add('loginByJSON', (username, password) => {
+    
+    // IMPLICIT / ATOMIC LOGIN EXAMPLE
+    // I went ahead and put it in commands.js for swag
+    // Cypress.Commands.add('loginByJSON', (username, password) => {
 
-      Cypress.log({
-        name: 'loginByJSON',
-        message: username + ' | ' + password
-      })
+    //   Cypress.log({
+    //     name: 'loginByJSON',
+    //     message: username + ' | ' + password
+    //   })
 
-      return cy.request({
-        method: 'POST',
-        url: '/login',
-        body: {
-          username: username,
-          password: password
-        }
-      })
-    })
+    //   return cy.request({
+    //     method: 'POST',
+    //     url: '/login',
+    //     body: {
+    //       username: username,
+    //       password: password
+    //     }
+    //   })
+    // })
 
     beforeEach(function(){
       // login before each test
@@ -203,7 +218,7 @@ describe('Logging In - XHR Web Form', function(){
       // the associated resources to load, we can instead
       // just issue a simple HTTP request and make an
       // assertion about the response body
-      cy.request('/admin')
+      cy.request('/admin') // cy.request(url)
         .its('body')
         .should('include', '<h1>Admin</h1>')
     })

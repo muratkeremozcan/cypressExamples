@@ -3,19 +3,6 @@
 // validates POSTs against a CSRF token
 //
 describe('Logging In - CSRF Tokens', function(){
-  Cypress.Commands.add('loginByCSRF', (csrfToken) => {
-    cy.request({
-        method: 'POST',
-        url: '/login',
-        failOnStatusCode: false, // dont fail so we can make assertions
-        form: true, // we are submitting a regular form body
-        body: {
-          username: 'cypress',
-          password: 'password123',
-          _csrf: csrfToken // insert this as part of form body
-        }
-      })
-  })
 
   beforeEach(function(){
     cy.viewport(500, 380)
@@ -24,6 +11,7 @@ describe('Logging In - CSRF Tokens', function(){
   it('403 status without a valid CSRF token', function(){
     // first show that by not providing a valid CSRF token
     // that we will get a 403 status code
+    // API TEST EXAMPLE, NO STUB
     cy.loginByCSRF('invalid-token')
       .its('status')
       .should('eq', 403)
@@ -39,9 +27,11 @@ describe('Logging In - CSRF Tokens', function(){
       .then((body) => {
         // we can use Cypress.$ to parse the string body
         // thus enabling us to query into it easily
+        // grabbing the value from  <input type="hidden" name="_csrf" value=vQisdBJ9-6NqLYc8SJ6yzSrHoPnStZYtFUBE />
         const $html = Cypress.$(body)
         const csrf  = $html.find("input[name=_csrf]").val()
 
+        // nowe we have the right csrf value
         cy.loginByCSRF(csrf)
           .then((resp) => {
             expect(resp.status).to.eq(200)

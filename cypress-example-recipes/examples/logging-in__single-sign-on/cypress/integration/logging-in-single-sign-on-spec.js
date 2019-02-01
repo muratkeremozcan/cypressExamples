@@ -89,6 +89,7 @@ describe('Logging In - Single Sign on', function(){
       cy.url().should('include', 'unauthorized')
     })
 
+    // API test, IMPLICIT / ATOMIC login example 
     it('can authenticate with cy.request', function(){
       // this automatically gets + sets cookies on the browser
       // and follows all of the redirects that ultimately get
@@ -136,6 +137,7 @@ describe('Logging In - Single Sign on', function(){
         .should('contain', 'No session token set!')
     })
 
+    // IMPORTANT
     it('can parse out id_token and set on local storage', function(){
       // dont follow redirects so we can manually parse out
       // the id_token

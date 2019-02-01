@@ -31,6 +31,7 @@ describe('Logging In - HTML Web Form', function(){
 
       // the 'redirectedToUrl' property is a special Cypress property under the hood
       // that normalizes the url the browser would normally follow during a redirect
+      // API test example
       cy.request({
         url: '/dashboard',
         followRedirect: false // turn off following redirects automatically
@@ -89,6 +90,7 @@ describe('Logging In - HTML Web Form', function(){
       // with cy.request we can bypass this because it automatically gets
       // and sets cookies under the hood. This acts exactly as if the requests
       // came from the browser
+      // API TEST IMPLICIT / ATOMIC LOGIN EXAMPLE
       cy.request({
           method: 'POST',
           url: '/login', // baseUrl will be prepended to this url
