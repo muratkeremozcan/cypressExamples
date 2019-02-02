@@ -9,6 +9,8 @@ import chaiColors from 'chai-colors'
 // if we were running any other spec file
 // it would not have access to this plugin
 chai.use(chaiColors)
+// you can put the above section in assertions.js and it would be the same thing
+
 
 describe('Chai Assertion Plugins', function(){
   context('chai-date-string', function(){

@@ -77,7 +77,7 @@ describe('Bootstrapping App Test Data', function(){
 
     it('waits for the XHR before asserting', function(){
       // In our local solution above the XHR happens
-      // so fast that we don't need to explictly wait on it
+      // so fast that we don't need to explicitly wait on it
       //
       // However these two previous solutions should both probably wait
       // on the XHR using an aliased route

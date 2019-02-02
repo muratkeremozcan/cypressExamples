@@ -4,6 +4,7 @@ describe('TypeScript', () => {
   it('works', () => {
     // note TypeScript definition
     const x: number = 42
+    console.log(x);
   })
 
   it('checks shape of an object', () => {

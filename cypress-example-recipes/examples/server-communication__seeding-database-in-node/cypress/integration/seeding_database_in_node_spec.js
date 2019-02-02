@@ -14,7 +14,7 @@ describe('Seeding Database in Node', function(){
     cy.get('#posts li').first().find('h2').should('have.text', 'Cypress is going open source!')
   })
 
-  it('can directly seed data to test empty state', function(){
+  it.only('can directly seed data to test empty state', function(){
     cy.task('seed:db', { posts: [] })
     cy.visit('/index.html')
     cy.get('#posts').should('have.text', 'No posts')

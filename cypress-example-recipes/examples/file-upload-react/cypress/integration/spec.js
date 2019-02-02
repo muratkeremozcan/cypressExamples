@@ -10,6 +10,7 @@ describe('File upload', () => {
     cy.route('POST', 'https://some-server.com/upload', 200).as('upload')
     // load mock data from a fixture or construct here
     const testFile = new File(['data to upload'], 'upload.txt')
+    // trigger with file selection
     cy.get('#file1').trigger('change', { testFile })
     // make sure upload has happened
     cy.wait('@upload')

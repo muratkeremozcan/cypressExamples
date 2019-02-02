@@ -13,9 +13,9 @@ describe('process environment variables', () => {
     })
   })
 
-  it('has renamed variable "ping" from "CYPRESS_ping"', () => {
-    // CYPRESS_ping=123 cypress open
-    // NOTE passed variable is a number
+  it.only('has renamed variable "ping" from "CYPRESS_ping"', () => {
+    // this is from cypress:open command
+    //  "cypress:run": "./node_modules/.bin/cross-env FOO=42 BAR=baz CYPRESS_ping=123 ../../node_modules/.bin/cypress run",
     expect(Cypress.env('ping')).to.equal(123)
   })
 })
