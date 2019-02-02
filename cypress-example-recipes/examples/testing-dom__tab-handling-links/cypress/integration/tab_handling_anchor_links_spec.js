@@ -7,12 +7,12 @@
 // Another link is pointed to an external domain that
 // doesn't match our domain under test - https://www.google.com
 
-describe('Tab Handling Anchor Links', function(){
-  beforeEach(function(){
+describe('Tab Handling Anchor Links', function () {
+  beforeEach(function () {
     cy.visit('/index.html')
   })
 
-  context('testing the target="_blank" link', function(){
+  context('testing the target="_blank" link', function () {
     // The problem with the 'users' link is that by default when you click
     // on it, the browser will attempt to open the content in another
     // tab. You can open up your browser to the URL we visited above
@@ -26,11 +26,11 @@ describe('Tab Handling Anchor Links', function(){
     // Luckily there are lots of easy and safe workarounds that
     // enable you to test the behavior of your application
 
-    it('solution #1: verify the href, dont click through', function(){
+    it('solution #1: verify the href, dont click through', function () {
       // The first question we should ask ourselves is... why do we want
       // to even click this link?
       //
-      // Can we verify the correctedness of our application without
+      // Can we verify the correctness of our application without
       // performing any costly or additional actions such as clicking
       // on the <a> and loading a new page?
       //
@@ -52,7 +52,7 @@ describe('Tab Handling Anchor Links', function(){
         .and('equal', 'http://localhost:7078/users.html')
     })
 
-    it('solution #2: click through to the new page', function(){
+    it('solution #2: click through to the new page', function () {
       // Okay so let's assume solution #1 isn't comprehensive enough
       //
       // Perhaps you have some event handling on the click event
@@ -74,14 +74,14 @@ describe('Tab Handling Anchor Links', function(){
       cy.url().should('include', 'users.html')
     })
 
-    it('solution #3: visit without modifying the <a>', function(){
+    it('solution #3: visit without modifying the <a>', function () {
       // Still not happy? Perhaps you don't like the idea of modifying your
       // application's HTML.
       //
       // We can still test this by visiting the href property that
       // would normally cause our browser to be navigated.
 
-      cy.get('#users').then(function($a){
+      cy.get('#users').then(function ($a) {
         // extract the fully qualified href property
         const href = $a.prop('href')
 
@@ -91,7 +91,7 @@ describe('Tab Handling Anchor Links', function(){
       })
     })
 
-    it('solution #4: request without visiting', function(){
+    it('solution #4: request without visiting', function () {
       // One thing you should always challenge yourself with is
       // trying to always reduce the time it takes to run a test
       //
@@ -112,12 +112,13 @@ describe('Tab Handling Anchor Links', function(){
       // your tests can 'act like the browser' and avoid all
       // of the side effects of loading resources.
 
-      cy.get('#users').then(function($a){
+      cy.get('#users').then(function ($a) {
         // extract the fully qualified href property
         const href = $a.prop('href')
 
         // make an http request for this resource
-        // outside of the browser
+        // outside of the browser 
+        // API test example
         cy.request(href)
           // drill into the response body
           .its('body')
@@ -130,7 +131,7 @@ describe('Tab Handling Anchor Links', function(){
     })
   })
 
-  context('testing the external domain link', function(){
+  context('testing the external domain link', function () {
     // We have another <a> link that has an href that points to an
     // external domain that doesn't match our current domain under test.
     //
@@ -146,8 +147,8 @@ describe('Tab Handling Anchor Links', function(){
     //
     // Regardless, there are still many ways to test this behavior.
 
-    it('solution #1: verify the href property only', function(){
-      // The simpliest way to test an external link
+    it('solution #1: verify the href property only', function () {
+      // The simplest way to test an external link
       // involves not clicking on it.
 
       // Instead, we verify that the <a> has the right href.
@@ -155,13 +156,13 @@ describe('Tab Handling Anchor Links', function(){
       cy.get('#google').should('have.prop', 'href', 'https://www.google.com/')
     })
 
-    it('solution #2: request its contents', function(){
+    it('solution #2: request its contents', function () {
       // Okay but what if you need to see the content of the external
       // page being clicked on?
       //
       // We still have cy.request to our rescue.
 
-      cy.get('#google').then(function($a){
+      cy.get('#google').then(function ($a) {
         const href = $a.prop('href')
 
         // request the contents of https://www.google.com/
@@ -180,7 +181,7 @@ describe('Tab Handling Anchor Links', function(){
       })
     })
 
-    it('solution #3: click through to the external domain', function(){
+    it('solution #3: click through to the external domain', function () {
       // It is not preferred to do this, but it is actually possible
       // to click through the external domain with Cypress. There are
       // downsides though, for instance this is not cross browser
