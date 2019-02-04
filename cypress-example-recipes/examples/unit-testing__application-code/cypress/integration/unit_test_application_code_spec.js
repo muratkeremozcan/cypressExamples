@@ -8,6 +8,7 @@ describe('Unit Test Application Code', function(){
   //  - change its value
   //  - be added to the object
   //  - be deleted from the object
+  // UNIT test examples
   context('waiting for a property of an object', () => {
     it('detects an existing property', () => {
       // assert given object has a property with a given value
