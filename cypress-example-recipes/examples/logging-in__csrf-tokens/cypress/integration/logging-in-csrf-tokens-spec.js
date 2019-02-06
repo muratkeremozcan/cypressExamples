@@ -11,7 +11,7 @@ describe('Logging In - CSRF Tokens', function(){
   it('403 status without a valid CSRF token', function(){
     // first show that by not providing a valid CSRF token
     // that we will get a 403 status code
-    // API TEST EXAMPLE, NO STUB
+    // API test with cy.request()
     cy.loginByCSRF('invalid-token')
       .its('status')
       .should('eq', 403)

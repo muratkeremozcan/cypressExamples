@@ -321,6 +321,7 @@ describe('PieChopper', function(){
     })
 
     // simulate the server failing to respond to the share proposal
+    // API test with UI trigger and stub
     it('displays error message in modal when server errors', function(){
       // https://on.cypress.io/route
       // stubbing a route
@@ -343,7 +344,7 @@ describe('PieChopper', function(){
       // after we click on the backdrop the modal should go away
       cy.get('.modal-backdrop').click().should('not.exist')
     })
-
+    // API test with UI trigger and no stub
     it('sends up correct request JSON', function(){
       // https://on.cypress.io/route
       // If you do not pass a response to a route, Cypress will pass the request through without stubbing it
@@ -364,7 +365,7 @@ describe('PieChopper', function(){
         expect(selected.name).to.eq('Company Roles')
       })
     })
-
+    // API test with UI trigger and stub
     it('displays share link on successful response', function(){
       var id = '12345-foo-bar'
 
