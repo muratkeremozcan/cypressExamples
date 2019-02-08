@@ -38,7 +38,7 @@ describe('UI to Vuex store', () => {
 
     getStore().its('state.newTodo').should('equal', text)
   })
-
+ 
   it('stores todos in the store', () => {
     enterTodo('first todo')
     enterTodo('second todo')
