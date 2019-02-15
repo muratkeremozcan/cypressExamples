@@ -1,0 +1,42 @@
+{
+  "name": "cypress-task-demo",
+  "version": "1.0.0",
+  "description": "Demo for cy.task to check written data during a test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "start": "json-server --static . data.json --middlewares ./node_modules/json-server-reset",
+    "reset": "node reset-db.js",
+    "reset:db": "npm run reset",
+    "reset:database": "npm run reset"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/cypress-task-demo.git"
+  },
+  "keywords": [
+    "cypress",
+    "cypress-io",
+    "demo"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com> (https://glebbahmutov.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/cypress-task-demo/issues"
+  },
+  "homepage": "https://github.com/bahmutov/cypress-task-demo#readme",
+  "dependencies": {
+    "bluebird": "3.5.1",
+    "cypress": "3.1.5",
+    "json-server": "0.14.0",
+    "json-server-reset": "1.0.0",
+    "ora": "2.1.0",
+    "prettier": "1.13.6",
+    "standard": "11.0.1"
+  },
+  "engines": {
+    "node": ">=6"
+  }
+}

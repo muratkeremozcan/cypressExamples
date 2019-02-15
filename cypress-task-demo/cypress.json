@@ -1,0 +1,6 @@
+{
+  "viewportWidth": 400,
+  "viewportHeight": 400,
+  "baseUrl": "http://localhost:3000",
+  "ignoreTestFiles": "utils.js"
+}
