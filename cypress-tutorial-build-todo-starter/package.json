@@ -23,6 +23,7 @@
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
+    "@applitools/eyes.cypress": "^3.4.10",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",

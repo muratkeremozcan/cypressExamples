@@ -1,0 +1,8 @@
+{
+    "name": "Welcome to Country Light App Documenantion",
+    "version": "1.0.1",
+    "description": "Country Light App, a prototype to play with Countries and Flags",
+    "template": {
+        "forceLanguage": "en"
+    }
+}

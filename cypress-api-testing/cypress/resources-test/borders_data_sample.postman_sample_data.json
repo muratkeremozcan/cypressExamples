@@ -1,0 +1,31 @@
+[{
+		"guid": "RU",
+		"borders": ["AZE", "BLR", "CHN", "EST", "FIN", "GEO", "KAZ", "PRK", "LVA", "LTU", "MNG", "NOR", "POL", "UKR"]
+	}, {
+		"guid": "AF",
+		"borders": ["IRN", "PAK", "TKM", "UZB", "TJK", "CHN"]
+	}, {
+		"guid": "AX",
+		"borders": []
+	}, {
+		"guid": "AL",
+		"borders": ["MNE", "GRC", "MKD", "KOS"]
+	}, {
+		"guid": "DZ",
+		"borders": ["TUN", "LBY", "NER", "ESH", "MRT", "MLI", "MAR"]
+	}, {
+		"guid": "PL",
+		"borders": ["BLR", "CZE", "DEU", "LTU", "RUS", "SVK", "UKR"]
+	}, {
+		"guid": "IT",
+		"borders": [
+			"AUT",
+			"FRA",
+			"SMR",
+			"SVN",
+			"CHE",
+			"VAT"
+		]
+	}
+
+]

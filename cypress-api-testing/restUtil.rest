@@ -1,0 +1,60 @@
+@endPoint = http://localhost:3000/api/v2/
+
+# @name getAllCountries
+GET {{endPoint}}
+###
+
+# @name flag
+GET {{endPoint}}flag/af
+###
+
+# @name capital
+GET {{endPoint}}capital/Ankara
+###
+
+# @name region_Asia
+GET {{endPoint}}region/asia
+###
+
+# @name region_Europe
+GET {{endPoint}}region/europe
+###
+
+# @name region_Americas
+GET {{endPoint}}region/americas
+###
+
+# @name subRegion_SouthernEurope
+GET {{endPoint}}subregion/Southern Europe
+###
+
+# @name subRegion_NorthernAmerica
+GET {{endPoint}}subregion/Northern America
+###
+
+# @name currency_TRY
+GET {{endPoint}}currency/TRY
+###
+
+# @name currency_CHF
+GET {{endPoint}}currency/CHF
+###
+
+# @name callingCode_47
+GET {{endPoint}}callingcode/81
+###
+
+# @name language
+GET {{endPoint}}language/spa
+###
+
+# @name tld
+GET {{endPoint}}tld/.ag
+###
+
+# @name area_rus
+GET {{endPoint}}area/1580
+###
+
+# @name borders_poland
+GET {{endPoint}}name/pl

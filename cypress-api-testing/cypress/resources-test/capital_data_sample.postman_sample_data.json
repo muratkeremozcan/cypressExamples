@@ -1,0 +1,732 @@
+[{
+          "guid": "Kabul"
+
+     },
+     {
+          "guid": "Mariehamn"
+     },
+     {
+          "guid": "Tirana"
+     },
+     {
+          "guid": "Algiers"
+     },
+     {
+          "guid": "Pago Pago"
+     },
+     {
+          "guid": "Andorra la Vella"
+     },
+     {
+          "guid": "Luanda"
+     },
+     {
+          "guid": "The Valley"
+     },
+     {
+          "guid": "Saint John's"
+     },
+     {
+          "guid": "Buenos Aires"
+     },
+     {
+          "guid": "Yerevan"
+     },
+     {
+          "guid": "Oranjestad"
+     },
+     {
+          "guid": "Canberra"
+     },
+     {
+          "guid": "Vienna"
+     },
+     {
+          "guid": "Baku"
+     },
+     {
+          "guid": "Nassau"
+     },
+     {
+          "guid": "Manama"
+     },
+     {
+          "guid": "Dhaka"
+     },
+     {
+          "guid": "Bridgetown"
+     },
+     {
+          "guid": "Minsk"
+     },
+     {
+          "guid": "Brussels"
+     },
+     {
+          "guid": "Belmopan"
+     },
+     {
+          "guid": "Porto-Novo"
+     },
+     {
+          "guid": "Hamilton"
+     },
+     {
+          "guid": "Thimphu"
+     },
+     {
+          "guid": "Sucre"
+     },
+     {
+          "guid": "Kralendijk"
+     },
+     {
+          "guid": "Sarajevo"
+     },
+     {
+          "guid": "Gaborone"
+     },
+     {
+          "guid": "Brasília"
+     },
+     {
+          "guid": "Diego Garcia"
+     },
+     {
+          "guid": "Road Town"
+     },
+     {
+          "guid": "Bandar Seri Begawan"
+     },
+     {
+          "guid": "Sofia"
+     },
+     {
+          "guid": "Ouagadougou"
+     },
+     {
+          "guid": "Bujumbura"
+     },
+     {
+          "guid": "Phnom Penh"
+     },
+     {
+          "guid": "Yaoundé"
+     },
+     {
+          "guid": "Ottawa"
+     },
+     {
+          "guid": "Praia"
+     },
+     {
+          "guid": "George Town"
+     },
+     {
+          "guid": "Bangui"
+     },
+     {
+          "guid": "N'Djamena"
+     },
+     {
+          "guid": "Santiago"
+     },
+     {
+          "guid": "Beijing"
+     },
+     {
+          "guid": "Flying Fish Cove"
+     },
+     {
+          "guid": "West Island"
+     },
+     {
+          "guid": "Bogotá"
+     },
+     {
+          "guid": "Moroni"
+     },
+     {
+          "guid": "Brazzaville"
+     },
+     {
+          "guid": "Kinshasa"
+     },
+     {
+          "guid": "Avarua"
+     },
+     {
+          "guid": "San José"
+     },
+     {
+          "guid": "Zagreb"
+     },
+     {
+          "guid": "Havana"
+     },
+     {
+          "guid": "Willemstad"
+     },
+     {
+          "guid": "Nicosia"
+     },
+     {
+          "guid": "Prague"
+     },
+     {
+          "guid": "Copenhagen"
+     },
+     {
+          "guid": "Djibouti"
+     },
+     {
+          "guid": "Roseau"
+     },
+     {
+          "guid": "Santo Domingo"
+     },
+     {
+          "guid": "Quito"
+     },
+     {
+          "guid": "Cairo"
+     },
+     {
+          "guid": "San Salvador"
+     },
+     {
+          "guid": "Malabo"
+     },
+     {
+          "guid": "Asmara"
+     },
+     {
+          "guid": "Tallinn"
+     },
+     {
+          "guid": "Addis Ababa"
+     },
+     {
+          "guid": "Stanley"
+     },
+     {
+          "guid": "Tórshavn"
+     },
+     {
+          "guid": "Suva"
+     },
+     {
+          "guid": "Helsinki"
+     },
+     {
+          "guid": "Paris"
+     },
+     {
+          "guid": "Cayenne"
+     },
+     {
+          "guid": "Port-aux-Français"
+     },
+     {
+          "guid": "Libreville"
+     },
+     {
+          "guid": "Banjul"
+     },
+     {
+          "guid": "Tbilisi"
+     },
+     {
+          "guid": "Berlin"
+     },
+     {
+          "guid": "Accra"
+     },
+     {
+          "guid": "Gibraltar"
+     },
+     {
+          "guid": "Athens"
+     },
+     {
+          "guid": "Nuuk"
+     },
+     {
+          "guid": "St. George's"
+     },
+     {
+          "guid": "Basse-Terre"
+     },
+     {
+          "guid": "Hagåtña"
+     },
+     {
+          "guid": "Guatemala City"
+     },
+     {
+          "guid": "St. Peter Port"
+     },
+     {
+          "guid": "Conakry"
+     },
+     {
+          "guid": "Bissau"
+     },
+     {
+          "guid": "Georgetown"
+     },
+     {
+          "guid": "Port-au-Prince"
+     },
+
+     {
+          "guid": "Vatican City"
+     },
+     {
+          "guid": "Tegucigalpa"
+     },
+     {
+          "guid": "City of Victoria"
+     },
+     {
+          "guid": "Budapest"
+     },
+     {
+          "guid": "Reykjavik"
+     },
+     {
+          "guid": "New Delhi"
+     },
+     {
+          "guid": "Jakarta"
+     },
+     {
+          "guid": "Yamoussoukro"
+     },
+     {
+          "guid": "Tehran"
+     },
+     {
+          "guid": "Baghdad"
+     },
+     {
+          "guid": "Dublin"
+     },
+     {
+          "guid": "Douglas"
+     },
+     {
+          "guid": "Jerusalem"
+     },
+     {
+          "guid": "Rome"
+     },
+     {
+          "guid": "Kingston"
+     },
+     {
+          "guid": "Tokyo"
+     },
+     {
+          "guid": "Saint Helier"
+     },
+     {
+          "guid": "Amman"
+     },
+     {
+          "guid": "Astana"
+     },
+     {
+          "guid": "Nairobi"
+     },
+     {
+          "guid": "South Tarawa"
+     },
+     {
+          "guid": "Kuwait City"
+     },
+     {
+          "guid": "Bishkek"
+     },
+     {
+          "guid": "Vientiane"
+     },
+     {
+          "guid": "Riga"
+     },
+     {
+          "guid": "Beirut"
+     },
+     {
+          "guid": "Maseru"
+     },
+     {
+          "guid": "Monrovia"
+     },
+     {
+          "guid": "Tripoli"
+     },
+     {
+          "guid": "Vaduz"
+     },
+     {
+          "guid": "Vilnius"
+     },
+     {
+          "guid": "Luxembourg"
+     },
+     {
+          "guid": "Skopje"
+     },
+     {
+          "guid": "Antananarivo"
+     },
+     {
+          "guid": "Lilongwe"
+     },
+     {
+          "guid": "Kuala Lumpur"
+     },
+     {
+          "guid": "Malé"
+     },
+     {
+          "guid": "Bamako"
+     },
+     {
+          "guid": "Valletta"
+     },
+     {
+          "guid": "Majuro"
+     },
+     {
+          "guid": "Fort-de-France"
+     },
+     {
+          "guid": "Nouakchott"
+     },
+     {
+          "guid": "Port Louis"
+     },
+     {
+          "guid": "Mamoudzou"
+     },
+     {
+          "guid": "Mexico City"
+     },
+     {
+          "guid": "Palikir"
+     },
+     {
+          "guid": "Monaco"
+     },
+     {
+          "guid": "Ulan Bator"
+     },
+     {
+          "guid": "Podgorica"
+     },
+     {
+          "guid": "Plymouth"
+     },
+     {
+          "guid": "Rabat"
+     },
+     {
+          "guid": "Maputo"
+     },
+     {
+          "guid": "Naypyidaw"
+     },
+     {
+          "guid": "Windhoek"
+     },
+     {
+          "guid": "Yaren"
+     },
+     {
+          "guid": "Kathmandu"
+     },
+     {
+          "guid": "Amsterdam"
+     },
+     {
+          "guid": "Nouméa"
+     },
+     {
+          "guid": "Wellington"
+     },
+     {
+          "guid": "Managua"
+     },
+     {
+          "guid": "Niamey"
+     },
+     {
+          "guid": "Abuja"
+     },
+     {
+          "guid": "Alofi"
+     },
+     {
+          "guid": "Kingston"
+     },
+     {
+          "guid": "Pyongyang"
+     },
+     {
+          "guid": "Saipan"
+     },
+     {
+          "guid": "Oslo"
+     },
+     {
+          "guid": "Muscat"
+     },
+     {
+          "guid": "Islamabad"
+     },
+     {
+          "guid": "Ngerulmud"
+     },
+     {
+          "guid": "Ramallah"
+     },
+     {
+          "guid": "Panama City"
+     },
+     {
+          "guid": "Port Moresby"
+     },
+     {
+          "guid": "Asunción"
+     },
+     {
+          "guid": "Lima"
+     },
+     {
+          "guid": "Manila"
+     },
+     {
+          "guid": "Adamstown"
+     },
+     {
+          "guid": "Warsaw"
+     },
+     {
+          "guid": "Lisbon"
+     },
+     {
+          "guid": "San Juan"
+     },
+     {
+          "guid": "Doha"
+     },
+     {
+          "guid": "Pristina"
+     },
+     {
+          "guid": "Saint-Denis"
+     },
+     {
+          "guid": "Bucharest"
+     },
+     {
+          "guid": "Moscow"
+     },
+     {
+          "guid": "Kigali"
+     },
+     {
+          "guid": "Gustavia"
+     },
+     {
+          "guid": "Jamestown"
+     },
+     {
+          "guid": "Basseterre"
+     },
+     {
+          "guid": "Castries"
+     },
+     {
+          "guid": "Marigot"
+     },
+     {
+          "guid": "Saint-Pierre"
+     },
+     {
+          "guid": "Kingstown"
+     },
+     {
+          "guid": "Apia"
+     },
+     {
+          "guid": "City of San Marino"
+     },
+     {
+          "guid": "São Tomé"
+     },
+     {
+          "guid": "Riyadh"
+     },
+     {
+          "guid": "Dakar"
+     },
+     {
+          "guid": "Belgrade"
+     },
+     {
+          "guid": "Victoria"
+     },
+     {
+          "guid": "Freetown"
+     },
+     {
+          "guid": "Singapore"
+     },
+     {
+          "guid": "Philipsburg"
+     },
+     {
+          "guid": "Bratislava"
+     },
+     {
+          "guid": "Ljubljana"
+     },
+     {
+          "guid": "Honiara"
+     },
+     {
+          "guid": "Mogadishu"
+     },
+     {
+          "guid": "Pretoria"
+     },
+     {
+          "guid": "King Edward Point"
+     },
+     {
+          "guid": "Seoul"
+     },
+     {
+          "guid": "Juba"
+     },
+     {
+          "guid": "Madrid"
+     },
+     {
+          "guid": "Colombo"
+     },
+     {
+          "guid": "Khartoum"
+     },
+     {
+          "guid": "Paramaribo"
+     },
+     {
+          "guid": "Longyearbyen"
+     },
+     {
+          "guid": "Lobamba"
+     },
+     {
+          "guid": "Stockholm"
+     },
+     {
+          "guid": "Bern"
+     },
+     {
+          "guid": "Damascus"
+     },
+     {
+          "guid": "Taipei"
+     },
+     {
+          "guid": "Dushanbe"
+     },
+     {
+          "guid": "Dodoma"
+     },
+     {
+          "guid": "Bangkok"
+     },
+     {
+          "guid": "Dili"
+     },
+     {
+          "guid": "Lomé"
+     },
+     {
+          "guid": "Fakaofo"
+     },
+     {
+          "guid": "Nuku'alofa"
+     },
+     {
+          "guid": "Port of Spain"
+     },
+     {
+          "guid": "Tunis"
+     },
+     {
+          "guid": "Ankara"
+     },
+     {
+          "guid": "Ashgabat"
+     },
+     {
+          "guid": "Cockburn Town"
+     },
+     {
+          "guid": "Funafuti"
+     },
+     {
+          "guid": "Kampala"
+     },
+     {
+          "guid": "Kiev"
+     },
+     {
+          "guid": "Abu Dhabi"
+     },
+     {
+          "guid": "London"
+     },
+     {
+          "guid": "Washington D.C."
+     },
+     {
+          "guid": "Charlotte Amalie"
+     },
+     {
+          "guid": "Montevideo"
+     },
+     {
+          "guid": "Tashkent"
+     },
+     {
+          "guid": "Port Vila"
+     },
+     {
+          "guid": "Caracas"
+     },
+     {
+          "guid": "Hanoi"
+     },
+     {
+          "guid": "Mata-Utu"
+     },
+     {
+          "guid": "El Aaiún"
+     },
+     {
+          "guid": "Sana'a"
+     },
+     {
+          "guid": "Lusaka"
+     },
+     {
+          "guid": "Harare"
+     }
+]

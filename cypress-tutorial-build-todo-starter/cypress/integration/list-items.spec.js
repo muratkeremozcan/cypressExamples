@@ -1,20 +1,35 @@
 describe('List items', () => {
+
+  before(function() {
+    cy.eyesOpen({
+      appName: 'Hello World!',
+      testName: 'My first JavaScript test!',
+      browser: [
+        {width: 800, height: 600, name: 'firefox'},
+        {width: 1024, height: 768, name: 'chrome'},
+        {deviceName: 'iPad', screenOrientation: 'landscape'}
+      ]
+    });
+  });
   beforeEach(() => {
     cy.seedAndVisit();
   });
 
   it('properly displays completed items', () => {
+    
     cy.get('.todo-list li')
       .filter('.completed') // Get the DOM elements that match a specific selector. https://docs.cypress.io/api/commands/filter.html#Arguments 
       .should('have.length', 1)
       .and('contain', 'Eggs')
       .find('.toggle')
       .should('be.checked');
+    cy.eyesCheckWindow('Completed Items');
   });
 
   it('Shows remaining todos in the footer', () => {
     cy.get('.todo-count')
       .should('contain', 3);
+    cy.eyesCheckWindow('Remaining Items');
   });
 
   it('Removes a todo', () => {
@@ -41,7 +56,7 @@ describe('List items', () => {
     cy.get('@list')
       .should('have.length', 3)
       .and('not.contain', 'Milk');
-
+    cy.eyesCheckWindow('Removed a todo');
   });
 
   it('Marks an incomplete item complete', () => {
@@ -69,5 +84,9 @@ describe('List items', () => {
 
     cy.get('.todo-count')
       .should('contain', 2);
+    cy.eyesCheckWindow('Marked incomplete item complete');
+  });
+  after(function() {
+    cy.eyesClose();
   });
 });
