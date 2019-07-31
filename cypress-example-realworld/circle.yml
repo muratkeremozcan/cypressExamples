@@ -1,0 +1,22 @@
+# see orb options at
+# https://github.com/cypress-io/circleci-orb
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1
+workflows:
+  build:
+    jobs:
+      - cypress/run:
+          pre-steps:
+            - run: npm config set unsafe-perm true
+          executor: cypress/base-10
+          no-workspace: true
+          start: npm run start:coverage
+          wait-on: http://localhost:4100
+          post-steps:
+            - store_artifacts:
+                path: coverage
+            - run: npx nyc report --reporter=text
+            # send code coverage to coveralls.io
+            # https://coveralls.io/github/bahmutov/realworld
+            - run: npm run coveralls
