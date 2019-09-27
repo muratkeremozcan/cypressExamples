@@ -1,7 +1,8 @@
-Cypress.Commands.add('login', (overrides = {}) => {
+Cypress.Commands.add('login', () => {
   Cypress.log({
     name: 'loginViaAuth0',
   });
+  cy.log('login Via Auth0');
 
   const options = {
     method: 'POST',
