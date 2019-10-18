@@ -1,0 +1,11 @@
+{
+  "baseUrl": "http://localhost:4100",
+  "env": {
+    "user": {
+      "email": "tester@test.com",
+      "password": "password1234"
+    }
+  },
+  "viewportHeight": 1000,
+  "viewportWidth": 1000
+}

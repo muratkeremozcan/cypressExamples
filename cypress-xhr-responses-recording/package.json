@@ -1,0 +1,53 @@
+{
+  "name": "cypress-xhr-responses-recording",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve --open",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "cy:record": "cypress open --env configFile=record",
+    "cy:open": "cypress open",
+    "e2e:record": "start-server-and-test serve http://localhost:8080 cy:record",
+    "e2e:open": "start-server-and-test serve http://localhost:8080 cy:open"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "http-server": "^0.11.1",
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "cypress": "^3.4.1",
+    "cypress-autorecord": "^1.1.0",
+    "@vue/cli-plugin-babel": "^3.0.0-beta.10",
+    "@vue/cli-plugin-eslint": "^3.0.0-beta.10",
+    "@vue/cli-service": "^3.0.0-beta.10",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "start-server-and-test": "^1.4.1",
+    "vue-template-compiler": "^2.5.13"
+  },
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "airbnb-base",
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
