@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
+.App {
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Lato", sans-serif;
+}
+
+span,
+input {
+  display: block;
+}
+input,
+input::placeholder {
+  font-size: 1rem;
+}
+
+button {
+  font-size: 1.3rem;
+}
+
+.App-logo {
+  height: 30vmin;
+  max-height: 80px;
+  pointer-events: none;
+  margin: 20px;
+}
+
+.App-header {
+  background-color: #6bce85;
+  max-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-header-ws {
+  background-color: #2e2e37;
+}
+
+.App-link {
+  color: #ffe300;
+}
+
+.App-body {
+  padding: 10%;
+}
+.App-body > * {
+  width: 100%;
+}
+.App-body > * + * {
+  margin-top: 1em;
+}
+
+button {
+  background: #f36;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 0.3em;
+}

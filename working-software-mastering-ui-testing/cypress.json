@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://localhost:3000/",
+  "cypress-watch-and-reload": {
+    "watch": "src/*"
+  }
+}

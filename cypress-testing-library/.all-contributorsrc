@@ -1,0 +1,258 @@
+{
+  "projectName": "cypress-testing-library",
+  "projectOwner": "testing-library",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "kentcdodds",
+      "name": "Kent C. Dodds",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1500684?v=3",
+      "profile": "https://kentcdodds.com",
+      "contributions": [
+        "code",
+        "doc",
+        "infra",
+        "test"
+      ]
+    },
+    {
+      "login": "sompylasar",
+      "name": "Ivan Babak",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/498274?v=4",
+      "profile": "https://sompylasar.github.io",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "lgandecki",
+      "name": "Łukasz Gandecki",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4002543?v=4",
+      "profile": "http://team.thebrain.pro",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "npeterkamps",
+      "name": "Peter Kamps",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/25429764?v=4",
+      "profile": "https://github.com/npeterkamps",
+      "contributions": [
+        "code",
+        "doc",
+        "ideas",
+        "test"
+      ]
+    },
+    {
+      "login": "airato",
+      "name": "Airat Aminev",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/4506749?v=4",
+      "profile": "https://github.com/airato",
+      "contributions": [
+        "code",
+        "test",
+        "tool"
+      ]
+    },
+    {
+      "login": "adrian1358",
+      "name": "Adrian Smijulj",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/5121148?v=4",
+      "profile": "https://www.webiny.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "misoguy",
+      "name": "Soo Jae Hwang",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/12230408?v=4",
+      "profile": "https://www.ossfinder.com",
+      "contributions": [
+        "bug",
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "wKovacs64",
+      "name": "Justin Hall",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1288694?v=4",
+      "profile": "https://github.com/wKovacs64",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "euZebe",
+      "name": "euzebe",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/9463809?v=4",
+      "profile": "https://github.com/euZebe",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "jkdowdle",
+      "name": "jkdowdle",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/19804196?v=4",
+      "profile": "https://github.com/jkdowdle",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "existentialism",
+      "name": "Brian Ng",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/56288?v=4",
+      "profile": "https://brian.ng",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "klaari",
+      "name": "Kari Laari",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2477131?v=4",
+      "profile": "https://karilaari.fi",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "ppi-buck",
+      "name": "Basti Buck",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/37330764?v=4",
+      "profile": "https://github.com/ppi-buck",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ShimiTheFirst",
+      "name": "ShimiTheFirst",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/25421369?v=4",
+      "profile": "https://github.com/ShimiTheFirst",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "omerose",
+      "name": "omerose",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/9358542?v=4",
+      "profile": "https://github.com/omerose",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "aaronmcadam",
+      "name": "Aaron Mc Adam",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/37928?v=4",
+      "profile": "http://www.aaronmcadam.com",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "karlhorky",
+      "name": "Karl Horky",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1935696?v=4",
+      "profile": "https://twitter.com/karlhorky",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "NoriSte",
+      "name": "Stefano Magni",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/173663?v=4",
+      "profile": "https://twitter.com/NoriSte",
+      "contributions": [
+        "code",
+        "test",
+        "doc"
+      ]
+    },
+    {
+      "login": "weyert",
+      "name": "Weyert de Boer",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/7049?v=4",
+      "profile": "https://github.com/weyert",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "simjes",
+      "name": "Simon Jespersen",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6494049?v=4",
+      "profile": "https://simjes.dev/",
+      "contributions": [
+        "code",
+        "review"
+      ]
+    },
+    {
+      "login": "afontcu",
+      "name": "Adrià Fontcuberta",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/9197791?v=4",
+      "profile": "https://afontcu.dev",
+      "contributions": [
+        "infra",
+        "doc",
+        "review"
+      ]
+    },
+    {
+      "login": "Megoos",
+      "name": "Mikhail Guskov",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/9866017?v=4",
+      "profile": "https://github.com/Megoos",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "juliusdelta",
+      "name": "JD Gonzales",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/10285055?v=4",
+      "profile": "https://jds.work",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "frinyvonnick",
+      "name": "Yvonnick FRIN",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13099512?v=4",
+      "profile": "https://yvonnickfrin.dev",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "kefranabg",
+      "name": "Franck Abgrall",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/9840435?v=4",
+      "profile": "https://www.franck-abgrall.me/",
+      "contributions": [
+        "review"
+      ]
+    }
+  ],
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "contributorsPerLine": 7
+}

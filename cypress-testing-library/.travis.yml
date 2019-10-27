@@ -1,0 +1,21 @@
+sudo: false
+language: node_js
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
+cache:
+  # Caches $HOME/.npm when npm ci is default script command
+  # Caches node_modules in all other cases
+  npm: true
+  directories:
+    # we also need to cache folder with Cypress binary
+    - ~/.cache
+notifications:
+  email: false
+node_js: '8'
+install: npm install
+script: npm run validate
+after_success: kcd-scripts travis-after-success
+branches:
+  only: master

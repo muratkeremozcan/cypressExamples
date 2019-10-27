@@ -1,0 +1,6 @@
+{
+    "globals": {
+        "cy": true
+    },
+    "parser": "babel-eslint"
+}
