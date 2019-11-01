@@ -1,0 +1,37 @@
+@import "src/assets/theme/css/_variables.scss";
+@import "src/assets/theme/css/_mixins.scss";
+
+footer {
+  background: $space-grey;
+  padding: $spacing $spacing*3;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  width: 100%;
+
+
+  @include breakpoint($max: 1075px) {
+    & * {
+      text-align: center;
+      width: 100%;
+    }
+    p {
+      margin-bottom: $spacing*2;
+    }
+  }
+
+  &, * {
+    font-size: 14px;
+    color: $white;
+  }
+  a {
+    font-weight: 900;
+  }
+  a:hover, a:hover i {
+    color: $light-blue;
+  }
+  a:active, a:active i {
+    color: $blue;
+  }
+}

@@ -1,0 +1,27 @@
+$black: #000;
+$white: #fff;
+$shell: #fbfbfb;
+$light-grey: #f4f6f7;
+$dark-blue: darken($black, 10%);
+$space-grey: #546e7a;
+$shield-red: #d9211b;
+$dark-green: darken(complement($shield-red), 40%);
+$med-green: darken(complement($shield-red), 25%);
+$blue: #2399e5;
+$light-blue: #b2dbf6;
+
+$twitter-blue: #53a9ee;
+$spacing: 22px;
+
+$ipadLandscape: 1024px;
+$ipad: 920px;
+$mobile: 500px;
+
+$box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+
+// $dark-green: #50b9d7; // light blue
+// $dark-green: #112748; // dark blue
+// $dark-green: #140c1a; // dark purple
+$google-green: #20a464; // google green
+$google-red: #ea4335;
+// $dark-green: darken(#ffce42, 10%); // google yellow

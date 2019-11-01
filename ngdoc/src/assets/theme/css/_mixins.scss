@@ -1,0 +1,25 @@
+@mixin flex-container($direction: row, $justify-content: null, $align-items: null, $flex-wrap: null) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-wrap: $flex-wrap;
+}
+
+@mixin breakpoint($min: null, $max: null) {
+  @media (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+
+  @if $min == null {
+    @media (max-width: $max) {
+      @content;
+    }
+  }
+
+  @if $max == null {
+    @media (min-width: $min) {
+      @content;
+    }
+  }
+}

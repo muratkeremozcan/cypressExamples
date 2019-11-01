@@ -1,0 +1,37 @@
+<div class="search-and-version-wrapper">
+  <form class="inline search-wrapper">
+    <input class="search" name="keywords" [(ngModel)]="filterData.keywords" id="keyword" type="text" (change)="keywords.emit(filterData.keywords)" placeholder="Search...">
+    <div class="search-button"><i class="fa fa-search"></i></div>
+  </form>
+
+  <div class="version-options">
+    <input id="version-1.x" type="radio" name="version" [(ngModel)]="filterData.version" value="1.x" (ngModelChange)="version.emit(filterData.version)" />
+    <label for="version-1.x">AngularJS (1.x)</label>
+
+    <input id="version-2+" type="radio" name="version" [(ngModel)]="filterData.version" value="2+" (ngModelChange)="version.emit(filterData.version)" />
+    <label for="version-2+">Angular (2+)</label>
+
+    <div class="indicator"></div>
+  </div>
+</div>
+
+<div class="tags-container">
+  <form novalidate autocomplete="off" class="inline" [formGroup]="searchTagsForm">
+    <input formControlName="tagsearch" type="search" name="search" placeholder="search yo tags"
+      (keyup)="tagSearch.emit(tagsearch.value)" #tagsearch />
+    <button type="search" name="button" class="tag-search-button"><i class='fa fa-search'></i></button>
+  </form>
+
+  <div class="selected tags" *ngFor="let tag of filterData.tags">
+    <a (click)="removeTag.emit(tag)" [ngClass]="{ bold: isInTagList(tag) }">{{tag}}</a>
+  </div>
+
+  <div class="tags" *ngFor="let tag of tags">
+    <a (click)="selectTag(tag)" [ngClass]="{ bold: isInTagList(tag) }">{{tag}}</a>
+  </div>
+</div>
+
+<div class="buttons-container">
+  <button *ngIf="!filterData.showAllTags && !someTagsAreSelected()" class="button" type="button" (click)="showAll.emit(true)">All Tags</button>
+  <button class="button" type="button" (click)="reset.emit()">Reset Filters</button>
+</div>

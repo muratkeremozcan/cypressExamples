@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "http://ngdoc.io",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

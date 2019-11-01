@@ -1,0 +1,48 @@
+/*eric meyer's css reset for across browser consistency*/
+@import "assets/theme/css/reset.css";
+
+/* our colors to be used across the site*/
+@import "assets/theme/css/_variables.scss";
+
+@import "assets/theme/css/_buttons.scss";
+@import "assets/theme/css/_forms.scss";
+@import "assets/theme/css/_tags.scss";
+
+body, html {
+  background: $light-grey;
+  font-size: 14px;
+  font-family: "Roboto", "Trebuchet MS", Arial, Helvetica, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  * {
+    box-sizing: border-box;
+  }
+}
+h1 {
+  font-size: 2rem;
+  line-height: 3rem;
+}
+a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  color: $black;
+  cursor: pointer;
+  transition: all .4s ease;
+  &:hover {
+    color: $black;
+    text-decoration: underline;
+  }
+  &:active {
+    color: $dark-green;
+  }
+}
+
+.fa-twitter {
+  color: $twitter-blue;
+}

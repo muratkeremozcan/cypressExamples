@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>NgDocIo</title>
+  <base href="/">
+
+  <link rel="stylesheet" type="text/css" href="/assets/theme/css/omega/theme.css" />
+  <link rel="stylesheet" type="text/css" href="/assets/theme/css/primeng.min.css" />
+  <link rel="stylesheet" href="assets/theme/fontawesome/css/font-awesome.min.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body>
+  <app-root>
+    <style>
+      app-root {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+
+        color: #fbfbfb;
+        text-transform: uppercase;
+        font-family: -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen-Sans,
+        Ubuntu,
+        Cantarell,
+        Helvetica,
+        sans-serif;
+        font-size: 2.5em;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      body {
+        background: #20a464;
+        margin: 0;
+        padding: 0;
+      }
+
+      @keyframes dots {
+        50% {
+          transform: translateY(-.4rem);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      .d {
+        animation: dots 1.5s ease-out infinite;
+      }
+
+      .d-2 {
+        animation-delay: .5s;
+      }
+
+      .d-3 {
+        animation-delay: 1s;
+      }
+    </style>
+
+    Loading<span class="d">.</span><span class="d d-2">.</span><span class="d d-3">.</span>
+  </app-root>
+
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-97437242-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+
+</html>

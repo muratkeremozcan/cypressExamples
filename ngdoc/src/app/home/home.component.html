@@ -1,0 +1,18 @@
+<main>
+  <app-home-search
+    [tags]="tags$ | async"
+    [filterData]="filterData$ | async"
+    (showAll)="showAllTags()"
+    (keywords)="keywords($event)"
+    (version)="version($event)"
+    (addTag)="addTag($event)"
+    (removeTag)="removeTag($event)"
+    (tagSearch)="tagSearch($event)"
+    (reset)="reset()"
+    >
+  </app-home-search>
+  <app-loading-container [loading]="loading" class="articles">
+    <app-articles [articles]="articles$ | async"></app-articles>
+  </app-loading-container>
+  <p-growl [value]="msgs"></p-growl>
+</main>

@@ -33,7 +33,7 @@ context("Authentication", () => {
   const username = "stefano@conio.com";
   const password = "mysupersecretpassword";
 
-  it("should work with the right credentials", () => {
+  it.only("should work with the right credentials", () => {
     // intercepts every auth AJAX request and responds with the content of the
     // authentication-success.json fixture. This is called server stubbing
     cy.route({
@@ -63,8 +63,11 @@ context("Authentication", () => {
       // a lot of times the front-end app does not work because of wrong communication with the
       // back-end app, always assert on the request payload
       // @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#backend-contract
+      // assert the payload body
       expect(xhr.request.body).to.have.property("username", username);
       expect(xhr.request.body).to.have.property("password", password);
+      // assert the request headers
+      expect(xhr.request.headers).to.have.property('Content-Type', 'application/json;charset=utf-8');
     });
 
     // finally, the user must see the feedback

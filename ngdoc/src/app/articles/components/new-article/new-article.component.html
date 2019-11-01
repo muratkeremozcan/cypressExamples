@@ -1,0 +1,71 @@
+<form class="padded-form" novalidate autocomplete="off" (ngSubmit)="save()" [formGroup]="articleForm">
+  <h1>New Resource</h1>
+  <fieldset>
+    <div class="full" [ngClass]="{'form-group': true, 'has-error': dupTitle}">
+      <label for="title">Title</label>
+      <input id="title" name="title" pInputText type="text" formControlName="title" autofocus />
+      <span class="help-block" *ngIf="articleForm.get('title').errors && showValidation">
+        <span *ngIf="articleForm.get('title').errors.required">
+          Please enter a title for the document.
+        </span>
+      </span>
+    </div>
+    <div class="full" [ngClass]="{'form-group': true, 'has-error': dupTitle}">
+      <label for="url">URL</label>
+      <input pTooltip="Please remove tracking tokens from the URL like utm_campaign" tooltipEvent="focus" id="url" pInputText type="text"
+        formControlName="url" />
+      <div class="help-block" *ngIf="showValidation && articleForm.get('url').errors">
+        <span *ngIf="articleForm.get('url').errors.required">
+          Please enter a URL for the document.
+        </span>
+      </div>
+      <div *ngIf="dupURL || articleForm.get('url').errors && articleForm.get('url').errors['shouldBeUnique']" class="help-block">That article has already been submitted</div>
+      <div *ngIf="showValidation && articleForm.get('url').errors && articleForm.get('url').errors['invalidProtocol']" class="help-block">You must include the protocol (http:// or https://)</div>
+      <div class="help-block" *ngIf="showValidation && articleForm.get('url').errors">
+        <span *ngIf="articleForm.get('url').errors.urlTrackingTokens">
+          Please remove tracking tokens, e.g., utm_campaign.
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="author">Author</label>
+      <p-autoComplete formControlName="author" [suggestions]="authorResults" (completeMethod)="searchAuthors($event)"></p-autoComplete>
+    </div>
+    <div class="form-group">
+      <label for="published">Published</label>
+      <p-calendar formControlName="published"></p-calendar>
+      <span class="help-block" *ngIf="articleForm.get('published').errors">
+        <span *ngIf="articleForm.get('published').errors.noFutureDates">
+          Publish date cannot be in the future.
+        </span>
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="version">Version</label>
+      <p-dropdown [options]="versions" formControlName="version"></p-dropdown>
+    </div>
+    <div class="form-group">
+      <label for="type">Type of Content</label>
+      <p-dropdown [options]="contentTypes" formControlName="type"></p-dropdown>
+    </div>
+    <div class="form-group" style="width: 100%">
+      <app-auto-complete formControlName="tags" [placeholder]="'tags'" [suggestions]="tagResults" (completeMethod)="searchTags($event)" [multiple]="true"></app-auto-complete>
+    </div>
+    <div class="form-group" style="width: 100%">
+      <p-captcha style="width: 100%" siteKey="{{captchaKey}}" (onResponse)="showResponse($event)" initCallback="loadCaptcha"></p-captcha>
+      <span class="help-block" *ngIf="showValidation && articleForm.get('captcha').errors">
+        <span *ngIf="articleForm.get('captcha').errors.required">
+          Captcha is required.
+        </span>
+      </span>
+    </div>
+  </fieldset>
+
+  <div class="actions">
+    <button *ngIf="articleForm.dirty" class="btn btn-primary" type="button" (click)="resetForm()">Reset</button>
+    <button *ngIf="!articleForm.dirty" class="btn btn-primary" type="button" (click)="cancel()">Home</button>
+    <button class="btn btn-primary" type="default">Save</button>
+    <button *ngIf="false" class="btn btn-primary" type="button" (click)="prefill()">Prefill</button>
+  </div>
+</form>
+<p-growl [value]="msgs"></p-growl>

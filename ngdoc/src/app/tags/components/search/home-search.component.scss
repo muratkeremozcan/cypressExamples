@@ -1,0 +1,92 @@
+@import "src/assets/theme/css/_mixins.scss";
+@import "src/assets/theme/css/_variables.scss";
+@import "src/assets/theme/css/_buttons.scss";
+
+input[type='radio'] {
+  display: none;
+}
+
+.version-options {
+  display: flex;
+  @include flex-container($align-items: stretch);
+  position: relative;
+  margin-bottom: $spacing/2;
+  // background: $white;
+  // border: 2px solid $dark-green;
+
+  label {
+    z-index: 2;
+    position: relative;
+    padding: 15px;
+    width: 50%;
+    color: $space-grey;
+    cursor: pointer !important;
+    text-align: center;
+
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  input:checked + label {
+    color: $white;
+    cursor: default !important;
+  }
+
+  input:first-of-type:checked ~ .indicator {
+    left: 0;
+  }
+
+  input:last-of-type:checked ~ .indicator {
+    left: 50%;
+  }
+
+  .indicator {
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    position: absolute;
+    width: 50%;
+    background: $dark-green;
+    border-top: 2px solid darken($dark-green, 10%);
+    border-radius: 3px;
+    transition: left 200ms ease;
+  }
+}
+
+.search-wrapper {
+  position: relative;
+  margin-bottom: $spacing/2;
+}
+
+.search {
+  font-size: 1em;
+  padding: 5px 10px;
+}
+
+.search-button {
+  @extend .button;
+  padding: 0;
+  width: 45px;
+  border-radius: 0 4px 4px 0;
+  transition: all 0.3s ease;
+  font-size: 1.3rem;
+  cursor: pointer;
+  line-height: 42px;
+  text-align: center;
+}
+
+@include breakpoint($max: $ipad, $min: $mobile) {
+  .search-and-version-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .version-options {
+    min-width: 252px;
+    margin-left: 22px;
+    flex: 1;
+  }
+  .search-wrapper {
+    flex: 2;
+  }
+}

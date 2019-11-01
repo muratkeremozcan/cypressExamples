@@ -1,0 +1,33 @@
+<nav class="header">
+  <span class="logo-wrapper">
+    <a class="logo" [routerLink]="['/']">
+      <img
+        src="/assets/images/green-logo.png"
+        alt="ng doc IO logo, the angular shield with ng doc written ontop"
+      />
+      <h1>The Unofficial Angular Docs</h1>
+    </a>
+  </span>
+
+  <div class="site-menu" (click)="toggleNav()">Site Menu</div>
+
+  <div
+    class="nav-right"
+    [ngClass]="{ 'displayDropDownNav ': displayDropDownNav }"
+    (click)="toggleNav()"
+  >
+    <a target="_blank" href="https://twitter.com/ngdocio"
+      >Follow Us <i class="fa fa-twitter"></i
+    ></a>
+    <a href="https://angular.io/docs" target="_blank"
+      >The Official Docs
+      <img
+        src="/assets/images/angular_whiteTransparent.png"
+        alt="the angular logo"
+        class="angular-logo"
+    /></a>
+    <a href="https://github.com/joeeames/ngDocIO_Issues" target="_blank"
+      >Help</a
+    >
+  </div>
+</nav>

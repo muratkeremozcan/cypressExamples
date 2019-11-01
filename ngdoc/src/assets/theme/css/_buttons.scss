@@ -1,0 +1,38 @@
+.button, button, input[type="submit"] {
+  padding: 15px;
+  display: block;
+  box-sizing: border-box;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: $google-green;
+  border: 0 solid darken($google-green, 10%);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  color: $white;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.5s ease;
+
+  // vertical-align: top;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.247) 0px -1px 0px;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 0px inset;
+
+  &:hover {
+    background: lighten($google-green, 5%);
+  }
+
+  &:active {
+    background: darken($google-green, 10%);
+    border-top-width: 2px;
+    border-bottom-width: 0;
+  }
+
+  &:disabled {
+    background: lighten($black, 75%);
+    border-bottom-color: lighten($black, 65%);
+  }
+}

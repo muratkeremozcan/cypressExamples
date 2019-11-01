@@ -1,0 +1,96 @@
+/* figure out how to get these included site wide, is that possible?*/
+/* mixins (like flex) for site wide use*/
+/* figure out how to get these included site wide, is that possible?*/
+/* mixins (like flex) for site wide use*/
+@import "src/assets/theme/css/_mixins.scss";
+@import "src/assets/theme/css/_variables.scss";
+
+$articlePadding: 15px;
+
+
+
+a {
+  display: flex;
+  flex: 1;
+  border: 1px solid darken($light-grey, 10%);
+  border-radius: 3px;
+  color: $space-grey;
+  font-size: 20px;
+  overflow: hidden;
+
+  &:hover, &:hover .type-icon {
+    text-decoration: none;
+  }
+
+  .title {
+    color: $dark-green;
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: $articlePadding/2 $articlePadding;
+  }
+  .lesser-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .lesser-info-inner-left {
+    display: flex;
+    align-items: center;
+    > * {
+      margin-right: $articlePadding;
+      @include breakpoint($max: $mobile){
+        margin-right: $articlePadding/3;
+
+        &.version-tag {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  .author {
+    text-transform: capitalize;
+  }
+  .twitter {
+    flex: initial;
+    border: none;
+    font-size: 14px;
+    line-height: 16px;
+    display: block;
+    text-align: right;
+    &:hover {
+      text-decoration: underline;
+      .fa-twitter {
+        text-decoration: none;
+      }
+    }
+  }
+  .version-tag {
+    padding: 2px 10px;
+    color: $white;
+    font-weight: bold;
+    background: $google-green;
+    border-radius: 4px;
+
+    @include breakpoint($max: $mobile){
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+
+.type-icon {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $light-grey;
+  border-right: 1px solid darken($light-grey, 10%);
+  color: $space-grey;
+  font-size: 20px;
+  transition: border-color 200ms ease;
+}

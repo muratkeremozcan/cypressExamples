@@ -1,0 +1,45 @@
+@import "src/assets/theme/css/_variables.scss";
+@import "src/assets/theme/css/_mixins.scss";
+
+.about-wrapper {
+  padding: $spacing;
+}
+
+.contributors-wrapper {
+  @include flex-container($justify-content: space-around);
+  flex-wrap: wrap;
+}
+h1 {
+  width: 100%;
+  margin-bottom: $spacing;
+}
+.contributor {
+  @include flex-container($direction: column, $align-items: center);
+  max-width: 400px;
+  padding: $spacing;
+  background: $white;
+  margin-bottom: $spacing*2;
+  h2 {
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: bolder;
+  }
+  p {
+    font-size: 16px;
+    line-height: 26px;
+    margin-bottom: $spacing;
+  }
+  img {
+    max-width: 200px;
+    border-radius: 10px;
+  }
+  a {
+    text-align: center;
+  }
+  a:hover {
+    color: $blue;
+  }
+  a:active {
+    color: $light-blue;
+  }
+}

@@ -1,0 +1,52 @@
+
+@import "src/assets/theme/css/_mixins.scss";
+@import "src/assets/theme/css/_variables.scss";
+
+.article-wrapper {
+  position: relative;
+  margin-bottom: $spacing;
+  display: flex;
+  transition: box-shadow .3s ease;
+  overflow: hidden;
+  &:hover {
+    box-shadow: $box-shadow;
+  }
+}
+
+.vote-wrapper {
+  min-width: 40px;
+  display: flex;
+  flex-direction: column;
+  background: $light-grey;
+
+  & > button {
+    padding: 5px;
+    background: none;
+    border: none;
+    color: $space-grey;
+    font-size: 20px;
+
+    &:hover {
+      color: $dark-green;
+    }
+
+    &.upvote {
+      margin-bottom: 5px;
+    }
+  }
+
+  .rating {
+    padding: 10px 5px;
+    display: block;
+    flex: 1;
+    border-top: 1px solid $white;
+    border-bottom: 1px solid $white;
+    color: $space-grey;
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+app-article {
+  width: 100%;
+}

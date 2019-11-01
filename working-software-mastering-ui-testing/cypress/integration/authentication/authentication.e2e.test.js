@@ -68,6 +68,9 @@ context("Authentication", () => {
       // back-end app. It needs to ensure that the back-end app works and gets the correct response
       // data
       // @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#backend-contract
+
+      // response body assertions and status should be in the e2e tests since these rely on the server
+      // https://github.com/NoriSte/ui-testing-best-practices/blob/master/sections/server-communication-testing/test-request-and-response-payload.md
       expect(xhr.status).to.equal(200);
       expect(xhr.response.body).to.have.property("token");
     });

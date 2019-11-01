@@ -1,0 +1,46 @@
+/* figure out how to get these included site wide, is that possible?*/
+/* mixins (like flex) for site wide use*/
+@import "src/assets/theme/css/_mixins.scss";
+@import "src/assets/theme/css/_variables.scss";
+
+main {
+  @include flex-container();
+  @media (max-width: $ipad) {
+    display: block;
+  }
+}
+
+app-home-search {
+  padding: $spacing * 1.5;
+  width: 25%;
+  min-width: 350px;
+
+  @media (max-width: $ipad) {
+    padding-bottom: $spacing;
+    width: 100%;
+    display: block;
+  }
+}
+
+.articles {
+  clear: both;
+  flex: 1;
+  background: $white;
+  border-left: 1px solid darken($light-grey, 10%);
+  padding: $spacing * 2;
+  padding-right: $spacing * 7;
+
+  @media (max-width: $ipad) {
+    padding: $spacing;
+    width: 100%;
+    display: block;
+    border-top: 1px solid darken($light-grey, 10%);
+    border-left: none;
+  }
+}
+
+.bookmark-wrapper {
+    position: absolute;
+    right: 15px;
+    top: -6px;
+}

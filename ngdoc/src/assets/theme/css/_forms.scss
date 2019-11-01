@@ -1,0 +1,190 @@
+form.padded-form {
+  margin: 0 auto;
+  padding: $spacing * 2;
+  width: 60%;
+  // min-width: 450px;
+  font-size: 16px;
+
+
+
+  @media (max-width: $ipad) {
+    width: 100%;
+    min-width: 0;
+  }
+
+  h1 {
+    padding: 0 $spacing;
+    background: #b0bec5;
+    border-radius: 3px 3px 0 0;
+    color: $white;
+    font-size: 1.2em;
+    text-transform: uppercase;
+  }
+
+  fieldset {
+    padding: $spacing;
+    width: 100%;
+    background: $white;
+    border-right: 1px solid darken($light-grey, 10%);
+    border-left: 1px solid darken($light-grey, 10%);
+  }
+
+  input {
+    background: $light-grey;
+  }
+
+  label {
+    margin-bottom: 5px;
+    display: block;
+    color: #607D8B;
+
+    // any direct siblings of form labels
+    + * {
+      position: relative;
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .actions {
+    padding: 0 $spacing $spacing;
+    background: $white;
+    border: 1px solid darken($light-grey, 10%);
+    border-top: none;
+    overflow: hidden;
+
+    button {
+      float: right;
+      font-size: 16px;
+    }
+  }
+}
+
+form {
+  &.inline {
+    margin-bottom: 10px;
+    padding: 0;
+    width: 100%;
+    display: flex;
+
+    input {
+      flex: 1;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 4px 0 0 4px;
+      border-right-width: 0;
+      border-top-width: 2px;
+      line-height: 2em;
+      transition: border-color 200ms ease;
+
+      &:focus {
+        border-color: rgba(0,0,0,0.3);
+        outline: none;
+      }
+    }
+
+    button, .button {
+      border-radius: 0 4px 4px 0;
+      padding: 5px 10px;
+    }
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+  width: 45%;
+  width: calc(50% - #{$spacing / 2});
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.full {
+    width: 100%;
+  }
+
+  &:not(.full) {
+    &:nth-child(odd) {
+      clear: both;
+      float: left;
+    }
+
+    &:nth-child(even) {
+      clear: none;
+      float: right;
+    }
+  }
+
+  p-calendar {
+    > *, input {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  p-autocomplete {
+    width: 100%;
+
+    + * {
+      width: 100%;
+
+      button {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        margin: 0;
+        width: 32px;
+        border-radius: 0 3px 3px 0;
+      }
+
+      form {
+        margin: 5px 0 0;
+        width: 100%;
+        min-width: 0;
+        border-radius: 0;
+
+        input {
+          width: 100%;
+        }
+      }
+    }
+
+    .ui-autocomplete-multiple-container {
+      padding-right: 40px;
+      display: block;
+
+      .ui-autocomplete-token {
+        margin: 6px 3px 3px;
+      }
+    }
+
+    .ui-autocomplete {
+      width: 100%;
+      display: block;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .ui-autocomplete-token-label {
+      margin-right: 1.2em;
+    }
+  }
+}
+
+// The annoyingly important bits
+.ui-dropdown {
+  width: 100% !important;
+}
+
+.help-block, .tag-warning {
+  font-size: 13px;
+  line-height: 23px;
+}
+
+.help-block {
+  color: $google-red;
+  margin-top: 2px;
+}

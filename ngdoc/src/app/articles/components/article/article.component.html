@@ -1,0 +1,24 @@
+<a target="_blank" href="{{article.url}}">
+  <i class="type-icon fa" [ngClass]="{
+    'fa-commenting': article.type == 'Blog',
+    'fa-graduation-cap': article.type == 'Course',
+    'fa-file-text-o': article.type == 'Other',
+    'fa-code': article.type == 'Code',
+    'fa-play-circle': article.type == 'Video'}">
+  </i>
+  <div class="info">
+    <p class="title">{{article.title}}</p>
+    <div class="lesser-info">
+      <div class="lesser-info-inner-left">
+        <p class="author">Author: {{article.author_name}}</p>
+        <p>{{article.published_date | date:'MMM y'}}</p>
+        <div class="version-tag" *ngIf="article.version.indexOf('Beta') > -1">Beta</div>
+        <div class="version-tag" *ngIf="article.version.indexOf('Release Candidate') > -1">RC</div>
+      </div>
+      <a href="https://twitter.com/intent/tweet?text=Check+out+this+{{article.type | lowercase}},+{{article.title}}+by+{{article.author_name}}&via=ngdocio&url={{article.url}}" class="twitter" target="_new">
+        Share this on
+        <i class="fa fa-twitter"></i>
+      </a>
+    </div>
+  </div>
+</a>

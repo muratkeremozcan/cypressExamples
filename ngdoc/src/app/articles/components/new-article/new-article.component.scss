@@ -1,0 +1,11 @@
+@import "src/assets/theme/css/_variables.scss";
+
+tag-input-form {
+  form {
+    padding: 5px !important;
+  }
+}
+
+button {
+  margin-left: $spacing;
+}

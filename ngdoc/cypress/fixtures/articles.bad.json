@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "58dd324ae8e5d30004e9f7aa",
+    "submitted_date": "2017-03-30T16:28:58.964Z",
+    "submitted_by_name": "Jill Jorgensen",
+    "submitted_by_id": 104549270167342400000,
+    "published_date": "2016-08-25T00:00:00.000Z",
+    "author_lower_name": " muhammad uzair",
+    "author_name": " Muhammad Uzair",
+    "title_lower": "handling the challenge of shared state with ngrx/store in angular 2",
+    "title": "Handling The Challenge Of Shared State With Ngrx/store In Angular 2",
+    "url": "https://appendto.com/2016/08/handling-the-challenge-of-shared-state-with-ngrxstore-in-angular-2/",
+    "version": "2+",
+    "type": "Blog",
+    "__v": 0,
+    "status": "approved",
+    "url_lower": "https://appendto.com/2016/08/handling-the-challenge-of-shared-state-with-ngrxstore-in-angular-2/",
+    "rating": 0,
+    "tags": []
+  }
+]
