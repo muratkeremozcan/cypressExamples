@@ -33,7 +33,7 @@ context("Authentication", () => {
   const username = "stefano@conio.com";
   const password = "mysupersecretpassword";
 
-  it.only("should work with the right credentials", () => {
+  it("should work with the right credentials", () => {
     // intercepts every auth AJAX request and responds with the content of the
     // authentication-success.json fixture. This is called server stubbing
     cy.route({
