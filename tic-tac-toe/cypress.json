@@ -1,0 +1,4 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "videoCompression": 1
+}
