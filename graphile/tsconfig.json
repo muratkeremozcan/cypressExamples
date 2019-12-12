@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "incremental": true,
+    "noEmitOnError": true,
+
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "lib": ["dom", "es2017"],
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "removeComments": false,
+    "strict": true,
+    "strictNullChecks": true,
+    "importHelpers": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "preserveWatchOutput": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+
+    "noEmit": true,
+    "declaration": true,
+    "declarationMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["@app/*"]
+    }
+  },
+  "include": [],
+  "exclude": ["@app/e2e"],
+  "references": [
+    { "path": "@app/config" },
+    { "path": "@app/graphql" },
+    { "path": "@app/server" },
+    { "path": "@app/worker" }
+  ]
+}

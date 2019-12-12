@@ -1,0 +1,152 @@
+version: "3.5"
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_UID: $UID
+        SETUP_MODE: normal
+
+    # On Linux, this will prevent new files getting created as root, but you
+    # may need to update the USER_UID and USER_GID in `Dockerfile` to match
+    # your user if not 1000.
+    user: $UID
+
+    env_file:
+      - docker/docker.env
+    volumes:
+      - .:/work
+      # let's us run docker & docker-compose from inside container (used for yarn setup)
+      - /var/run/docker.sock:/var/run/docker.sock
+      - nm_root:/work/node_modules
+      - nm_app_client:/work/@app/client/node_modules
+      - nm_app_config:/work/@app/config/node_modules
+      - nm_app_db:/work/@app/db/node_modules
+      - nm_app_e2e:/work/@app/e2e/node_modules
+      - nm_app_graphql:/work/@app/graphql/node_modules
+      - nm_app_server:/work/@app/server/node_modules
+      - nm_app_worker:/work/@app/worker/node_modules
+    working_dir: /work
+    networks:
+      - default
+    ports:
+      # The main server
+      - "5678:5678"
+      # Node `--inspect=...` port numbers for debugging
+      - "9678:9678"
+      - "9876:9876"
+      - "9757:9757"
+    depends_on:
+      - db
+    #* Overrides default command so things don't shut down after the process ends.
+    command: yarn start
+
+  # extends server, is made for live developing
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_UID: $UID
+        SETUP_MODE: dev
+
+    env_file:
+      - docker/docker.env
+
+    # On Linux, this will prevent new files getting created as root, but you
+    # may need to update the USER_UID and USER_GID in `Dockerfile` to match
+    # your user if not 1000.
+    user: $UID
+
+    volumes:
+      #* same as service: server
+      - .:/work
+
+      # let's us run docker & docker-compose from inside container (used for yarn setup)
+      - /var/run/docker.sock:/var/run/docker.sock
+      - nm_root:/work/node_modules
+      - nm_app_client:/work/@app/client/node_modules
+      - nm_app_config:/work/@app/config/node_modules
+      - nm_app_db:/work/@app/db/node_modules
+      - nm_app_e2e:/work/@app/e2e/node_modules
+      - nm_app_graphql:/work/@app/graphql/node_modules
+      - nm_app_server:/work/@app/server/node_modules
+      - nm_app_worker:/work/@app/worker/node_modules
+
+      #* You may want to enable following lines
+      #* to use your local configs inside container
+      ## avoids vscode extensions reinstalls
+      ## https://code.visualstudio.com/docs/remote/containers-advanced#_avoiding-extension-reinstalls-on-container-rebuild
+      # - vscode-extensions:/root/.vscode-server
+      #! LINUX HOST ONLY
+      ## copies your ssh credentials, to be able to use them from within the container
+      ## (see: https://code.visualstudio.com/docs/remote/containers#_sharing-git-credentials-with-your-container)
+      # - $HOME/.ssh:/root/.home-localhost/.ssh:ro
+      ## .bashrc
+      # - $HOME/.bashrc:/root/.home-localhost/.bashrc:ro
+      ## .gitconfig
+      # - $HOME/.gitconfig:/root/.home-localhost/.gitconfig:ro
+      ## .tmux
+      # - $HOME/tmux.conf:/root/.home-localhost/tmux.conf:ro
+      ##! WINDOWS HOST ONLY
+      ##* on windows host can't mount single files
+      ## comment all the other `.home-localhost` lines above this
+      # - $HOME:/root/.home-localhost:ro
+
+    working_dir: /work
+    networks:
+      - default
+    ports:
+      # The main server
+      - "5678:5678"
+      # Node `--inspect=...` port numbers for debugging
+      - "9678:9678"
+      - "9876:9876"
+      - "9757:9757"
+    depends_on:
+      - db
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+  # This runs the database that everything else connects to
+  db:
+    image: postgres:11
+
+    # Unlike above, the Postgres image cannot start as our user account
+    # otherwise we get permission denied errors. So this one has to run as
+    # root. :(
+    #
+    # user: $UID
+
+    working_dir: /
+
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+      - ./data:/data
+    ports:
+      - "6543:5432"
+    restart: unless-stopped
+    networks:
+      - default
+    command: postgres -c logging_collector=on -c log_destination=stderr -c log_directory=/var/lib/postgresql/data/logs -c log_rotation_age=60 -c log_truncate_on_rotation=on -c log_filename=server_log.hour.%H%M
+
+networks:
+  default:
+    # No metadata required right now.
+
+volumes:
+  # Postgres' data
+  db-volume:
+
+  # Node modules
+  nm_root:
+  nm_app_client:
+  nm_app_config:
+  nm_app_db:
+  nm_app_e2e:
+  nm_app_graphql:
+  nm_app_server:
+  nm_app_worker:
+  # used for keeeping vscode-extensions while rebuilding
+  # vscode-extensions:

@@ -1,0 +1,87 @@
+{
+  "name": "My_Project_Here",
+  "version": "2.0.1",
+  "private": true,
+  "description": "Description of project here",
+  "scripts": {
+    "setup": "yarn && node ./scripts/setup.js",
+    "start": "node ./scripts/start.js",
+    "test": "node scripts/test.js",
+    "test:watch": "node scripts/test.js --watch",
+    "lint": "tsc -b && yarn prettier:check && eslint --ext .js,.jsx,.ts,.tsx,.graphql .",
+    "lint:fix": "prettier --ignore-path .eslintignore --write '**/*.{js,jsx,ts,tsx,graphql,md}'; eslint --ext .js,.jsx,.ts,.tsx,.graphql . --fix",
+    "prettier:check": "prettier --ignore-path .eslintignore --check '**/*.{js,jsx,ts,tsx,graphql,md}'",
+    "dev": "yarn && lerna run codegen --stream && tsc -b && concurrently --kill-others --names 'TSC,WATCH,RUN,TEST' --prefix '({name})' --prefix-colors 'yellow.bold,yellow.bold,cyan.bold,greenBright.bold' 'tsc -b --watch --preserveWatchOutput' 'lerna run --parallel watch' 'lerna run --parallel dev' 'sleep 10; yarn test:watch'",
+    "build": "lerna run build",
+    "licenses": "yarn --silent licenses generate-disclaimer > LICENSES.md",
+    "clean": "node ./scripts/clean.js",
+    "reset": "yarn clean && node ./scripts/delete-env-file.js",
+    "--shortcuts to run commands in workspaces--": "",
+    "client": "yarn workspace @app/client",
+    "db": "yarn workspace @app/db",
+    "e2e": "yarn workspace @app/e2e",
+    "graphql": "yarn workspace @app/graphql",
+    "server": "yarn workspace @app/server",
+    "worker": "yarn workspace @app/worker",
+    "docker": "yarn --cwd ./docker",
+    "docker-compose": "yarn --cwd ./docker compose"
+  },
+  "author": "Benjie Gillam <code@benjiegillam.com>",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "dependencies": {
+    "lerna": "^3.18.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.20",
+    "@typescript-eslint/eslint-plugin": "^2.5.0",
+    "@typescript-eslint/parser": "^2.5.0",
+    "concurrently": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-cypress": "^2.7.0",
+    "eslint-plugin-graphql": "^3.0.3",
+    "eslint-plugin-jest": "^23.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.2.0",
+    "eslint_d": "^8.0.0",
+    "inquirer": "^7.0.0",
+    "jest": "^24.9.0",
+    "mock-req": "^0.2.0",
+    "mock-res": "^0.5.0",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.1.0",
+    "typescript": "^3.5.3",
+    "update-dotenv": "^1.1.1"
+  },
+  "resolutions": {
+    "graphql": "14.x"
+  },
+  "workspaces": {
+    "packages": [
+      "@app/*"
+    ],
+    "nohoist": [
+      "**/cypress"
+    ]
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "proseWrap": "always"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/@app"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testMatch": [
+      "**/__tests__/**/*.test.[jt]s?(x)"
+    ]
+  }
+}

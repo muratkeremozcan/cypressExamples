@@ -1,0 +1,11 @@
+query CurrentUserAuthentications {
+  currentUser {
+    id
+    authentications: userAuthenticationsList(first: 50) {
+      id
+      service
+      identifier
+      createdAt
+    }
+  }
+}
