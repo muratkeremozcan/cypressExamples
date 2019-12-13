@@ -1,0 +1,14 @@
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1
+workflows:
+  build:
+    jobs:
+      - cypress/run:
+          context: keep-password-secret
+          start: 'npm start'
+          wait-on: 'http://localhost:3000'
+          # save test run videos and screenshots on CircleCI
+          # and they are publicly viewable, so make sure there
+          # are no passwords in clear text!
+          store_artifacts: true

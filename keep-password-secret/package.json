@@ -1,0 +1,43 @@
+{
+  "name": "keep-password-secret",
+  "version": "0.0.0",
+  "description": "Example site for showing how to prevent accidentally revealing passwords during Cypress tests",
+  "keywords": [
+    "example",
+    "express",
+    "passport"
+  ],
+  "author": "Jared Hanson",
+  "license": "Unlicense",
+  "scripts": {
+    "start": "node ./server",
+    "cypress:open": "cypress open",
+    "dev": "start-test 3000 cypress:open",
+    "test": "start-test 3000 'cypress run'"
+  },
+  "homepage": "https://github.com/bahmutov/keep-password-secret",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bahmutov/keep-password-secret.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bahmutov/keep-password-secret/issues"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-ensure-login": "^0.1.1",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-session": "^1.16.1",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "yorha": "1.2.0"
+  },
+  "devDependencies": {
+    "cypress": "3.7.0",
+    "cypress-failed-log": "2.5.1",
+    "prettier": "1.19.1",
+    "start-server-and-test": "1.10.6"
+  }
+}

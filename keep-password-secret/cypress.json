@@ -1,0 +1,9 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "viewportHeight": 300,
+  "viewportWidth": 300,
+  "env": {
+    "username": "jack",
+    "password": "secret"
+  }
+}
