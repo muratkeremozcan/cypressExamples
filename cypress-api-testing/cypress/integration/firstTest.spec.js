@@ -51,7 +51,7 @@ describe('API tests', () => {
     })
   })
   context('country capital tests', () => {
-    it('should test Turkish capital', () => {
+    it.only('should test Turkish capital', () => {
       cy.request(`${capital}Ankara`)
         .its('status').should('eq', 200)
       cy.request(`${capital}Ankara`)
@@ -60,6 +60,7 @@ describe('API tests', () => {
         .should((res) => {
           expect(res.headers).to.have.property('vary')
           expect(res.headers).to.have.property('x-powered-by')
+          // cy.wrap(res).its('headers').its('x-powered-by').should('exist') // this would work if the next block is not chained
         }) // the yielded subject still is cy.request after then or should
         .its('headers').then( headers => {
           cy.wrap(headers).as('headers')

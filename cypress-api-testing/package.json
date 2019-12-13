@@ -7,7 +7,7 @@
     "start": "node server.js",
     "test": "mocha test/*.js --timeout 15000 --reporter spec",
     "cypress:open": "cypress open",
-    "cypress:run" : "cypress run"
+    "cypress:run": "cypress run"
   },
   "license": "MIT",
   "repository": {
@@ -53,6 +53,6 @@
     "mocha": "^5.1.1",
     "should": "^13.2.1",
     "supertest": "^3.0.0",
-    "cypress": "^3.1.5"
+    "cypress": "^3.7.0"
   }
 }

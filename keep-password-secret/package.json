@@ -12,8 +12,9 @@
   "scripts": {
     "start": "node ./server",
     "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "dev": "start-test 3000 cypress:open",
-    "test": "start-test 3000 'cypress run'"
+    "test": "start-test 3000 cypress:run"
   },
   "homepage": "https://github.com/bahmutov/keep-password-secret",
   "repository": {
