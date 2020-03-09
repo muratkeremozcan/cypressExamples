@@ -1,6 +1,0 @@
-{
-  "ignore": [
-    "cypress/integration/*.js",
-    "db.json"
-  ]
-}

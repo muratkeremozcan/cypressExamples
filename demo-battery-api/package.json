@@ -1,0 +1,40 @@
+{
+  "name": "demo-battery-api",
+  "version": "1.0.0",
+  "description": "> Battery Status API Demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "precy:run": "rm -rf .nyc_output || true",
+    "start": "http-server -c-1 -p 8080 build",
+    "prestart": "npm run build",
+    "dev": "start-test 8080 cy:open",
+    "clean": "rm -rf build .nyc_output || true",
+    "preinstrument": "npm run clean",
+    "instrument": "nyc instrument --compact false src build/src",
+    "cp": "cp src/*.css build/src && cp src/*.png build/src && cp index.html build",
+    "build": "npm run instrument && npm run cp",
+    "report:coverage": "nyc report --reporter=html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/demo-battery-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bahmutov/demo-battery-api/issues"
+  },
+  "homepage": "https://github.com/bahmutov/demo-battery-api#readme",
+  "devDependencies": {
+    "cypress": "3.8.2",
+    "execa": "4.0.0",
+    "http-server": "0.12.1",
+    "istanbul-lib-coverage": "3.0.0",
+    "nyc": "15.0.0",
+    "start-server-and-test": "1.10.6"
+  }
+}

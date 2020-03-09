@@ -1,0 +1,74 @@
+{
+  "name": "testing-workshop-cypress",
+  "version": "1.0.0",
+  "description": "A 3-4 hour testing workshop complete with application, exercise tests and speaker slides",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run --spec 'cypress/integration/07-ci/*'",
+    "posttest": "npm run --prefix todomvc reset:db",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "start": "npm start --prefix todomvc -- --quiet",
+    "start:react": "http-server --silent -p 3000 -c-1 todomvc-react",
+    "ci": "start-test 3000",
+    "dev": "start-test 3000 cy:open",
+    "postinstall": "cd todomvc && npm install",
+    "reset": "npm run reset --prefix todomvc",
+    "format": "eslint --fix 'cypress/**/*.js'",
+    "lint": "eslint 'cypress/**/*.js'"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cypress-io/testing-workshop-cypress.git"
+  },
+  "keywords": [
+    "cypress",
+    "cypress-io",
+    "e2e",
+    "end-to-end",
+    "testing",
+    "workshop"
+  ],
+  "author": "Gleb Bahmutov <gleb@cypress.io>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cypress-io/testing-workshop-cypress/issues"
+  },
+  "homepage": "https://github.com/cypress-io/testing-workshop-cypress#readme",
+  "devDependencies": {
+    "@babel/plugin-proposal-do-expressions": "7.5.0",
+    "@cypress/browserify-preprocessor": "2.1.4",
+    "@cypress/code-coverage": "1.10.4",
+    "babel-plugin-istanbul": "5.2.0",
+    "cypress": "4.1.0",
+    "cypress-dark": "1.7.14",
+    "cypress-failed-log": "2.5.1",
+    "cypress-pipe": "1.6.0",
+    "cypress-plugin-snapshots": "1.2.9",
+    "cypress-react-unit-test": "2.4.3",
+    "cypress-xpath": "1.4.0",
+    "debug": "4.1.1",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.7.0",
+    "eslint-plugin-cypress": "2.10.3",
+    "eslint-plugin-prettier": "3.1.2",
+    "http-server": "0.12.0",
+    "istanbul-lib-coverage": "3.0.0",
+    "mocha": "6.2.2",
+    "mocha-junit-reporter": "1.23.3",
+    "mocha-multi-reporters": "1.1.7",
+    "mochawesome": "4.1.0",
+    "mochawesome-merge": "1.0.7",
+    "mochawesome-report-generator": "4.0.1",
+    "nyc": "15.0.0",
+    "pluralize": "8.0.0",
+    "prettier": "1.19.1",
+    "start-server-and-test": "1.10.5",
+    "tsify": "4.0.1",
+    "typescript": "3.8.3"
+  },
+  "engines": {
+    "node": ">=8"
+  }
+}
