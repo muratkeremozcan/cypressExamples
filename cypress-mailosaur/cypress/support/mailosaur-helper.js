@@ -9,7 +9,7 @@ export const getEmailFromMailService = query => {
   return cy
     .request({
       method: 'POST',
-      url: `https://mailosaur.com/api/messages/await?server=${Cypress.env('MAILOSAUR_SERVERNAME')}`,
+      url: `https://mailosaur.com/api/messages/await?server=${Cypress.env('MAILOSAUR_SERVERrandomName')}`,
       body: query,
       headers: { 'Content-Type': 'application/json' },
       auth: { user: Cypress.env('MAILOSAUR_API_KEY') }
@@ -22,17 +22,17 @@ export const getEmailFromMailService = query => {
 
 /**
  * Creates a Mailosaur service email
- * @param {string} name any random name
+ * @param {string} randomName any random name
  * @returns {string} Mailosaur service email
  */
-export const createEmail = (name) => `${name}.${Cypress.env('MAILOSAUR_SERVERID')}@mailosaur.io`;
+export const createEmail = (randomName) => `${randomName}.${Cypress.env('MAILOSAUR_SERVERID')}@mailosaur.io`;
 
 
 // export function getEmailFromMailService(query): Cypress.Chainable<any> {
 //   return cy
 //     .request({
 //       method: 'POST',
-//       url: `https://mailosaur.com/api/messages/await?server=${Cypress.env('MAILOSAUR_SERVERNAME')}`,
+//       url: `https://mailosaur.com/api/messages/await?server=${Cypress.env('MAILOSAUR_SERVERrandomName')}`,
 //       body: query,
 //       headers: { 'Content-Type': 'application/json' },
 //       auth: { user: Cypress.env('MAILOSAUR_API_KEY') }
