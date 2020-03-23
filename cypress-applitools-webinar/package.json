@@ -33,7 +33,7 @@
     "common-tags": "1.8.0",
     "concurrently": "^4.1.0",
     "cypress": "4.2.0",
-    "knex": "0.16.5",
+    "knex": "0.20.13",
     "sqlite3": "4.0.6",
     "start-server-and-test": "^1.7.13"
   }
