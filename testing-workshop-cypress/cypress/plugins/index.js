@@ -84,6 +84,10 @@ module.exports = (on, config) => {
         ms
       )
       return hasRecordAsync(title, ms)
+    },
+
+    hello() {
+      return 'hello, world';
     }
   })
 
