@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.8",
-    "cypress": "3.7.0",
+    "cypress": "4.2.0",
     "typescript": "3.7.3"
   },
   "description": "An Ionic project"

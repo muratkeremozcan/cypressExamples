@@ -29,8 +29,8 @@
   "homepage": "https://github.com/bahmutov/cypress-task-demo#readme",
   "dependencies": {
     "bluebird": "3.5.1",
-    "cypress": "3.1.5",
-    "json-server": "0.14.0",
+    "cypress": "4.2.0",
+    "json-server": "^0.16.1",
     "json-server-reset": "1.0.0",
     "ora": "2.1.0",
     "prettier": "1.13.6",

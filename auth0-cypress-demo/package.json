@@ -30,7 +30,7 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "devDependencies": {
-    "cypress": "^3.1.1"
+    "cypress": "4.2.0"
   },
   "repository": {
     "type": "git",
