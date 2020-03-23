@@ -22,27 +22,6 @@ describe('Mailosaur', function () {
   });
 
   // not working yet
-  it.skip('creates an event', function () {
-    const params = Object.assign({
-      eventName: 'testing event'
-    }, {});
-
-    cy.request({
-      method: 'POST',
-      url: `${Cypress.env('MAILOSAUR_API_URL')}/events`,
-      body: {
-        name: params.name
-      },
-      headers: {
-        authorization: Cypress.env('MAILOSAUR_API_KEY')
-      }
-    }).then(createdEvent => {
-      // save event attributes
-      Cypress.env('eventInfo', createdEvent.body);
-    });
-  })
-
-  // not working yet
   it.skip('sends email to mailosaur and gets a response', function () {
     cy.request({
       method: 'POST',
