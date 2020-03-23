@@ -43,23 +43,3 @@ export const createEmail = (name) => `${name}.${Cypress.env('MAILOSAUR_SERVERID'
 //     });
 // }
 
-
-export const eventCreate = (input = {}) => {
-  const params = Object.assign({
-    eventName: 'testing event'
-  }, input);
-
-  cy.request({
-    method: 'POST',
-    url: `${Cypress.env('MAILOSAUR_API_URL')}/events`,
-    body: {
-      name: params.name
-    },
-    headers: {
-      authorization: Cypress.env('MAILOSAUR_API_KEY')
-    }
-  }).then(createdEvent => {
-    // save event attributes
-    Cypress.env('eventInfo', createdEvent.body);
-  });
-}
