@@ -95,6 +95,22 @@ describe('Mailosaur', function () {
     });
   });
 
+  it('sends an email using npm package (your app would normally do this)', function () {
+    // Cypress provides full node utility through cy.task() 
+    // node-sendmail npm package allows to send an email without a SMTP server. Check it out at https://www.npmjs.com/package/sendmail
+    
+    const customHtml = '<div class="content">' +
+      '<h1>This is a heading</h1>' +
+      '<p>This is a paragraph of text.</p>' +
+      '<p><strong>Note:</strong> If you don\'t escape "quotes" properly, it will not work.</p>' +
+      '</div>';
+    // to pass multiple args with cy.task, use a compound value like array or object
+    cy.task('sendSimpleEmail', [userEmail, customHtml]);
+
+    // check the email
+    listMessages().then(console.log);
+  });
+
   // To get the full message content, including HTML & Text body content, you need to use the Retrieve a message endpoint.
   // https://docs.mailosaur.com/reference#retrieve-a-message
   it('retrieves a message', function () {
@@ -106,12 +122,13 @@ describe('Mailosaur', function () {
             message.id
         )
       ) // an array with message id is yielded
-      .then(id => 
+      .then(id =>
         retrieveMessage(id)
       ) // the body of the message is yielded. Here, from the body, we can access html, links, images, attachments etc.
       .then(console.log);
   })
 
   // one can keep building the test suite with the api docs https://docs.mailosaur.com/reference
+
 
 });
