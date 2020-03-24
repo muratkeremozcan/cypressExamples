@@ -6,18 +6,18 @@
  * @returns {Cypress.Chainable<any>}
  */
 export const getEmailFromMailService = query => {
-  return cy
-    .request({
-      method: 'POST',
-      url: `https://mailosaur.com/api/messages/await?server=${Cypress.env('MAILOSAUR_SERVERrandomName')}`,
-      body: query,
-      headers: { 'Content-Type': 'application/json' },
-      auth: { user: Cypress.env('MAILOSAUR_API_KEY') }
-    })
-    .then(response => {
-      expect(response.status).to.equal(200);
-      return response.body;
-    });
+  return cy.request({
+    method: 'POST',
+    url: `${Cypress.env('MAILOSAUR_API')}/messages/await?server=x4be6xxf`,
+    headers: {
+      authorization: Cypress.env('MAILOSAUR_PASSWORD')
+    },
+    auth: {
+      user: Cypress.env('MAILOSAUR_API_KEY'),
+      password: ''
+    },
+    body: query
+  });
 }
 
 /**
@@ -26,20 +26,4 @@ export const getEmailFromMailService = query => {
  * @returns {string} Mailosaur service email
  */
 export const createEmail = (randomName) => `${randomName}.${Cypress.env('MAILOSAUR_SERVERID')}@mailosaur.io`;
-
-
-// export function getEmailFromMailService(query): Cypress.Chainable<any> {
-//   return cy
-//     .request({
-//       method: 'POST',
-//       url: `https://mailosaur.com/api/messages/await?server=${Cypress.env('MAILOSAUR_SERVERrandomName')}`,
-//       body: query,
-//       headers: { 'Content-Type': 'application/json' },
-//       auth: { user: Cypress.env('MAILOSAUR_API_KEY') }
-//     })
-//     .then(response => {
-//       expect(response.status).to.equal(200);
-//       return response.body;
-//     });
-// }
 

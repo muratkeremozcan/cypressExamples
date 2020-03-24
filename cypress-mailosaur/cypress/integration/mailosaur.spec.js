@@ -1,7 +1,8 @@
 /// <reference types="cypress" />
 
 import { internet } from 'faker';
-import { createEmail } from '../support/mailosaur-helper';
+import { createEmail, getEmailFromMailService } from '../support/mailosaur-helper';
+const lorem = require('../fixtures/lorem-ipsum.json');
 
 describe('Mailosaur', function () {
   const userEmail = createEmail(internet.userName());
@@ -20,7 +21,6 @@ describe('Mailosaur', function () {
     cy.wrap(userEmail).should('exist')
       .and('include', Cypress.env('MAILOSAUR_SERVERID'));
   });
-
 
   it('sends basic email to mailosaur and gets a response', function () {
     cy.request({
@@ -43,9 +43,17 @@ describe('Mailosaur', function () {
         subject: 'test'
       }
     })
-    .should(response => {
-      expect(response.status).to.equal(204);
-      return response.body;
-    }).then(res => cy.log(res));
+      .should(response => {
+        expect(response.status).to.equal(204);
+        return response.body;
+      }).then(res => cy.log(res));
+  });
+
+  it('sends email with helper function', function () {
+    getEmailFromMailService({
+      sentTo: userEmail,
+      subject: 'ipsum',
+      content: lorem
+    })
   });
 });
