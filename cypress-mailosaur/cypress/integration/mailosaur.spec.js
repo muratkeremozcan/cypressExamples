@@ -99,7 +99,6 @@ describe('Mailosaur', function () {
   // https://docs.mailosaur.com/reference#retrieve-a-message
   it('retrieves a message', function () {
     // first you need a list of messages. Each message contains an id. You use the id to make the retrieve message call
-    // listMessages().then(messages => messages.filter(message => message.id !== undefined));
     listMessages()
       .then(messages =>
         messages.map(
