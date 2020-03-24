@@ -17,3 +17,6 @@ One can keep building the test suite with the api docs [](https://docs.mailosaur
 * [Downloading attachments](https://docs.mailosaur.com/reference#download-an-attachment)
 * [Spam test](https://docs.mailosaur.com/reference#perform-a-spam-test)
 * Validating links in email: have a look at `retrieveMessage` function in use. The idea is to [retrieve the the message by id](https://docs.mailosaur.com/reference#retrieve-a-message) and access its html, links, images, attachments etc. properties.
+
+
+> Note: [`sendmail` npm package](https://www.npmjs.com/package/sendmail) has been included for possible future work.It is not being used at this time.
