@@ -2,7 +2,7 @@
 // note: responseTimeout has been set to 45 seconds (default 30) at cypress.json
 
 import { internet } from 'faker';
-import { createEmail, getEmailFromMailService } from '../support/mailosaur-helper';
+import { createEmail, postMessageToMailService } from '../support/mailosaur-helper';
 const lorem = require('../fixtures/lorem-ipsum.json');
 
 describe('Mailosaur', function () {
@@ -23,7 +23,7 @@ describe('Mailosaur', function () {
       .and('include', Cypress.env('MAILOSAUR_SERVERID'));
   });
 
-  it('sends basic email to mailosaur and gets a response', function () {
+  it('sends basic message to mailosaur and gets a response', function () {
     cy.request({
       method: 'POST',
       url: `${Cypress.env('MAILOSAUR_API')}/messages/await?server=${Cypress.env('MAILOSAUR_SERVERID')}`,
@@ -49,11 +49,42 @@ describe('Mailosaur', function () {
       }).then(res => cy.log(res));
   });
 
-  it.only('sends email with helper function', function () {
-    getEmailFromMailService({
+  it('sends message with helper function', function () {
+    postMessageToMailService({
       sentTo: userEmail,
       subject: 'ipsum',
       content: lorem
     }).its('status').should('eq', 204);
   });
+
+  // https://docs.mailosaur.com/reference#list-all-messages
+  it('lists messages ', function () {
+    cy.request({
+      method: 'GET',
+      url: `${Cypress.env('MAILOSAUR_API')}/messages?server=${Cypress.env('MAILOSAUR_SERVERID')}`,
+      headers: {
+        authorization: Cypress.env('MAILOSAUR_PASSWORD')
+      },
+      auth: {
+        user: Cypress.env('MAILOSAUR_API_KEY'),
+        password: ''
+      }
+    });
+  });
+
+  // https://docs.mailosaur.com/reference#search-for-messages
+  it.skip('searches for messages', function () {
+    cy.request({
+      method: 'GET',
+      url: `${Cypress.env('MAILOSAUR_API')}/messages/search?server=${Cypress.env('MAILOSAUR_SERVERID')}`,
+      headers: {
+        authorization: Cypress.env('MAILOSAUR_PASSWORD')
+      },
+      auth: {
+        user: Cypress.env('MAILOSAUR_API_KEY'),
+        password: ''
+      }
+    });
+  })
+
 });
