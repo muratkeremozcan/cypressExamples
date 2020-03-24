@@ -113,7 +113,9 @@ describe('Mailosaur', function () {
 
   // To get the full message content, including HTML & Text body content, you need to use the Retrieve a message endpoint.
   // https://docs.mailosaur.com/reference#retrieve-a-message
-  it('retrieves a message', function () {
+
+  // TODO refine further
+  it.skip('retrieves a message', function () {
     // first you need a list of messages. Each message contains an id. You use the id to make the retrieve message call
     listMessages()
       .then(messages =>
