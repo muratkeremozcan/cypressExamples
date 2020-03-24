@@ -1,6 +1,6 @@
 ## Sample repo for Mailosaur tests with Cypress
 
-We are using an open email `cypress-mailosaur-test@protonmail.com` with pw `Password-1`.
+We are using an open email `cypress-mailosaur-test@protonmail.com` with pw `Password-1`. Login at [](https://mailosaur.com/app/).
 
 `cypress.env.json` is shared.
 
