@@ -13,10 +13,11 @@ This is so that things can work out of the box without any setup. We trust the c
 
 ### Examples to improve upon
 
+One can keep building the test suite with the api docs https://docs.mailosaur.com/reference
+* [Downloading attachments](https://docs.mailosaur.com/reference#download-an-attachment)
+* [Spam test](https://docs.mailosaur.com/reference#perform-a-spam-test)
+
 * reproduce Filip's gist
 * any examples from Filip's webcast
 * validating links in the email and using them
 * checking html content
-* checking attachments
-* checking the deliverability of the email by running a spam check
-* checking that the email looks right. A visual test

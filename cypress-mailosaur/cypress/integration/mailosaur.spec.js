@@ -2,7 +2,7 @@
 // note: responseTimeout has been set to 45 seconds (default 30) at cypress.json
 
 import { internet } from 'faker';
-import { createEmail, postMessageToMailService } from '../support/mailosaur-helper';
+import { createEmail, postMessageToMailService, listMessages, retrieveMessage } from '../support/mailosaur-helper';
 const lorem = require('../fixtures/lorem-ipsum.json');
 
 describe('Mailosaur', function () {
@@ -49,7 +49,7 @@ describe('Mailosaur', function () {
       }).then(res => cy.log(res));
   });
 
-  it('sends message with helper function', function () {
+  it('posts a message with helper function', function () {
     postMessageToMailService({
       sentTo: userEmail,
       subject: 'ipsum',
@@ -73,9 +73,11 @@ describe('Mailosaur', function () {
   });
 
   // https://docs.mailosaur.com/reference#search-for-messages
-  it.skip('searches for messages', function () {
+  it('searches for messages', function () {
+    // note: a message or messages exist(s) with the specified criteria in the body
+    // think of the body property as a way to filter
     cy.request({
-      method: 'GET',
+      method: 'POST',
       url: `${Cypress.env('MAILOSAUR_API')}/messages/search?server=${Cypress.env('MAILOSAUR_SERVERID')}`,
       headers: {
         authorization: Cypress.env('MAILOSAUR_PASSWORD')
@@ -83,8 +85,34 @@ describe('Mailosaur', function () {
       auth: {
         user: Cypress.env('MAILOSAUR_API_KEY'),
         password: ''
+      },
+      body: {
+        match: 'ALL', // or 'ANY' to match any of the specified values vs All. Think of it like a filter.
+        sentTo: '',
+        subject: 'sanity test from gmail',
+        body: 'check the content',
       }
     });
+  });
+
+  // To get the full message content, including HTML & Text body content, you need to use the Retrieve a message endpoint.
+  // https://docs.mailosaur.com/reference#retrieve-a-message
+  it('retrieves a message', function () {
+    // first you need a list of messages. Each message contains an id. You use the id to make the retrieve message call
+    // listMessages().then(messages => messages.filter(message => message.id !== undefined));
+    listMessages()
+      .then(messages =>
+        messages.map(
+          message =>
+            message.id
+        )
+      ) // an array with message id is yielded
+      .then(id => 
+        retrieveMessage(id)
+      ) // the body of the message is yielded. Here, from the body, we can access html, links, images, attachments etc.
+      .then(console.log);
   })
+
+  // one can keep building the test suite with the api docs https://docs.mailosaur.com/reference
 
 });
