@@ -19,4 +19,4 @@ One can keep building the test suite with the api docs [](https://docs.mailosaur
 * Validating links in email: have a look at `retrieveMessage` function in use. The idea is to [retrieve the the message by id](https://docs.mailosaur.com/reference#retrieve-a-message) and access its html, links, images, attachments etc. properties.
 
 
-> Note: [`sendmail` npm package](https://www.npmjs.com/package/sendmail) has been included for possible future work. It is not being used at this time.
+> Note: [`sendmail` npm package](https://www.npmjs.com/package/sendmail) has been included to send custom emails utilizing `cy.task()`. Usually your application would be sending these emails.

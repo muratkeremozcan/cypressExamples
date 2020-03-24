@@ -51,7 +51,7 @@ describe('API tests', () => {
     })
   })
   context('country capital tests', () => {
-    it.only('should test Turkish capital', () => {
+    it('should test Turkish capital', () => {
       cy.request(`${capital}Ankara`)
         .its('status').should('eq', 200)
       cy.request(`${capital}Ankara`)
