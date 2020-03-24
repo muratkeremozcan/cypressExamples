@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+// note: responseTimeout has been set to 45 seconds (default 30) at cypress.json
 
 import { internet } from 'faker';
 import { createEmail, getEmailFromMailService } from '../support/mailosaur-helper';
@@ -39,8 +40,7 @@ describe('Mailosaur', function () {
         password: ''
       },
       body: {
-        sentTo: userEmail,
-        subject: 'test'
+        to: 'nobody',
       }
     })
       .should(response => {
@@ -49,11 +49,11 @@ describe('Mailosaur', function () {
       }).then(res => cy.log(res));
   });
 
-  it('sends email with helper function', function () {
+  it.only('sends email with helper function', function () {
     getEmailFromMailService({
       sentTo: userEmail,
       subject: 'ipsum',
       content: lorem
-    })
+    }).its('status').should('eq', 204);
   });
 });
