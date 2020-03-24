@@ -9,3 +9,14 @@ This is so that things can work out of the box without any setup. We trust the c
 `npm i`
 
 `npm run cypress:open`
+
+
+### Examples to improve upon
+
+* reproduce Filip's gist
+* any examples from Filip's webcast
+* validating links in the email and using them
+* checking html content
+* checking attachments
+* checking the deliverability of the email by running a spam check
+* checking that the email looks right. A visual test

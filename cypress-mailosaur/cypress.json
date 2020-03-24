@@ -1,1 +1,3 @@
-{}
+{
+  "responseTimeout": 45000
+}
