@@ -17,4 +17,4 @@
 import './commands'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-import '@bahmutov/cy-api/support'
+import 'cypress-wait-until';

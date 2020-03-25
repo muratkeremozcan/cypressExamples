@@ -2,11 +2,15 @@
 // note: responseTimeout has been set to 45 seconds (default 30) at cypress.json
 
 import { internet } from 'faker';
-import { createEmail, postMessageToMailService, waitForEmailList, waitForUserEmail } from '../support/mailosaur-helper';
+import { createEmail, postMessageToMailService, deleteAllMessages, getEmailList, getUserEmail, waitUntilUserEmail } from '../support/mailosaur-helper';
 const lorem = require('../fixtures/lorem-ipsum.json');
 
 describe('Mailosaur', function () {
   const userEmail = createEmail(internet.userName());
+
+  before('deletes all email messages at Mailosaur', function () {
+    deleteAllMessages();
+  });
 
   it('succeeds basic GET', function () {
     cy.request({
@@ -98,23 +102,37 @@ describe('Mailosaur', function () {
   it('sends an email using npm package (your app would normally do this) and waits until email arrives - can take 20secs', function () {
     // Cypress provides full node utility through cy.task() 
     // node-sendmail npm package allows to send an email without a SMTP server. Check it out at https://www.npmjs.com/package/sendmail
-
     cy.task('sendSimpleEmail', userEmail);
 
     // we use waitUntil plugin, because it can take up to 25 seconds for an email to occur
     // first we check that there is a list of emails, and then we check the first item on the email list; this is the newest email
-    cy.waitUntil(() => waitForEmailList() && waitForUserEmail(userEmail),
-      // waitUntil expects a boolean result, if the length of the email array is > 0, we return true
-      {
-        timeout: 25000,
-        interval: 1000,
-        customMessage: 'wait until an email is received at Mailosaur',
-        errorMsg: 'email did not occur at Mailosaur within time limit',
-        verbose: true,
-        customCheckMessage: 'checking if email got received'
-      });
 
+    const waitUntilOptions = {
+      timeout: 25000,
+      interval: 1000,
+      customMessage: 'wait until an email is received at Mailosaur',
+      errorMsg: 'email did not occur at Mailosaur within time limit',
+      verbose: true,
+      customCheckMessage: 'periodically checking if email got received'
+    };
+
+    // waitUntil expects a boolean result, if the length of the email array is > 0, we return true
+    cy.waitUntil(
+      () => getEmailList(),
+      waitUntilOptions
+    );
+
+    // waitUntil expects a boolean result, if the email we need exists, we return true
+    cy.waitUntil(
+      () => getUserEmail(userEmail),
+      waitUntilOptions
+    );
   });
+
+  it('tests wait until an email arrives using helper function', function() {
+    cy.task('sendEMailWithAttachment', userEmail);
+    waitUntilUserEmail(userEmail);
+  })
 
   // To get the full message content, including HTML & Text body content, you need to use the Retrieve a message endpoint.
   // https://docs.mailosaur.com/reference#retrieve-a-message
