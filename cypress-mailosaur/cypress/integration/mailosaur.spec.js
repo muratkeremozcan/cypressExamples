@@ -44,7 +44,7 @@ describe('Mailosaur', function () {
       }
     })
       .should(response => {
-        expect(response.status).to.equal(204);
+        expect(response.status).to.be.oneOf([204, 200]);
         return response.body;
       }).then(res => cy.log(res));
   });
@@ -54,7 +54,7 @@ describe('Mailosaur', function () {
       sentTo: userEmail,
       subject: 'ipsum',
       content: lorem
-    }).its('status').should('eq', 204);
+    }).its('status').should('be.oneOf', [204, 200]);
   });
 
   // https://docs.mailosaur.com/reference#list-all-messages
