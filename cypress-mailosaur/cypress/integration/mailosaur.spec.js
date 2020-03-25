@@ -2,7 +2,7 @@
 // note: responseTimeout has been set to 45 seconds (default 30) at cypress.json
 
 import { internet } from 'faker';
-import { createEmail, postMessageToMailService, listMessages, retrieveMessage } from '../support/mailosaur-helper';
+import { createEmail, postMessageToMailService, waitForEmailList, waitForUserEmail } from '../support/mailosaur-helper';
 const lorem = require('../fixtures/lorem-ipsum.json');
 
 describe('Mailosaur', function () {
@@ -23,7 +23,7 @@ describe('Mailosaur', function () {
       .and('include', Cypress.env('MAILOSAUR_SERVERID'));
   });
 
-  it('sends basic message to mailosaur and gets a response', function () {
+  it('sends basic message to mailosaur and gets a response - can take 20secs', function () {
     cy.request({
       method: 'POST',
       url: `${Cypress.env('MAILOSAUR_API')}/messages/await?server=${Cypress.env('MAILOSAUR_SERVERID')}`,
@@ -49,7 +49,7 @@ describe('Mailosaur', function () {
       }).then(res => cy.log(res));
   });
 
-  it('posts a message with helper function', function () {
+  it('posts a message with helper function - can take 20secs', function () {
     postMessageToMailService({
       sentTo: userEmail,
       subject: 'ipsum',
@@ -95,20 +95,25 @@ describe('Mailosaur', function () {
     });
   });
 
-  it('sends an email using npm package (your app would normally do this)', function () {
+  it('sends an email using npm package (your app would normally do this) and waits until email arrives - can take 20secs', function () {
     // Cypress provides full node utility through cy.task() 
     // node-sendmail npm package allows to send an email without a SMTP server. Check it out at https://www.npmjs.com/package/sendmail
-    
-    const customHtml = '<div class="content">' +
-      '<h1>This is a heading</h1>' +
-      '<p>This is a paragraph of text.</p>' +
-      '<p><strong>Note:</strong> If you don\'t escape "quotes" properly, it will not work.</p>' +
-      '</div>';
-    // to pass multiple args with cy.task, use a compound value like array or object
-    cy.task('sendSimpleEmail', [userEmail, customHtml]);
 
-    // check the email
-    listMessages().then(console.log);
+    cy.task('sendSimpleEmail', userEmail);
+
+    // we use waitUntil plugin, because it can take up to 25 seconds for an email to occur
+    // first we check that there is a list of emails, and then we check the first item on the email list; this is the newest email
+    cy.waitUntil(() => waitForEmailList() && waitForUserEmail(userEmail),
+      // waitUntil expects a boolean result, if the length of the email array is > 0, we return true
+      {
+        timeout: 25000,
+        interval: 1000,
+        customMessage: 'wait until an email is received at Mailosaur',
+        errorMsg: 'email did not occur at Mailosaur within time limit',
+        verbose: true,
+        customCheckMessage: 'checking if email got received'
+      });
+
   });
 
   // To get the full message content, including HTML & Text body content, you need to use the Retrieve a message endpoint.
