@@ -2,7 +2,10 @@
 // note: responseTimeout has been set to 45 seconds (default 30) at cypress.json
 
 import { internet } from 'faker';
-import { createEmail, postMessageToMailService, deleteAllMessages, getEmailList, getUserEmail, waitUntilUserEmail } from '../support/mailosaur-helper';
+import {
+  createEmail, postMessageToMailService, deleteAllMessages, getEmailList,
+  getUserEmail, waitUntilUserEmail, getEmailBody
+} from '../support/mailosaur-helper';
 const lorem = require('../fixtures/lorem-ipsum.json');
 
 describe('Mailosaur', function () {
@@ -129,31 +132,28 @@ describe('Mailosaur', function () {
     );
   });
 
-  it('waits until an email (with attachment) arrives using helper function', function() {
+  it('waits until an email (with attachment) arrives using helper function', function () {
     cy.task('sendEMailWithAttachment', userEmail);
     waitUntilUserEmail(userEmail);
   })
 
-  // To get the full message content, including HTML & Text body content, you need to use the Retrieve a message endpoint.
-  // https://docs.mailosaur.com/reference#retrieve-a-message
-
-  // TODO refine further
-  it.skip('retrieves a message', function () {
-    // first you need a list of messages. Each message contains an id. You use the id to make the retrieve message call
-    listMessages()
-      .then(messages =>
-        messages.map(
-          message =>
-            message.id
-        )
-      ) // an array with message id is yielded
-      .then(id =>
-        retrieveMessage(id)
-      ) // the body of the message is yielded. Here, from the body, we can access html, links, images, attachments etc.
-      .then(console.log);
-  })
-
-  // one can keep building the test suite with the api docs https://docs.mailosaur.com/reference
-
-
+  it('Given the email, gets the body of the email message to run assertions on it ', function () {
+    cy.task('sendSimpleEmail', userEmail);
+    // the idea is to utilize the `getEmailBody` function and access its html, links, images, attachments etc. properties. 
+    // From there on you can build on the test suite
+    getEmailBody(userEmail).should(emailBody => {
+      expect(emailBody.server).to.eq(Cypress.env('MAILOSAUR_SERVERID'));
+      expect(emailBody.subject).to.eq('MailComposer sendmail');
+    }).its('to').its(0).should('have.contain', {
+      name: "",
+      email: userEmail
+    });
+    
+    // once getEmailBody() has executed, the email body gets 'settled' and is accessible now with alias '@emailBody', 
+    // so you can start chaining from the beginning
+    cy.get('@emailBody').its('html').should('have.contain', {
+      body: 'here is some text, this could also be html\n' 
+    });
+  });
+  // one can keep building the test suite with the api docs https://docs.mailosaur.com/reference and getEmailBody function
 });
