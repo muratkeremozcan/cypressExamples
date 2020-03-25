@@ -129,7 +129,7 @@ describe('Mailosaur', function () {
     );
   });
 
-  it('tests wait until an email arrives using helper function', function() {
+  it('waits until an email (with attachment) arrives using helper function', function() {
     cy.task('sendEMailWithAttachment', userEmail);
     waitUntilUserEmail(userEmail);
   })
