@@ -102,7 +102,7 @@ describe('Mailosaur', function () {
     });
   });
 
-  it('sends an email using npm package (your app would normally do this) and waits until email arrives - can take 20secs', function () {
+  it.only('sends an email using npm package (your app would normally do this) and waits until email arrives - can take 20secs', function () {
     // Cypress provides full node utility through cy.task() 
     // node-sendmail npm package allows to send an email without a SMTP server. Check it out at https://www.npmjs.com/package/sendmail
     cy.task('sendSimpleEmail', userEmail);
