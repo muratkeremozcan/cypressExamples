@@ -17,7 +17,6 @@ export const createEmail = (randomName) => `${randomName}.${Cypress.env('MAILOSA
 /**
  * Queries Mailosaur for expected email
  * @param {*} query
- * @returns {Cypress.Chainable<any>}
  */
 export const postMessageToMailService = query => {
   return cy.request({
@@ -41,7 +40,10 @@ export const getEmailList = () => {
     .its('length').then(length => length > 0);
 }
 
-/** queries Mailosaur and checks that the specified email exists in the messages list */
+/** queries Mailosaur and checks that the specified email exists in the messages list 
+ * @param {string} userEmail
+ * @returns {Cypress.Chainable<boolean>}
+*/
 export const getUserEmail = userEmail => {
   return cy.request({
     method: 'GET',
@@ -56,6 +58,8 @@ export const getUserEmail = userEmail => {
 /**
  * queries Mailosaur and checks if at least 1 email exists in the messages list, then
  * checks that the specified email exists in the messages list
+ * @param {string} userEmail
+ * @returns {Cypress.Chainable<boolean>}
  */
 export const waitUntilUserEmail = userEmail => {
   const waitUntilOptions = {
@@ -79,7 +83,9 @@ export const waitUntilUserEmail = userEmail => {
   );
 }
 
-/** Clean up to reset state. Deletes all messages at https://mailosaur.com/beta/servers/<serverId>/messages*/
+/** Clean up to reset state. Deletes all messages at https://mailosaur.com/beta/servers/<serverId>/messages
+ * @returns {Cypress.Chainable<Cypress.Response>}
+*/
 export const deleteAllMessages = () => {
   return cy.request({
     method: 'DELETE',
@@ -90,44 +96,52 @@ export const deleteAllMessages = () => {
   })
 }
 
-// // may be useless, delete if so
+/** returns an array of messages */
+const listMessages = () => {
+  return cy.request({
+    method: 'GET',
+    url: `${Cypress.env('MAILOSAUR_API')}/messages?server=${Cypress.env('MAILOSAUR_SERVERID')}`,
+    auth: commonAuthProps,
+    retryOnStatusCodeFailure: true
+  }).then(response => {
+    expect(response.status).to.equal(200);
+    return response.body.items; // messages are in the items array
+  });
+}
 
-// /** msg identity function: takes the messages and returns them */
-// export const extractIds = arrMsgs => arrMsgs;
+/** Given an email message list at Mailosaur, extracts the id of the desired user email 
+ * @param {[]} emailList
+ * @param {string} userEmail
+ * @returns {string}
+ */
+const filterEmailId = (emailList, userEmail) =>
+  emailList
+    .filter(email => email.to[0].email === userEmail)
+    .map((filteredEmail) => filteredEmail.id);
 
-// export const filterEmailId = (emailList, userEmail) => Cypress._.filter(emailList, email => email.to[0].email === userEmail);
+/** To get the full message content, including HTML & Text body content, you need to use the Retrieve a message endpoint.
+ * Given an email message's id, yields the email's body. Tags the email body as 'emailBody`. Access it with cy.get('@emailBody')
+ * @param {string} id 
+*/
+const retrieveMessage = id => {
+  return cy.request({
+    method: 'GET',
+    url: `${Cypress.env('MAILOSAUR_API')}/messages/${id}`,
+    headers: commonHeaders,
+    auth: commonAuthProps,
+    retryOnStatusCodeFailure: true
+  }).its('body').as('emailBody');
+}
 
-// /** returns an array of messages */
-// export const listMessages = () => {
-//   return cy.request({
-//     method: 'GET',
-//     url: `${Cypress.env('MAILOSAUR_API')}/messages?server=${Cypress.env('MAILOSAUR_SERVERID')}`,
-//     headers: {
-//       authorization: Cypress.env('MAILOSAUR_PASSWORD')
-//     },
-//     auth: {
-//       user: Cypress.env('MAILOSAUR_API_KEY'),
-//       password: ''
-//     },
-//     retryOnStatusCodeFailure: true
-//   }).then(response => {
-//     expect(response.status).to.equal(200);
-//     return response.body.items; // messages are in the items array
-//   });
-// }
+/** Abstract all to do with retrieving a message by id, and given the email, yield the body of the email message
+ * Later, access the email body synchronously with cy.get('@emailBody')
+ * @param {string} email
+*/
+export const getEmailBody = email => {
+  waitUntilUserEmail(email);
+  return listMessages()
+    .then(emailList => filterEmailId(emailList, email))
+    .then(id => retrieveMessage(id))
+}
 
-// /** retrieves a message by id */
-// export const retrieveMessage = (id) => {
-//   return cy.request({
-//     method: 'GET',
-//     url: `${Cypress.env('MAILOSAUR_API')}/messages/${id}`,
-//     headers: {
-//       authorization: Cypress.env('MAILOSAUR_PASSWORD')
-//     },
-//     auth: {
-//       user: Cypress.env('MAILOSAUR_API_KEY'),
-//       password: ''
-//     },
-//     retryOnStatusCodeFailure: true
-//   });
-// }
+

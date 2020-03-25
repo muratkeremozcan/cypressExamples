@@ -44,7 +44,7 @@ module.exports = (on, config) => {
         to: targetEmail,
         replyTo: 'jason@yourdomain.com',
         subject: 'MailComposer sendmail',
-        html: customHtml
+        html: 'here is some text, this could also be html'
       }, function (err, reply) {
         console.log(err && err.stack)
         console.dir(reply)
