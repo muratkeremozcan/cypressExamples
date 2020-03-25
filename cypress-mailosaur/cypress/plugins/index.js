@@ -133,7 +133,6 @@ module.exports = (on, config) => {
         sentTo: userEmail
       }, { timeout: 25000});
       return message;
-    }
-
+    },
   })
 }
