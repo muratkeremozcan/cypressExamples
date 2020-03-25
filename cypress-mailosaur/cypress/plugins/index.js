@@ -127,6 +127,7 @@ module.exports = (on, config) => {
       return mailosaurClient.servers.generateEmailAddress(envVars.MAILOSAUR_SERVERID);
     },
 
+    // https://docs.mailosaur.com/docs/fetching-messages more options here
     /** finds the most recent email message */
     findMessage: async (userEmail) => {
       let message = await mailosaurClient.messages.get(envVars.MAILOSAUR_SERVERID, {
