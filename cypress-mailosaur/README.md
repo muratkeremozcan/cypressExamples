@@ -27,4 +27,4 @@ One can keep building the test suite with the api docs [](https://docs.mailosaur
 
 The idea is to utilize the `getEmailBody` function and access its html, links, images, attachments etc. properties. From there on you can build on the test suite
 
-
+[Youtube video explaining the repo](https://youtu.be/_76TMg4yfrU).
