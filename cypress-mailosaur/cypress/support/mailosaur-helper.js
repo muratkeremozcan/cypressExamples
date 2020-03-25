@@ -53,6 +53,10 @@ export const getUserEmail = userEmail => {
     .then(emailList => emailList[0].to[0].email === userEmail)
 }
 
+/**
+ * queries Mailosaur and checks if at least 1 email exists in the messages list, then
+ * checks that the specified email exists in the messages list
+ */
 export const waitUntilUserEmail = userEmail => {
   const waitUntilOptions = {
     timeout: 25000,
