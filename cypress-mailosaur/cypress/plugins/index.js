@@ -22,7 +22,11 @@ const sendmail = require('sendmail')({
   silent: false
 });
 
-
+const customHtml = '<div class="content">' +
+'<h1>This is a heading</h1>' +
+'<p>This is a paragraph of text.</p>' +
+'<p><strong>Note:</strong> If you don\'t escape "quotes" properly, it will not work.</p>' +
+'</div>';
 /**
  * @type {Cypress.PluginConfig}
  */
@@ -34,13 +38,13 @@ module.exports = (on, config) => {
     // usually your application would send these emails. This is just so that you have a playground
 
 
-    sendSimpleEmail(targetEmail, customHtml) {
+    sendSimpleEmail(targetEmail) {
       sendmail({
         from: 'test@nodesendmail.com',
         to: targetEmail,
         replyTo: 'jason@yourdomain.com',
         subject: 'MailComposer sendmail',
-        html: customHtml || 'Mail of test sendmail '
+        html: customHtml
       }, function (err, reply) {
         console.log(err && err.stack)
         console.dir(reply)
@@ -48,13 +52,13 @@ module.exports = (on, config) => {
       return true;
     },
 
-    sendEMailWithAttachment(targetEmail, customHtml) {
+    sendEMailWithAttachment(targetEmail) {
       sendmail({
         from: 'test@yourdomain.com',
         to: targetEmail,
         replyTo: 'jason@yourdomain.com',
         subject: 'MailComposer sendmail',
-        html: customHtml || 'Mail of test sendmail ',
+        html: customHtml,
         attachments: [
           {   // utf-8 string as an attachment
             filename: 'text1.txt',
