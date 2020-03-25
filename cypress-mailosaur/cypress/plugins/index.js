@@ -12,6 +12,10 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+const MailosaurClient = require('mailosaur');
+const envVars = require('../../cypress.env.json');
+const mailosaurClient = new MailosaurClient(envVars.MAILOSAUR_API_KEY);
+
 const sendmail = require('sendmail')({
   logger: {
     debug: console.log,
@@ -23,10 +27,18 @@ const sendmail = require('sendmail')({
 });
 
 const customHtml = '<div class="content">' +
-'<h1>This is a heading</h1>' +
-'<p>This is a paragraph of text.</p>' +
-'<p><strong>Note:</strong> If you don\'t escape "quotes" properly, it will not work.</p>' +
-'</div>';
+  '<h1>This is a heading</h1>' +
+  '<p>This is a paragraph of text.</p>' +
+  '<p><strong>Note:</strong> If you don\'t escape "quotes" properly, it will not work.</p>' +
+  '</div>';
+
+
+// const mailosaurSanity = async () => {
+//   let result = await client.servers.list();
+//   return (result.items[0].name);
+// };
+
+
 /**
  * @type {Cypress.PluginConfig}
  */
@@ -36,7 +48,6 @@ module.exports = (on, config) => {
   on('task', {
     // check out node-sendmail for more varieties https://www.npmjs.com/package/sendmail#examples
     // usually your application would send these emails. This is just so that you have a playground
-
 
     sendSimpleEmail(targetEmail) {
       sendmail({
@@ -98,6 +109,31 @@ module.exports = (on, config) => {
         console.dir(reply)
       })
       return true;
+    },
+
+    // you can add all of the Node examples from Mailosaur getting started as cypress tasks
+    // https://docs.mailosaur.com/docs/development
+
+    // the format can change here, can also be  async checkServerName () {..}
+    /** checks for test server name */
+    checkServerName: async () => {
+      let result = await mailosaurClient.servers.list();
+      return (result.items[0].name);
+    },
+
+    // the format can also be:  checkServerName() {..}
+    /** generates a random email address for each test */
+    createEmail: () => {
+      return mailosaurClient.servers.generateEmailAddress(envVars.MAILOSAUR_SERVERID);
+    },
+
+    /** finds the most recent email message */
+    findMessage: async (userEmail) => {
+      let message = await mailosaurClient.messages.get(envVars.MAILOSAUR_SERVERID, {
+        sentTo: userEmail
+      }, { timeout: 25000});
+      return message;
     }
+
   })
 }
