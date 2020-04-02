@@ -56,7 +56,7 @@ export const getUserEmail = userEmail => {
 }
 
 /**
- * queries Mailosaur and checks if at least 1 email exists in the messages list, then
+ * queries Mailosaur and chFecks if at least 1 email exists in the messages list, then
  * checks that the specified email exists in the messages list
  * @param {string} userEmail
  * @returns {Cypress.Chainable<boolean>}
@@ -96,11 +96,22 @@ export const deleteAllMessages = () => {
   })
 }
 
+/** Deletes 1 email message by message id. Can be useful if you want to delete the message after running the test. */
+export const deleteEmailMessage = id => {
+  return cy.request({
+    method: 'DELETE',
+    url: `${Cypress.env('MAILOSAUR_API')}/messages/${id}`,
+    headers: commonHeaders,
+    auth: commonAuthProps,
+    retryOnStatusCodeFailure: true
+  })
+}
+
 /** returns an array of messages */
 const listMessages = () => {
   return cy.request({
     method: 'GET',
-    url: `${Cypress.env('MAILOSAUR_API')}/messages?server=${Cypress.env('MAILOSAUR_SERVERID')}`,
+    url: `${Cypress.env('MAILOSAUR_API')}messages?server=${Cypress.env('MAILOSAUR_SERVERID')}`,
     auth: commonAuthProps,
     retryOnStatusCodeFailure: true
   }).then(response => {
@@ -131,24 +142,22 @@ const retrieveMessage = id => {
     auth: commonAuthProps,
     retryOnStatusCodeFailure: true
   }).its('body').as('emailBody');
-}
+};
 
-/** Given an email, extract its email id. Can be useful if you want to delete a message after running the test.*/
+/** Given an email, extract its email id.
+ * @param {string} email
+*/
 export const getEmailId = email => {
   waitUntilUserEmail(email);
   return listMessages()
-    .then(emailList => filterEmailId(emailList, email))
-}
+    .then(emailList => filterEmailId(emailList, email));
+};
 
 /** Abstract all to do with retrieving a message by id, and given the email, yield the body of the email message
  * Later, access the email body synchronously with cy.get('@emailBody')
  * @param {string} email
 */
 export const getEmailBody = email => {
-  waitUntilUserEmail(email);
-  return listMessages()
-    .then(emailList => filterEmailId(emailList, email))
-    .then(id => retrieveMessage(id))
-}
-
-
+  getEmailId(email)
+    .then(id => retrieveMessage(id));
+};
