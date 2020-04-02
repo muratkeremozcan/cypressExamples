@@ -133,7 +133,7 @@ const retrieveMessage = id => {
   }).its('body').as('emailBody');
 }
 
-/** Given an email, extract its email id */
+/** Given an email, extract its email id. Can be useful if you want to delete a message after running the test.*/
 export const getEmailId = email => {
   waitUntilUserEmail(email);
   return listMessages()
