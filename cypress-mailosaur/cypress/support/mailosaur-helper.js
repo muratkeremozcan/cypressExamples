@@ -133,6 +133,13 @@ const retrieveMessage = id => {
   }).its('body').as('emailBody');
 }
 
+/** Given an email, extract its email id */
+export const getEmailId = email => {
+  waitUntilUserEmail(email);
+  return listMessages()
+    .then(emailList => filterEmailId(emailList, email))
+}
+
 /** Abstract all to do with retrieving a message by id, and given the email, yield the body of the email message
  * Later, access the email body synchronously with cy.get('@emailBody')
  * @param {string} email
