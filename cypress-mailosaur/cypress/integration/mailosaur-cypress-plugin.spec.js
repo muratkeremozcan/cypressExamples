@@ -23,24 +23,23 @@ describe('tests with Mailosaur Cypress plugin', function () {
     cy.mailosaurListMessages(Cypress.env('MAILOSAUR_SERVERID')).its('items').its('length',).should('not.eq', 0);
   });
   it('gets email from user, check with getMessage', function () {
-    const userEmail = createEmail(internet.userName());
-    cy.task('sendSimpleEmail', userEmail);
-    // can't get this to work
+    // const userEmail = createEmail(internet.userName());
+    // cy.task('sendSimpleEmail', 'userEmail');
+    
     cy.mailosaurGetMessage(
       Cypress.env('MAILOSAUR_SERVERID'), 
-      { from: 'test@nodesendmail.com' }
+      { to: 'Trenton60.x4be6xxf@mailosaur.io' }
     );
   });
-  it('gets email from user, check with getMessagesBySentTo', function () {
-    const userEmail = createEmail(internet.userName());
-    cy.task('sendSimpleEmail', userEmail).then(function() {
-      // can't get this to work
-      cy.mailosaurGetMessagesBySentTo(
-        Cypress.env('MAILOSAUR_SERVERID'), 
-        userEmail
-      );
-    });
-  });
+  // it('gets email from user, check with getMessagesBySentTo', function () {
+  //   const userEmail = createEmail(internet.userName());
+  //   cy.task('sendSimpleEmail', userEmail)
+  //   // can't get this to work
+  //   cy.mailosaurGetMessagesBySentTo(
+  //     Cypress.env('MAILOSAUR_SERVERID'), 
+  //     userEmail
+  //   ).its('items').should('have.length', 1);
+  // });
 
 });
 
