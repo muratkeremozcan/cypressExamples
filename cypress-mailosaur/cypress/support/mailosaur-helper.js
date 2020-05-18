@@ -47,7 +47,7 @@ export const getEmailList = () => {
 export const getUserEmail = userEmail => {
   return cy.request({
     method: 'GET',
-    url: `${Cypress.env('mailosaurAPI')}/messages?server=${Cypress.env('mailosaurServerID')}`,
+    url: `${Cypress.env('MAILOSAUR_API')}/messages?server=${Cypress.env('MAILOSAUR_SERVERID')}`,
     headers: commonHeaders,
     auth: commonAuthProps,
     retryOnStatusCodeFailure: true
