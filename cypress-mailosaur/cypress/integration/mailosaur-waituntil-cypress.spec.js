@@ -137,23 +137,6 @@ describe('Mailosaur', function () {
     waitUntilUserEmail(userEmail);
   })
 
-  it('Given the email, gets the body of the email message to run assertions on it ', function () {
-    cy.task('sendSimpleEmail', userEmail);
-    // the idea is to utilize the `getEmailBody` function and access its html, links, images, attachments etc. properties. 
-    // From there on you can build on the test suite
-    getEmailBody(userEmail).should(emailBody => {
-      expect(emailBody.server).to.eq(Cypress.env('MAILOSAUR_SERVERID'));
-      expect(emailBody.subject).to.eq('MailComposer sendmail');
-    }).its('to').its(0).should('have.contain', {
-      name: "",
-      email: userEmail
-    });
-    
-    // once getEmailBody() has executed, the email body gets 'settled' and is accessible now with alias '@emailBody', 
-    // so you can start chaining from the beginning
-    cy.get('@emailBody').its('html').should('have.contain', {
-      body: 'here is some text, this could also be html\n' 
-    });
-  });
+  
   // one can keep building the test suite with the api docs https://docs.mailosaur.com/reference and getEmailBody function
 });
