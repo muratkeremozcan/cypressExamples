@@ -47,16 +47,20 @@ export const getEmailList = () => {
 export const getUserEmail = userEmail => {
   return cy.request({
     method: 'GET',
-    url: `${Cypress.env('MAILOSAUR_API')}/messages?server=${Cypress.env('MAILOSAUR_SERVERID')}`,
+    url: `${Cypress.env('mailosaurAPI')}/messages?server=${Cypress.env('mailosaurServerID')}`,
     headers: commonHeaders,
     auth: commonAuthProps,
     retryOnStatusCodeFailure: true
   }).its('body').its('items')
-    .then(emailList => emailList[0].to[0].email === userEmail)
+    .then(emailList => {
+      if (emailList[0]) {
+        return emailList[0].to[0].email === userEmail;
+      }
+    })
 }
 
 /**
- * queries Mailosaur and chFecks if at least 1 email exists in the messages list, then
+ * queries Mailosaur and checks if at least 1 email exists in the messages list, then
  * checks that the specified email exists in the messages list
  * @param {string} userEmail
  * @returns {Cypress.Chainable<boolean>}
@@ -141,7 +145,23 @@ const retrieveMessage = id => {
     headers: commonHeaders,
     auth: commonAuthProps,
     retryOnStatusCodeFailure: true
-  }).its('body').as('emailBody');
+  }).its[0].its('body').as('emailBody'); //FIXME This doesn't return an emailBody
+};
+
+/** To get the full email content, including HTML & Text body content, you need to use the Retrieve a message endpoint.
+ * Given an email message's id, yields the email email message. Tags the email body as 'emailBody`. Access it with cy.get('@email')
+ * @param {string} id
+ */
+const retrieveEmail = id => {
+  return cy.request({
+    method: 'GET',
+    url: `${Cypress.env('mailosaurAPI')}/messages/${id}`,
+    headers: commonHeaders,
+    auth: commonAuthProps,
+    retryOnStatusCodeFailure: true,
+    retryOnNetworkFailure: true,
+    timeout: 10000
+  }).as('email');
 };
 
 /** Given an email, extract its email id.
@@ -158,6 +178,16 @@ export const getEmailId = email => {
  * @param {string} email
 */
 export const getEmailBody = email => {
-  getEmailId(email)
+  return getEmailId(email)
     .then(id => retrieveMessage(id));
+};
+
+/** Abstract all to do with retrieving a message by id, and given the email, yield the email message
+ * Later, access the email synchronously with cy.get('@email')
+ * @param {string} email
+ */
+export const getEmail = email => {
+  cy.log("Getting email for: " + email)
+  return getEmailId(email)
+      .then(id => retrieveEmail(id));
 };
