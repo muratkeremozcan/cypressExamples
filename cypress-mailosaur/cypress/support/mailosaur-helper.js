@@ -145,7 +145,7 @@ const retrieveMessage = id => {
     headers: commonHeaders,
     auth: commonAuthProps,
     retryOnStatusCodeFailure: true
-  }).its[0].its('body').as('emailBody'); //FIXME This doesn't return an emailBody
+  }).its('body').as('emailBody'); //FIXME This doesn't return an emailBody
 };
 
 /** To get the full email content, including HTML & Text body content, you need to use the Retrieve a message endpoint.
