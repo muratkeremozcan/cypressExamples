@@ -22,13 +22,13 @@ describe('tests with Mailosaur Cypress plugin', function () {
     // will work if you did not clean up emails in the beginning, otherwise it does not wait for emails
     cy.mailosaurListMessages(Cypress.env('MAILOSAUR_SERVERID')).its('items').its('length',).should('not.eq', 0);
   });
-  it('gets email from user, check with getMessage', function () {
+  it.only('gets email from user, check with getMessage', function () {
     // const userEmail = createEmail(internet.userName());
     // cy.task('sendSimpleEmail', 'userEmail');
     
     cy.mailosaurGetMessage(
       Cypress.env('MAILOSAUR_SERVERID'), 
-      { to: 'Trenton60.x4be6xxf@mailosaur.io' }
+      { sentTo: 'Trenton60.x4be6xxf@mailosaur.io' }
     );
   });
   // it('gets email from user, check with getMessagesBySentTo', function () {
