@@ -1,15 +1,11 @@
 /// <reference types="cypress" />
 
 import { internet } from 'faker';
-import { createEmail, deleteAllMessages } from '../support/mailosaur-helper';
+import { createEmail } from '../support/mailosaur-helper';
 
-const sendEmailFromRandomUser = () => {
-  const userEmail = createEmail(internet.userName());
-  return  cy.task('sendSimpleEmail', userEmail);
-}
 
 describe('tests with Mailosaur Cypress plugin', function () {
-  it.skip('deletes all email messages at Mailosaur', function () {
+  it('deletes all email messages at Mailosaur', function () {
     cy.mailosaurDeleteAllMessages(Cypress.env('MAILOSAUR_SERVERID'));
   });
   it('tests sanity with listServers & getServer', function () {
@@ -19,36 +15,16 @@ describe('tests with Mailosaur Cypress plugin', function () {
   it('gets email from user, check with listMessages', function () {
     const userEmail = createEmail(internet.userName());
     cy.task('sendSimpleEmail', userEmail);
-    // will work if you did not clean up emails in the beginning, otherwise it does not wait for emails
-    cy.mailosaurListMessages(Cypress.env('MAILOSAUR_SERVERID')).its('items').its('length',).should('not.eq', 0);
-  });
-  it.only('gets email from user, check with getMessage', function () {
-    // const userEmail = createEmail(internet.userName());
-    // cy.task('sendSimpleEmail', 'userEmail');
-    
+
     cy.mailosaurGetMessage(
-      Cypress.env('MAILOSAUR_SERVERID'), 
-      { sentTo: 'Trenton60.x4be6xxf@mailosaur.io' }
+      Cypress.env('MAILOSAUR_SERVERID'),
+      { sentTo: userEmail },
+      // note from Jon at Mailosaur: 
+      // The get method looks for messages received within the last hour
+      // if looking for emails existing before that, you have to add this. Optional otherwise
+      // { receivedAfter: new Date('2000-01-01') } 
     );
+    cy.mailosaurListMessages(Cypress.env('MAILOSAUR_SERVERID')).its('items').its('length').should('not.eq', 0);
+
   });
-  // it('gets email from user, check with getMessagesBySentTo', function () {
-  //   const userEmail = createEmail(internet.userName());
-  //   cy.task('sendSimpleEmail', userEmail)
-  //   // can't get this to work
-  //   cy.mailosaurGetMessagesBySentTo(
-  //     Cypress.env('MAILOSAUR_SERVERID'), 
-  //     userEmail
-  //   ).its('items').should('have.length', 1);
-  // });
-
 });
-
-/**
-mailosaurSearchMessages(serverId, criteria, options)
-mailosaurGetMessagesBySubject(serverId, subjectSearchText)
-mailosaurGetMessagesByBody(serverId, bodySearchText)
-mailosaurGetMessagesBySentTo(serverId, emailAddress)
-mailosaurDownloadAttachment(attachmentId)
-mailosaurDownloadMessage(messageId)
-mailosaurGetSpamAnalysis(messageId)
-*/
