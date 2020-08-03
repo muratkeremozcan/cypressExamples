@@ -40,7 +40,7 @@ export const getEmailList = () => {
     .its('length').then(length => length > 0);
 }
 
-/** queries Mailosaur and checks that the specified email exists in the messages list 
+/** queries Mailosaur and checks that the specified email exists in the messages list
  * @param {string} userEmail
  * @returns {Cypress.Chainable<boolean>}
 */
@@ -120,7 +120,7 @@ const listMessages = () => {
   });
 }
 
-/** Given an email message list at Mailosaur, extracts the id of the desired user email 
+/** Given an email message list at Mailosaur, extracts the id of the desired user email
  * @param {[]} emailList
  * @param {string} userEmail
  * @returns {string}
@@ -132,7 +132,7 @@ const filterEmailId = (emailList, userEmail) =>
 
 /** To get the full message content, including HTML & Text body content, you need to use the Retrieve a message endpoint.
  * Given an email message's id, yields the email's body. Tags the email body as 'emailBody`. Access it with cy.get('@emailBody')
- * @param {string} id 
+ * @param {string} id
 */
 const retrieveMessage = id => {
   return cy.request({
@@ -144,14 +144,21 @@ const retrieveMessage = id => {
   }).its('body').as('emailBody');
 };
 
-/** Given an email, extract its email id.
- * @param {string} email
-*/
-export const getEmailId = email => {
-  waitUntilUserEmail(email);
-  return listMessages()
-    .then(emailList => filterEmailId(emailList, email));
-};
+
+/** Given an email, extract its email id (new hybrid apporach with cy.task) */
+const getEmailId = email => cy.task('findEmailToUser', email).its('id');
+
+// waitUntil approach (old)
+// export const getEmailId = email => {
+//   waitUntilUserEmail(email);
+//   return listMessages()
+//     .then(emailList => filterEmailId(emailList, email));
+// };
+
+/** Deletes the most recent email sent to the user. Useful for cleanup */
+export const deleteEmail = email =>
+  getEmailId(email)
+    .then(id => deleteEmailById(id));
 
 /** Abstract all to do with retrieving a message by id, and given the email, yield the body of the email message
  * Later, access the email body synchronously with cy.get('@emailBody')
