@@ -1,0 +1,13 @@
+{
+  "name": "todomvc-testing",
+  "version": "1.0.0",
+  "description": "Testing TodoMVC using Cypress",
+  "scripts": {
+    "start": "./node_modules/.bin/json-server --static . data.json -m middleware.js --config json-server.json"
+  },
+  "devDependencies": {
+    "json-server": "0.15.1",
+    "sendmail": "^1.6.1",
+    "cypress": "4.3.0"
+  }
+}

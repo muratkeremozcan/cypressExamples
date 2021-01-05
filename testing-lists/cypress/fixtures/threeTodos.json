@@ -1,0 +1,17 @@
+[
+  {
+    "title": "buy milk",
+    "completed": false,
+    "id": "1"
+  },
+  {
+    "title": "wash dishes",
+    "completed": false,
+    "id": "2"
+  },
+  {
+    "title": "clean windows",
+    "completed": false,
+    "id": "3"
+  }
+]

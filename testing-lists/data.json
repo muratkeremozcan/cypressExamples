@@ -1,0 +1,15 @@
+{
+  "todos": [
+    {
+      "title": "wash dishes",
+      "completed": false,
+      "id": "2"
+    },
+    {
+      "title": "clean windows",
+      "completed": false,
+      "id": "3"
+    }
+  ],
+  "accounts": []
+}

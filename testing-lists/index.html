@@ -1,0 +1,93 @@
+<!doctype html>
+<html data-framework="vue">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="vendor/cypress-icon.png">
+  <title>TodoMVC - Test automation in Cypress</title>
+  <link rel="stylesheet" href="vendor/index.css">
+
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <script type="text/x-template" id="todoapp-template">
+    <section>
+      <h1 data-cy="app-title">todos</h1>
+      <div class="todoapp">
+        <header class="header">
+          <input id="add-todo" class="new-todo" autocomplete="off" placeholder="What needs to be done?" :value="newTodo" @input="setNewTodo" @keyup.enter="addTodo">
+        </header>
+        <section class="main" v-show="todos.length" v-cloak>
+          <ul class="todo-list" id="todo-list">
+            <li v-for="todo in todos" class="todo" :key="todo.id" :class="{ completed: todo.completed }" @mouseover="showByIndex = todo" @mouseout="showByIndex = null">
+              <div class="view">
+                <input class="toggle" type="checkbox" v-model="todo.completed" @click="completeTodo(todo)">
+                <label>{{ todo.title }}</label>
+                <button class="destroy" v-show="showByIndex === todo" @click="removeTodo(todo)"></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <div class="loading" v-show="loading">Loading data ...</div>
+      </div>
+    </section>
+  </script>
+  <script type="text/x-template" id="login">
+    <section style="text-align: center">
+      <h1>login</h1>
+      <div class="login">
+        <form>
+          <input type="email" placeholder="email" autocomplete="off" :value="email" @input="setEmail">
+          <input type="password" placeholder="password" autocomplete="off" :value="password" @input="setPassword" @keyup.enter="loginSend">
+        </form>
+      </div>
+      <button class="login-button" @click="loginSend">Log in</button>
+    </section>
+  </script>
+  <script type="text/x-template" id="signup">
+    <section style="text-align: center">
+      <h1>signup</h1>
+        <div class="signup">
+          <form>
+            <input type="email" placeholder="email" autocomplete="off" :value="email" @input="setEmail">
+            <input type="password" placeholder="password" autocomplete="off" :value="password" @input="setPassword" @keyup.enter="signupSend">
+          </form>
+        </div>
+        <div>
+          <div style="margin-bottom: 16px"><input type="checkbox" :value="sendEmail" @click="sendEmailFlag"><label>Send me a welcome email</label></div>
+          <button class="signup-button" @click="signupSend">Sign up</button>
+        </div>
+    </section>
+  </script>
+
+  <section id="app">
+    <router-view :key="$route.path"></router-view>
+    <footer class="info">
+      <p>Written by
+        <a href="http://evanyou.me" target="_blank">Evan You</a>
+      </p>
+      <p>Part of
+        <a href="http://todomvc.com" target="_blank">TodoMVC</a>
+      </p>
+    </footer>
+    <div id="errorMessage" v-show="errorMessage.show" v-cloak>{{ errorMessage.text }}</div>
+    <div id="loginMessage" v-show="loggedIn" v-cloak>User is logged in</div>
+  </section>
+
+  <script src="vendor/polyfill.min.js"></script>
+  <script src="vendor/vue.js"></script>
+  <script src="vendor/vuex.js"></script>
+  <script src="vendor/axios.min.js"></script>
+  <script src="vendor/Sortable.min.js"></script>
+  <script src="vendor/vue-router.js"></script>
+  <script src="vendor/vue-observe-visibility.min.js"></script>
+  <script src="app.js"></script>
+
+</body>
+
+</html>
