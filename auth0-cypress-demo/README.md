@@ -3,8 +3,6 @@
 This repo is to be used with Dan Lourenço's auth0 blog post at https://auth0.com/blog/end-to-end-testing-with-cypress-and-auth0/ .
 The original repo is at https://github.com/danlourenco/auth0-cypress-demo . This repo is strictly for my self-reproduction of the tutorial.
 
-> The cypress.env.json file is .gitignored . You must create your own auth0 user and get your own parameters from Applications/your application/Settings tab , as described in the blog.
-
 > Note that I have changed the default port to 3200 from 3000. This is sent in the .env file. Since this is changed, you will also have to change under Auth0/Application/Settings the values in Allowed Web Origins, Allowed Logout URLs and Allowed Callback URLs.
 
 ## Installation

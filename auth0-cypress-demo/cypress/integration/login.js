@@ -1,4 +1,19 @@
 describe('login', () => {
+
+  const thresholds = {
+    performance: 5,
+    accessibility: 50,
+    'best-practices': 50,
+    seo: 50,
+    pwa: 20
+  };
+
+  const desktopConfig = {
+    formFactor: 'desktop',
+    screenEmulation: { disabled: true }
+  };
+
+
   it('should successfully log into our app', () => {
     cy.login()
       .then( resp => {
@@ -16,6 +31,13 @@ describe('login', () => {
             win.document.cookie = 'com.auth0.auth.some-random-state=' + JSON.stringify(auth0State);
           }
         });
+
+        cy.contains('Home')
+
+        cy.contains('Home');
+
+        cy.lighthouse(thresholds, desktopConfig);
+
       });
   });
 });
