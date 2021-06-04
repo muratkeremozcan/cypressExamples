@@ -1,0 +1,10 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "experimentalComponentTesting": true,
+  "componentFolder": "cypress/components",
+  "env": {
+    "coverage": false
+  },
+  "viewportWidth": 400,
+  "viewportHeight": 400
+}
