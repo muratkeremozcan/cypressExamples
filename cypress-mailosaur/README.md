@@ -4,7 +4,7 @@
 We are using an email `cypress-mailosaur-test@protonmail.com` in this repo.
 To reproduce the test executions, use your own email and create an account at [Mailosaur application](https://mailosaur.com/app/).
 
-A sampe `cypress.env.json` is shared. You need to update these values for your account
+A sample `cypress.env.json` is shared. You need to update these values for your account
 This is so that things can work out of the box without any setup.
 
 To get started:
