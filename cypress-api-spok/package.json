@@ -1,0 +1,27 @@
+{
+  "name": "cypress-api-spok",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@bahmutov/cy-api": "^1.6.2",
+    "@types/faker": "^5.5.9",
+    "@types/node": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "cy-spok": "^1.4.1",
+    "cypress": "^9.1.0",
+    "eslint": "^8.4.1",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-no-only-tests": "^2.6.0",
+    "faker": "^5.5.3",
+    "typescript": "^4.5.2"
+  }
+}
