@@ -10,8 +10,9 @@ describe('pokemon api', () => {
       .its('body')
       .should(
         spok({
-          $topic: 'pokemon-top-level',
+          $topic: '***pokemon-top-level',
           abilities: spok.array,
+          base_experience: spok.number,
           forms: spok.arrayElements(1),
           game_indices: spok.arrayElementsRange(5, 30),
           height: spok.number,
@@ -25,7 +26,7 @@ describe('pokemon api', () => {
           species: spok.type('object'),
           sprites: (obj) => expect(obj).to.have.property('front_default'),
           types: (arr) =>
-            expect(arr.map((i) => i.type.name)).to.include('poison'),
+            expect(arr.map((i) => i.type.name)).to.not.be.undefined,
           weight: spok.gtz,
           stats: spok.arrayElements(6)
         })
@@ -65,7 +66,7 @@ describe('pokemon api', () => {
       .its('body.count')
 
   const topLevelProps = {
-    $topic: 'pokemon-top-level',
+    $topic: '***pokemon-top-level***',
     abilities: spok.array,
     forms: spok.arrayElements(1),
     game_indices: spok.arrayElementsRange(5, 30),
@@ -85,7 +86,7 @@ describe('pokemon api', () => {
   }
 
   const statProps = {
-    $topic: 'each-pokemon-stat',
+    $topic: '***each-pokemon-stat***',
     base_stat: spok.gtz,
     effort: spok.gez,
     stat: (obj) =>

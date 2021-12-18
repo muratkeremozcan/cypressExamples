@@ -52,8 +52,8 @@ describe('object comparison: deterministic values (constants or known from the t
 
     cy.log('can check deep properties with deep.include only')
     cy.wrap(person).should('deep.include', deepProperty)
+    cy.wrap(person).should('deep.contain', deepProperty)
     // will not work with deep properties
-    // cy.wrap(person).should('deep.contain', deepProperty)
     // cy.wrap(person).should('have.contain', deepProperty)
     // cy.wrap(person).should('contain', deepProperty)
 
