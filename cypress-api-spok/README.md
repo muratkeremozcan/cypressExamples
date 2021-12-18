@@ -1,4 +1,4 @@
-# Star Wars API with spok
+# Pokemon API with spok
 
 [spok](https://github.com/thlorenz/spok) _checks a given object against a given set of specifications to keep you from writing boilerplate tests_.
 
