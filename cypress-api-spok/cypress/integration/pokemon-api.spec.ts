@@ -94,7 +94,7 @@ describe('pokemon api', () => {
       expect(obj.url).to.include('https://pokeapi.co')
   }
 
-  it('getAll', () => {
+  it('get many with forEach', () => {
     // you could do all, but it takes a long time
     // getPokeCount().then((pokeCount) =>
     Cypress._.range(1, 10).forEach((pokeId) =>
@@ -105,5 +105,34 @@ describe('pokemon api', () => {
         .each((stat) => cy.wrap(stat).should(spok(statProps)))
     )
     // )
+  })
+
+  context('get many with cypress-each', () => {
+    it.each(Cypress._.range(1, 10))('checking pokemon %k', (pokeId) => {
+      getPokemon(pokeId)
+        .should(spok(topLevelProps))
+        .its('stats')
+        .should('have.length', 6) // an array of objects
+        .each((stat) => cy.wrap(stat).should(spok(statProps)))
+    })
+  })
+
+  context.skip('how would you make this work?', () => {
+    let count = 1
+
+    before(() =>
+      getPokeCount().then((pokeResultCount) => {
+        count = pokeResultCount
+      })
+    )
+
+    // no access to the variable here
+    it.each(Cypress._.range(1, count))('checking pokemon %k', (pokeId) => {
+      getPokemon(pokeId)
+        .should(spok(topLevelProps))
+        .its('stats')
+        .should('have.length', 6) // an array of objects
+        .each((stat) => cy.wrap(stat).should(spok(statProps)))
+    })
   })
 })

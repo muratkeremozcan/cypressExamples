@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "lib": ["esnext", "dom"],
-    "types": ["cypress", "node", "@bahmutov/cy-api"],
+    "types": ["cypress", "node", "@bahmutov/cy-api", "cypress-each"],
     "allowJs": true,
     "resolveJsonModule": true
   },
