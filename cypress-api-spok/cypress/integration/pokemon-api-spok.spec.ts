@@ -40,7 +40,7 @@ describe('pokemon api', () => {
             base_stat: spok.gtz,
             effort: spok.gez,
             stat: (obj) =>
-              expect(obj.name).to.be.a.string &&
+              expect(obj.name).to.be.a('string') &&
               expect(obj.url).to.include('https://pokeapi.co')
           })
         )
@@ -126,7 +126,7 @@ describe('pokemon api', () => {
       })
     )
 
-    // no access to the variable here
+    // count is yielded in a different context, so how can we get this value to be dynamic?
     it.each(Cypress._.range(1, count))('checking pokemon %k', (pokeId) => {
       getPokemon(pokeId)
         .should(spok(topLevelProps))
