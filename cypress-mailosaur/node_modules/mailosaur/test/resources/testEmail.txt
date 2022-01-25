@@ -1,0 +1,9 @@
+this is a test.
+
+this is a link: mailosaur <https://mailosaur.com/>
+
+REPLACED_DURING_TEST text
+
+this is an image:[image: Inline image 1] <https://mailosaur.com/>
+
+this is an invalid link: invalid
