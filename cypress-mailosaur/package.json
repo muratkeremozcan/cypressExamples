@@ -11,11 +11,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "4.11.0",
-    "cypress-wait-until": "^1.6.1",
-    "faker": "^4.1.0",
-    "mailosaur": "6.0.9",
-    "cypress-mailosaur": "1.0.5",
+    "cypress": "9.3.1",
+    "cypress-wait-until": "^1.7.2",
+    "@withshepherd/faker": "^5.5.5",
+    "mailosaur": "8.1.1",
+    "cypress-mailosaur": "2.6.0",
     "sendmail": "^1.6.1"
   }
 }
