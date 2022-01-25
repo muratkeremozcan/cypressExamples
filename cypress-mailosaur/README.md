@@ -8,7 +8,9 @@ A sample `cypress.env.json` is shared. You need to update these values for your 
 This is so that things can work out of the box without any setup.
 
 To get started:
-```
+
+```bash
+nvm use # needs no later than node 12 for sendemail package to work
 npm i
 npm run cypress:open
 ```
