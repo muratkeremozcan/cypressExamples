@@ -1,5 +1,12 @@
 {
   "baseUrl": "http://localhost",
   "responseTimeout": 45000,
-  "defaultCommandTimeout": 10000
+  "defaultCommandTimeout": 10000,
+  "env": {
+    "MAILOSAUR_SERVERID": "x4be6xxf",
+    "MAILOSAUR_PASSWORD": "khgxIn3g",
+    "MAILOSAUR_API_KEY": "zgeGZ87qgc8EI1P",
+    "MAILOSAUR_API": "https://mailosaur.com/api",
+    "MAILOSAUR_SERVERNAME": "cypress-test-server"
+  }
 }
