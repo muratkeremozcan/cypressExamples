@@ -5,18 +5,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress open"
+    "cy:open": "cypress open",
+    "cy:run": "cypress open"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@withshepherd/faker": "^5.5.5",
+    "cy-spok": "^1.4.3",
     "cypress": "9.3.1",
     "cypress-mailosaur": "2.6.0",
     "cypress-wait-until": "^1.7.2",
+    "eslint-plugin-prettier": "^4.0.0",
     "mailosaur": "8.1.1",
     "nodemailer": "^6.7.2",
+    "prettier": "^2.5.1",
     "sendmail": "^1.6.1"
   }
 }

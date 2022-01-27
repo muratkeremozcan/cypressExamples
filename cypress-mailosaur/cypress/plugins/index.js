@@ -15,11 +15,7 @@
 const mailosaurTasks = require('./mailosaur-tasks')
 const emailTasks = require('./email-tasks')
 
-const all = Object.assign({},
-  mailosaurTasks,
-  emailTasks
-)
-
+const all = Object.assign({}, mailosaurTasks, emailTasks)
 
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
