@@ -119,7 +119,7 @@ describe('tests with Mailosaur Cypress plugin', () => {
         })
     })
 
-    it('meta way to test emails: uses cy-spok, matches email payload and verifies the data', () => {
+    it.only('meta way to test emails: uses cy-spok, matches email payload and verifies the data', () => {
       cy.mailosaurGetMessage(Cypress.env('MAILOSAUR_SERVERID'), {
         sentTo: userEmail
       })
@@ -142,9 +142,12 @@ describe('tests with Mailosaur Cypress plugin', () => {
           })
         )
         .its('id')
-        .then((messageId) =>
+        .then((messageId) => {
           cy.mailosaurGetSpamAnalysis(messageId).its('score').should('be.gt', 0)
-        )
+
+          // clean up
+          cy.mailosaurDeleteMessage(messageId)
+        })
     })
   })
 })
