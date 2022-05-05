@@ -1,0 +1,12 @@
+<button id="greet">Log greeting</button>
+<script>
+	// note to make things more interesting
+	// we will log the message asynchronously
+	document
+		.getElementById('greet')
+		.addEventListener('click', function () {
+			setTimeout(function () {
+				console.log('Happy Testing!')
+			}, 200)
+		})
+</script>
