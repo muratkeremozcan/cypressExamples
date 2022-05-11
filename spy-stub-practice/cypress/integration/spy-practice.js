@@ -1,52 +1,33 @@
 // https://docs.cypress.io/guides/guides/stubs-spies-and-clocks#Common-Scenarios
 /*
-A stub is a way to modify a function and delegate control over its behavior to you (the programmer).
-// create a standalone stub (generally for use in unit test)
-cy.stub()
 
-// replace obj.method() with a stubbed function
-cy.stub(obj, 'method')
-
-// force obj.method() to return "foo"
-cy.stub(obj, 'method').returns('foo')
-
-// force obj.method() when called with "bar" argument to return "foo"
-cy.stub(obj, 'method').withArgs('bar').returns('foo')
-
-// force obj.method() to return a promise which resolves to "foo"
-cy.stub(obj, 'method').resolves('foo')
-
-// force obj.method() to return a promise rejected with an error
-cy.stub(obj, 'method').rejects(new Error('foo'))
-
-
-
-A spy does not modify the behavior of the function - it is left perfectly intact. 
-A spy is most useful when you are testing the contract between multiple functions 
+A spy does not modify the behavior of the function - it is left perfectly intact.
+A spy is most useful when you are testing the contract between multiple functions
 and you don't care about the side effects the real function may create (if any).
 
 cy.spy(obj, 'method')
 
 */
 
-describe("spy", () => {
-  it("spy example", () => {
+describe("spy basics and call arguments: called, calledOnce, calledWith, calledWithExactly, calledOnceWith etc.", () => {
+  it("basic", () => {
     const obj = {
       foo() {
         return "yo";
       },
     };
-    const spy = cy.spy(obj, "foo").as("anyArgs");
+    // spies and stubs are synchronous
+    const spy = cy.spy(obj, "foo").as("fooSpy");
 
     obj.foo();
 
     // assert against the spy directly
     expect(spy).to.be.called;
     // or get the spy via its reference
-    cy.get("@anyArgs").should("have.been.called");
+    cy.get("@fooSpy").should("have.been.called");
   });
 
-  it("spy retries", () => {
+  it("spies can retry with the Cypress api", () => {
     const obj2 = {
       foo() {
         return "yo";
@@ -66,7 +47,7 @@ describe("spy", () => {
     cy.get("@foo").should("have.been.calledTwice");
   });
 
-  it("checking the call arguments", () => {
+  it("checking the call arguments: called, calledOnce, calledWith, calledWithExactly, calledOnceWith ", () => {
     const person = {
       setName(first, last) {
         this.name = first + " " + last;
@@ -106,7 +87,7 @@ describe("spy", () => {
   });
 });
 
-describe("matchers", () => {
+describe("matchers: match.type, match(predicate, 'optional-message'), match.in([...])", () => {
   // shorten it
   const { match } = Cypress.sinon;
 
@@ -136,12 +117,8 @@ describe("matchers", () => {
     const isOdd = (x) => x % 2 === 1;
 
     // expect the value to pass a custom predicate function
-    // the second argument to "match(predicate, message)" is
-    // shown if the predicate does not pass and assertion fails
-    expect(spy).to.be.calledWith(
-      match(isEven, "is even"),
-      match(isOdd, "is odd")
-    );
+    // the second argument to "match(predicate, message)" is shown if the predicate does not pass and assertion fails
+    expect(spy).to.be.calledWith(match(isEven), match(isOdd, "is odd"));
 
     ////////
     const isGreaterThan = (limit) => (x) => x > limit;
@@ -168,7 +145,7 @@ describe("matchers", () => {
   });
 });
 
-describe("call count", () => {
+describe("call count & promises: have.been.calledThrice, its('callCount).should('eq', 4), invoke('resetHistory'), for promises: .its('returnValues')", () => {
   it("access properties with its", () => {
     cy.intercept("GET", "/", { fixture: "greeting.html" });
     cy.visit("/");
@@ -189,7 +166,7 @@ describe("call count", () => {
     // reset call count
     cy.get("@log").invoke("resetHistory");
     cy.get("#greet").click();
-    cy.get("@log").should("have.been.calledWith", "Happy Testing!");
+    cy.get("@log").should("have.been.calledOnceWith", "Happy Testing!");
   });
 
   it("call count 2nd example", () => {
@@ -217,6 +194,7 @@ describe("call count", () => {
       .its("age")
       .should("equal", 2)
       .then(() => {
+        // and call the app some more
         person.birthday();
         person.birthday();
       });
@@ -229,7 +207,7 @@ describe("call count", () => {
     cy.get("@birthday").should("not.have.been.called");
   });
 
-  it("resolved value", () => {
+  it("resolved value (promises)", () => {
     const calc = {
       async add(a, b) {
         return /* await */ Cypress.Promise.resolve(a + b).delay(100); // don't use await redundantly
@@ -284,5 +262,59 @@ describe("call count", () => {
     // call the spy directly
     expect(getNameSpy.call(testRunner)).to.equal("Cypress");
     expect(getNameSpy).to.be.calledTwice;
+  });
+});
+
+describe("spy on application code", () => {
+  it("stub and spy are exchangeable here", () => {
+    cy.intercept("GET", "/", { fixture: "alert-me.html" });
+    cy.visit("/");
+
+    cy.window()
+      .its("actions")
+      // .then((actions) => cy.stub(actions, "alertTheUser").as("alerted"));
+      .then((actions) => cy.spy(actions, "alertTheUser").as("alerted"));
+
+    cy.get("#alerter").click();
+    cy.get("@alerted").should("have.been.called");
+  });
+
+  it("also here", () => {
+    cy.intercept("GET", "/", { fixture: "click-me.html" });
+    cy.visit("/");
+
+    // cy.window().then((w) => cy.stub(w, "alert").as("alert"));
+    cy.window().then((w) => cy.spy(w, "alert").as("alert"));
+
+    cy.get("#sayhi").click();
+    cy.get("@alert").should("have.been.calledOnceWith", "Hello there!");
+
+    // the application can trigger the alert several times
+    cy.get("#sayhi").click().click();
+    // we can confirm the total number of calls
+    cy.get("@alert").its("callCount").should("equal", 3);
+  });
+});
+
+describe("Check the order of calls: toHaveBeenCalledBefore", () => {
+  it("you can check if one stub was called before or after another stub", () => {
+    const cart = {
+      init() {
+        return "initialized";
+      },
+      finalize() {
+        return "finalized";
+      },
+      execute() {
+        this.init();
+        this.finalize();
+      },
+    };
+
+    cy.spy(cart, "init");
+    cy.spy(cart, "finalize");
+    cart.execute();
+
+    expect(cart.init).to.have.been.calledBefore(cart.finalize);
   });
 });

@@ -1,0 +1,29 @@
+<button id="alerter">Alert me</button>
+<script>
+	const actions = {
+		alertTheUser() {
+			alert('📣 you clicked the button')
+		},
+	}
+	document
+		.getElementById('alerter')
+		// 🛑 it is important to NOT pass the method but call the method on click
+		// THIS WILL NOT WORK
+		// .addEventListener('click', actions.alertTheUser)
+		//
+		// ✅ This will work.
+		// If the "alertsTheUser" method is replaced in the "actions" object
+		// then the stub is called during test
+		.addEventListener('click', function () {
+			actions.alertTheUser()
+		})
+
+	// if we are running inside Cypress test
+	// expose the object with methods to be stubbed from tests
+	if (window.Cypress) {
+		console.log('running inside Cypress')
+		window.actions = actions
+	} else {
+		console.log('not running inside Cypress')
+	}
+</script>

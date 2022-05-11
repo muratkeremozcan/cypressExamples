@@ -1,0 +1,10 @@
+<button id="fav-color">Ask about color</button>
+<div id="color-output" />
+<script>
+	document
+		.getElementById('fav-color')
+		.addEventListener('click', function () {
+			const color = window.prompt('What is your favorite color?')
+			document.getElementById('color-output').innerText = color
+		})
+</script>
