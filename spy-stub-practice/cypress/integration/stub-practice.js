@@ -252,3 +252,56 @@ describe("cy.clock", () => {
       });
   });
 });
+
+describe.only("geoLocation", () => {
+  // https://glebbahmutov.com/cypress-examples/9.7.0/recipes/stub-geolocation.html#sinon-js-callsfake
+  /*
+    https://www.youtube.com/watch?v=zR6o_tdJKDk&t=59s
+    withArgs : controls when the stub is used
+    callsArg : CallsArg is the response like calling the callback argument to the stub
+    callsArgWith : Like callsArg, but with arguments to pass to the callback.
+  */
+  beforeEach(() => {
+    cy.intercept("GET", "/", { fixture: "geoLocation.html" });
+    cy.visit("/");
+  });
+
+  it("sinon callsFake", () => {
+    // simulate the browser API calling
+    // the "onError" callback function
+    // passed by the app to geolocation.getCurrentPosition
+    const error = new Error("Test geo error");
+
+    cy.window().then((win) => {
+      cy.stub(win.navigator.geolocation, "getCurrentPosition")
+        // our stub just calls the "onError" argument
+        .callsFake((onSuccess, onError) => {
+          onError(error);
+        })
+        .as("getCurrentPosition");
+    });
+    cy.get("#locate").click();
+    // confirm the application behaves as it should
+    cy.contains("#message", error.message);
+    // and the stub was actually used
+    cy.get("@getCurrentPosition").should("have.been.calledOnce");
+  });
+
+  it("sinon callsArgWit", () => {
+    const error = new Error("Test geo error");
+
+    cy.window().then((win) => {
+      // instead of implementing a function "callsFake"
+      // we can simply say "stub calls the argument at index 1"
+      // with the given argument "error"
+      cy.stub(win.navigator.geolocation, "getCurrentPosition")
+        .callsArgWith(1, error)
+        .as("getCurrentPosition");
+    });
+    cy.get("#locate").click();
+    // confirm the application behaves as it should
+    cy.contains("#message", error.message);
+    // and the stub was actually used
+    cy.get("@getCurrentPosition").should("have.been.calledOnce");
+  });
+});

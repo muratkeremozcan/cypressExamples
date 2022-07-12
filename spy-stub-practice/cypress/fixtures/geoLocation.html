@@ -1,0 +1,17 @@
+<div id="message" />
+<button id="locate">Locate me</button>
+<script>
+	document
+		.getElementById('locate')
+		.addEventListener('click', () => {
+			navigator.geolocation.getCurrentPosition(
+				function onSuccess() {
+					// success getting the browser location
+				},
+				function onError(err) {
+					const message = document.getElementById('message')
+					message.innerText = err.message
+				},
+			)
+		})
+</script>
