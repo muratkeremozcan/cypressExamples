@@ -253,7 +253,7 @@ describe("cy.clock", () => {
   });
 });
 
-describe.only("geoLocation", () => {
+describe("geoLocation", () => {
   // https://glebbahmutov.com/cypress-examples/9.7.0/recipes/stub-geolocation.html#sinon-js-callsfake
   /*
     https://www.youtube.com/watch?v=zR6o_tdJKDk&t=59s
@@ -303,5 +303,45 @@ describe.only("geoLocation", () => {
     cy.contains("#message", error.message);
     // and the stub was actually used
     cy.get("@getCurrentPosition").should("have.been.calledOnce");
+  });
+});
+
+describe.only("fail if there is a console.log", () => {
+  beforeEach(() =>
+    cy.intercept("GET", "/", { fixture: "check-console.log.html" })
+  );
+  it("should check at the end of the test", () => {
+    cy.window()
+      .its("console")
+      .then((console) => cy.spy(console, "log").as("log"));
+
+    // perform some action or give app time to
+    // do its thing that might log an error message
+    cy.wait(1000);
+    // check the logs by going through all recorded calls
+    // getCalls yields the spy / stub call array
+    cy.get("@log")
+      .invoke("getCalls")
+      .then((calls) => console.table(calls))
+      .each((call) =>
+        call.args.map((arg) => expect(arg.to.not.contain("error")))
+      );
+  });
+
+  it("should Check each console.log call as it happens", () => {
+    cy.window()
+      .its("console")
+      .then((console) => {
+        cy.stub(console, "log").callsFake((...args) => {
+          args.forEach((arg) => {
+            expect(arg).to.not.contain("error");
+          });
+          // all is good, call the original log method
+          console.log.wrappedMethod(...args);
+        });
+      });
+    // perform some action or give app time to
+    // do its thing that might log an error message
+    cy.wait(1000);
   });
 });
