@@ -12,7 +12,7 @@
     "e2e:open": "start-server-and-test serve http://localhost:8080 cy:open"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.2",
     "http-server": "^0.11.1",
     "vue": "^2.5.16"
   },
